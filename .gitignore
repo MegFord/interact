@@ -36,3 +36,6 @@ nosetests.xml
 
 # Java
 .javac
+
+# Data
+data/users.tsv
