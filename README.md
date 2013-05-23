@@ -1,3 +1,3 @@
 tempt
 =====
-This repository contains code for the TEMP dialog system.
+This repository contains code for the TEMPT dialog system.
