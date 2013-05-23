@@ -12,6 +12,27 @@ The general idea is to
 3- Select a dialog statement based on the selected style cluster.
 
 
-Related tasks:
-Alternatively, we may want to take as input a dialog statement, and output similar words that can be substituted to rephrase the statement. This seems harder.
+
+The approach we'll take is:
+1- Cluster users by LIWC vectors over their Twitter messages
+2- For a given word, find the most similar word W in each LIWC cluster
+    - Compute the context vector of W over all data
+    - Find the M most similar words in each cluster, based on their cluster-specific context vector
+3- For a new user, find their closest LIWC cluster, and select the corresponding dialog statement
+
+
+Other approaches considered:
+
+- Alternatively, we may want to take as input a dialog statement, and output similar words that can be substituted to rephrase the statement. This seems harder.
+
+- Pointwise Mutual Information for synonym discovery
+
+The synonym approach:
+
+1- Given N documents and M words, for each word output the list of synonyms
+  - discover these based on pointwise mutual information of context vectors
+2- For each user, create a vector that is the frequency with which they use each of these synonyms
+3- Cluster these users using these vectors
+4- For a dialog statement, generate synonyms from each cluster 
+
 
