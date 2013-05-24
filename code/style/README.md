@@ -6,7 +6,8 @@ Consider three ways of extolling the virtues of Tai Chi:
 
 The goal is to pick one of those three choices based on information from a user's social media presence.
 
-The general idea is to
+The general idea is to:
+
 1. Cluster a large number of social media users by linguistic style (aka "register"). The output is a list of "style clusters".
 2. Assign a new user to one of these style clusters based on the text in their social media feeds.
 3. Select a dialog statement based on the selected style cluster.
@@ -14,6 +15,7 @@ The general idea is to
 
 
 The approach we'll take is:
+
 1. Cluster users by LIWC vectors over their Twitter messages
 2. For a given word, find the most similar word W in each LIWC cluster
     2a. Compute the context vector of W over all data
