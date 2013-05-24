@@ -12,7 +12,7 @@ public class NLU
 		Scanner keyboard = new Scanner(System.in);
 		//String input = keyboard.nextLine();
 		//tag(input);
-		tagTo("I want to go to California tomorrow.","to");
+		tagTo("I want to go to California tomorrow morning.","to");
 	}
 	public static void tag(String s, String tag)
 	{
