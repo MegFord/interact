@@ -33,9 +33,12 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+.metadata
+bin
 
 # Java
 .javac
+.class
 
 # Data
 data/users.tsv
