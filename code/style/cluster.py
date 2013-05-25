@@ -56,7 +56,6 @@ def invert_dict(d):
 def main():
    alpha, data = pickle.load(open(args.input, 'rb'))
    alpha = invert_dict(alpha)
-   print alpha.keys()
    if args.tfidf:
       data = TfidfTransformer().fit_transform(data)
    km = MiniBatchKMeans(n_clusters=args.clusters, random_state=args.seed)
