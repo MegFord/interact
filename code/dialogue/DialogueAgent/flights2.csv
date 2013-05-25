@@ -1,0 +1,602 @@
+600
+4
+Austin,Chicago,06/01/2013,9:20
+Austin,Memphis,06/01/2013,10:10
+Austin,Miami,06/01/2013,5:10
+Austin,San Francisco,06/01/2013,5:30
+Austin,Chicago,06/02/2013,6:40
+Austin,Memphis,06/02/2013,10:10
+Austin,Miami,06/02/2013,11:45
+Austin,San Francisco,06/02/2013,23:45
+Austin,Chicago,06/03/2013,5:45
+Austin,Memphis,06/03/2013,2:40
+Austin,Miami,06/03/2013,21:55
+Austin,San Francisco,06/03/2013,1:40
+Austin,Chicago,06/04/2013,19:55
+Austin,Memphis,06/04/2013,21:55
+Austin,Miami,06/04/2013,16:25
+Austin,San Francisco,06/04/2013,3:50
+Austin,Chicago,06/05/2013,4:60
+Austin,Memphis,06/05/2013,1:40
+Austin,Miami,06/05/2013,3:50
+Austin,San Francisco,06/05/2013,8:20
+Austin,Chicago,06/06/2013,6:40
+Austin,Memphis,06/06/2013,11:35
+Austin,Miami,06/06/2013,21:30
+Austin,San Francisco,06/06/2013,7:05
+Austin,Chicago,06/07/2013,13:30
+Austin,Memphis,06/07/2013,15:10
+Austin,Miami,06/07/2013,7:30
+Austin,San Francisco,06/07/2013,00:20
+Austin,Chicago,06/08/2013,00:50
+Austin,Memphis,06/08/2013,23:20
+Austin,Miami,06/08/2013,16:50
+Austin,San Francisco,06/08/2013,14:50
+Austin,Chicago,06/09/2013,13:10
+Austin,Memphis,06/09/2013,5:55
+Austin,Miami,06/09/2013,7:35
+Austin,San Francisco,06/09/2013,16:05
+Austin,Chicago,06/10/2013,1:15
+Austin,Memphis,06/10/2013,6:05
+Austin,Miami,06/10/2013,11:05
+Austin,San Francisco,06/10/2013,21:20
+Austin,Chicago,06/11/2013,18:60
+Austin,Memphis,06/11/2013,4:25
+Austin,Miami,06/11/2013,2:55
+Austin,San Francisco,06/11/2013,20:40
+Austin,Chicago,06/12/2013,7:45
+Austin,Memphis,06/12/2013,21:40
+Austin,Miami,06/12/2013,19:60
+Austin,San Francisco,06/12/2013,15:10
+Austin,Chicago,06/13/2013,3:40
+Austin,Memphis,06/13/2013,00:20
+Austin,Miami,06/13/2013,13:25
+Austin,San Francisco,06/13/2013,3:25
+Austin,Chicago,06/14/2013,23:55
+Austin,Memphis,06/14/2013,19:35
+Austin,Miami,06/14/2013,22:35
+Austin,San Francisco,06/14/2013,14:35
+Austin,Chicago,06/15/2013,5:10
+Austin,Memphis,06/15/2013,21:05
+Austin,Miami,06/15/2013,19:30
+Austin,San Francisco,06/15/2013,11:30
+Austin,Chicago,06/16/2013,19:20
+Austin,Memphis,06/16/2013,10:05
+Austin,Miami,06/16/2013,00:60
+Austin,San Francisco,06/16/2013,14:60
+Austin,Chicago,06/17/2013,2:20
+Austin,Memphis,06/17/2013,5:30
+Austin,Miami,06/17/2013,13:10
+Austin,San Francisco,06/17/2013,7:50
+Austin,Chicago,06/18/2013,2:35
+Austin,Memphis,06/18/2013,20:10
+Austin,Miami,06/18/2013,14:55
+Austin,San Francisco,06/18/2013,18:60
+Austin,Chicago,06/19/2013,23:45
+Austin,Memphis,06/19/2013,6:10
+Austin,Miami,06/19/2013,4:40
+Austin,San Francisco,06/19/2013,14:10
+Austin,Chicago,06/20/2013,22:40
+Austin,Memphis,06/20/2013,17:35
+Austin,Miami,06/20/2013,8:35
+Austin,San Francisco,06/20/2013,17:25
+Austin,Chicago,06/21/2013,1:05
+Austin,Memphis,06/21/2013,14:20
+Austin,Miami,06/21/2013,12:45
+Austin,San Francisco,06/21/2013,10:30
+Austin,Chicago,06/22/2013,13:45
+Austin,Memphis,06/22/2013,12:35
+Austin,Miami,06/22/2013,19:00
+Austin,San Francisco,06/22/2013,00:55
+Austin,Chicago,06/23/2013,1:30
+Austin,Memphis,06/23/2013,9:60
+Austin,Miami,06/23/2013,20:25
+Austin,San Francisco,06/23/2013,4:40
+Austin,Chicago,06/24/2013,23:40
+Austin,Memphis,06/24/2013,22:50
+Austin,Miami,06/24/2013,13:30
+Austin,San Francisco,06/24/2013,8:20
+Austin,Chicago,06/25/2013,6:20
+Austin,Memphis,06/25/2013,00:00
+Austin,Miami,06/25/2013,9:20
+Austin,San Francisco,06/25/2013,15:25
+Austin,Chicago,06/26/2013,20:05
+Austin,Memphis,06/26/2013,5:40
+Austin,Miami,06/26/2013,5:40
+Austin,San Francisco,06/26/2013,19:15
+Austin,Chicago,06/27/2013,17:55
+Austin,Memphis,06/27/2013,6:25
+Austin,Miami,06/27/2013,11:15
+Austin,San Francisco,06/27/2013,23:30
+Austin,Chicago,06/28/2013,21:30
+Austin,Memphis,06/28/2013,23:45
+Austin,Miami,06/28/2013,1:10
+Austin,San Francisco,06/28/2013,21:30
+Austin,Chicago,06/29/2013,1:25
+Austin,Memphis,06/29/2013,00:45
+Austin,Miami,06/29/2013,19:20
+Austin,San Francisco,06/29/2013,15:30
+Austin,Chicago,06/30/2013,13:05
+Austin,Memphis,06/30/2013,17:15
+Austin,Miami,06/30/2013,19:55
+Austin,San Francisco,06/30/2013,1:05
+Chicago,Austin,06/01/2013,23:60
+Chicago,Memphis,06/01/2013,4:45
+Chicago,Miami,06/01/2013,19:15
+Chicago,San Francisco,06/01/2013,8:55
+Chicago,Austin,06/02/2013,22:50
+Chicago,Memphis,06/02/2013,7:25
+Chicago,Miami,06/02/2013,14:55
+Chicago,San Francisco,06/02/2013,2:45
+Chicago,Austin,06/03/2013,6:20
+Chicago,Memphis,06/03/2013,21:20
+Chicago,Miami,06/03/2013,10:20
+Chicago,San Francisco,06/03/2013,12:35
+Chicago,Austin,06/04/2013,18:25
+Chicago,Memphis,06/04/2013,7:25
+Chicago,Miami,06/04/2013,11:10
+Chicago,San Francisco,06/04/2013,16:20
+Chicago,Austin,06/05/2013,15:55
+Chicago,Memphis,06/05/2013,1:10
+Chicago,Miami,06/05/2013,3:05
+Chicago,San Francisco,06/05/2013,21:55
+Chicago,Austin,06/06/2013,12:05
+Chicago,Memphis,06/06/2013,10:45
+Chicago,Miami,06/06/2013,2:10
+Chicago,San Francisco,06/06/2013,7:40
+Chicago,Austin,06/07/2013,3:15
+Chicago,Memphis,06/07/2013,18:50
+Chicago,Miami,06/07/2013,12:25
+Chicago,San Francisco,06/07/2013,16:05
+Chicago,Austin,06/08/2013,6:05
+Chicago,Memphis,06/08/2013,3:20
+Chicago,Miami,06/08/2013,9:55
+Chicago,San Francisco,06/08/2013,17:60
+Chicago,Austin,06/09/2013,11:05
+Chicago,Memphis,06/09/2013,2:00
+Chicago,Miami,06/09/2013,16:10
+Chicago,San Francisco,06/09/2013,23:40
+Chicago,Austin,06/10/2013,18:55
+Chicago,Memphis,06/10/2013,23:40
+Chicago,Miami,06/10/2013,9:50
+Chicago,San Francisco,06/10/2013,19:15
+Chicago,Austin,06/11/2013,4:40
+Chicago,Memphis,06/11/2013,23:45
+Chicago,Miami,06/11/2013,22:40
+Chicago,San Francisco,06/11/2013,17:10
+Chicago,Austin,06/12/2013,18:10
+Chicago,Memphis,06/12/2013,19:40
+Chicago,Miami,06/12/2013,23:60
+Chicago,San Francisco,06/12/2013,9:45
+Chicago,Austin,06/13/2013,8:40
+Chicago,Memphis,06/13/2013,12:55
+Chicago,Miami,06/13/2013,16:10
+Chicago,San Francisco,06/13/2013,17:30
+Chicago,Austin,06/14/2013,10:30
+Chicago,Memphis,06/14/2013,2:60
+Chicago,Miami,06/14/2013,19:55
+Chicago,San Francisco,06/14/2013,9:50
+Chicago,Austin,06/15/2013,10:05
+Chicago,Memphis,06/15/2013,9:30
+Chicago,Miami,06/15/2013,00:10
+Chicago,San Francisco,06/15/2013,7:60
+Chicago,Austin,06/16/2013,00:40
+Chicago,Memphis,06/16/2013,5:55
+Chicago,Miami,06/16/2013,20:30
+Chicago,San Francisco,06/16/2013,14:05
+Chicago,Austin,06/17/2013,16:30
+Chicago,Memphis,06/17/2013,3:55
+Chicago,Miami,06/17/2013,9:30
+Chicago,San Francisco,06/17/2013,14:35
+Chicago,Austin,06/18/2013,22:10
+Chicago,Memphis,06/18/2013,00:45
+Chicago,Miami,06/18/2013,3:30
+Chicago,San Francisco,06/18/2013,4:10
+Chicago,Austin,06/19/2013,5:35
+Chicago,Memphis,06/19/2013,4:10
+Chicago,Miami,06/19/2013,00:20
+Chicago,San Francisco,06/19/2013,14:05
+Chicago,Austin,06/20/2013,15:40
+Chicago,Memphis,06/20/2013,18:20
+Chicago,Miami,06/20/2013,13:45
+Chicago,San Francisco,06/20/2013,21:05
+Chicago,Austin,06/21/2013,5:15
+Chicago,Memphis,06/21/2013,15:60
+Chicago,Miami,06/21/2013,2:45
+Chicago,San Francisco,06/21/2013,16:55
+Chicago,Austin,06/22/2013,23:45
+Chicago,Memphis,06/22/2013,4:40
+Chicago,Miami,06/22/2013,6:40
+Chicago,San Francisco,06/22/2013,12:20
+Chicago,Austin,06/23/2013,8:20
+Chicago,Memphis,06/23/2013,4:40
+Chicago,Miami,06/23/2013,5:20
+Chicago,San Francisco,06/23/2013,13:20
+Chicago,Austin,06/24/2013,22:25
+Chicago,Memphis,06/24/2013,22:40
+Chicago,Miami,06/24/2013,11:30
+Chicago,San Francisco,06/24/2013,11:05
+Chicago,Austin,06/25/2013,20:50
+Chicago,Memphis,06/25/2013,17:35
+Chicago,Miami,06/25/2013,10:45
+Chicago,San Francisco,06/25/2013,16:45
+Chicago,Austin,06/26/2013,21:20
+Chicago,Memphis,06/26/2013,17:40
+Chicago,Miami,06/26/2013,17:40
+Chicago,San Francisco,06/26/2013,3:10
+Chicago,Austin,06/27/2013,15:05
+Chicago,Memphis,06/27/2013,9:50
+Chicago,Miami,06/27/2013,4:30
+Chicago,San Francisco,06/27/2013,1:50
+Chicago,Austin,06/28/2013,3:55
+Chicago,Memphis,06/28/2013,13:25
+Chicago,Miami,06/28/2013,2:30
+Chicago,San Francisco,06/28/2013,00:35
+Chicago,Austin,06/29/2013,23:05
+Chicago,Memphis,06/29/2013,10:55
+Chicago,Miami,06/29/2013,5:05
+Chicago,San Francisco,06/29/2013,4:30
+Chicago,Austin,06/30/2013,13:15
+Chicago,Memphis,06/30/2013,7:35
+Chicago,Miami,06/30/2013,13:05
+Chicago,San Francisco,06/30/2013,14:40
+Memphis,Austin,06/01/2013,7:30
+Memphis,Chicago,06/01/2013,12:35
+Memphis,Miami,06/01/2013,21:45
+Memphis,San Francisco,06/01/2013,8:05
+Memphis,Austin,06/02/2013,15:40
+Memphis,Chicago,06/02/2013,1:10
+Memphis,Miami,06/02/2013,6:15
+Memphis,San Francisco,06/02/2013,1:40
+Memphis,Austin,06/03/2013,00:30
+Memphis,Chicago,06/03/2013,8:15
+Memphis,Miami,06/03/2013,14:10
+Memphis,San Francisco,06/03/2013,10:40
+Memphis,Austin,06/04/2013,9:20
+Memphis,Chicago,06/04/2013,18:05
+Memphis,Miami,06/04/2013,7:55
+Memphis,San Francisco,06/04/2013,11:30
+Memphis,Austin,06/05/2013,7:25
+Memphis,Chicago,06/05/2013,1:15
+Memphis,Miami,06/05/2013,16:30
+Memphis,San Francisco,06/05/2013,19:60
+Memphis,Austin,06/06/2013,2:35
+Memphis,Chicago,06/06/2013,19:60
+Memphis,Miami,06/06/2013,15:05
+Memphis,San Francisco,06/06/2013,19:35
+Memphis,Austin,06/07/2013,10:45
+Memphis,Chicago,06/07/2013,7:10
+Memphis,Miami,06/07/2013,16:50
+Memphis,San Francisco,06/07/2013,3:60
+Memphis,Austin,06/08/2013,5:05
+Memphis,Chicago,06/08/2013,8:55
+Memphis,Miami,06/08/2013,8:55
+Memphis,San Francisco,06/08/2013,11:45
+Memphis,Austin,06/09/2013,10:05
+Memphis,Chicago,06/09/2013,10:40
+Memphis,Miami,06/09/2013,11:20
+Memphis,San Francisco,06/09/2013,13:10
+Memphis,Austin,06/10/2013,20:15
+Memphis,Chicago,06/10/2013,22:45
+Memphis,Miami,06/10/2013,4:20
+Memphis,San Francisco,06/10/2013,22:55
+Memphis,Austin,06/11/2013,4:10
+Memphis,Chicago,06/11/2013,00:10
+Memphis,Miami,06/11/2013,22:20
+Memphis,San Francisco,06/11/2013,11:35
+Memphis,Austin,06/12/2013,20:45
+Memphis,Chicago,06/12/2013,22:05
+Memphis,Miami,06/12/2013,6:35
+Memphis,San Francisco,06/12/2013,11:20
+Memphis,Austin,06/13/2013,13:15
+Memphis,Chicago,06/13/2013,15:40
+Memphis,Miami,06/13/2013,2:30
+Memphis,San Francisco,06/13/2013,19:40
+Memphis,Austin,06/14/2013,9:35
+Memphis,Chicago,06/14/2013,5:15
+Memphis,Miami,06/14/2013,1:20
+Memphis,San Francisco,06/14/2013,19:20
+Memphis,Austin,06/15/2013,23:15
+Memphis,Chicago,06/15/2013,14:25
+Memphis,Miami,06/15/2013,12:20
+Memphis,San Francisco,06/15/2013,00:45
+Memphis,Austin,06/16/2013,6:60
+Memphis,Chicago,06/16/2013,20:10
+Memphis,Miami,06/16/2013,15:20
+Memphis,San Francisco,06/16/2013,00:45
+Memphis,Austin,06/17/2013,00:20
+Memphis,Chicago,06/17/2013,2:10
+Memphis,Miami,06/17/2013,22:15
+Memphis,San Francisco,06/17/2013,12:55
+Memphis,Austin,06/18/2013,16:15
+Memphis,Chicago,06/18/2013,6:45
+Memphis,Miami,06/18/2013,18:35
+Memphis,San Francisco,06/18/2013,8:35
+Memphis,Austin,06/19/2013,13:60
+Memphis,Chicago,06/19/2013,8:20
+Memphis,Miami,06/19/2013,14:35
+Memphis,San Francisco,06/19/2013,1:40
+Memphis,Austin,06/20/2013,16:30
+Memphis,Chicago,06/20/2013,10:15
+Memphis,Miami,06/20/2013,7:05
+Memphis,San Francisco,06/20/2013,21:05
+Memphis,Austin,06/21/2013,20:20
+Memphis,Chicago,06/21/2013,00:05
+Memphis,Miami,06/21/2013,6:35
+Memphis,San Francisco,06/21/2013,22:40
+Memphis,Austin,06/22/2013,8:60
+Memphis,Chicago,06/22/2013,1:20
+Memphis,Miami,06/22/2013,17:50
+Memphis,San Francisco,06/22/2013,17:25
+Memphis,Austin,06/23/2013,11:15
+Memphis,Chicago,06/23/2013,18:30
+Memphis,Miami,06/23/2013,2:05
+Memphis,San Francisco,06/23/2013,16:35
+Memphis,Austin,06/24/2013,5:05
+Memphis,Chicago,06/24/2013,12:30
+Memphis,Miami,06/24/2013,18:35
+Memphis,San Francisco,06/24/2013,8:55
+Memphis,Austin,06/25/2013,10:05
+Memphis,Chicago,06/25/2013,22:35
+Memphis,Miami,06/25/2013,19:55
+Memphis,San Francisco,06/25/2013,15:30
+Memphis,Austin,06/26/2013,17:35
+Memphis,Chicago,06/26/2013,22:20
+Memphis,Miami,06/26/2013,22:25
+Memphis,San Francisco,06/26/2013,2:20
+Memphis,Austin,06/27/2013,15:55
+Memphis,Chicago,06/27/2013,2:50
+Memphis,Miami,06/27/2013,19:15
+Memphis,San Francisco,06/27/2013,22:40
+Memphis,Austin,06/28/2013,21:00
+Memphis,Chicago,06/28/2013,5:15
+Memphis,Miami,06/28/2013,11:50
+Memphis,San Francisco,06/28/2013,10:05
+Memphis,Austin,06/29/2013,16:55
+Memphis,Chicago,06/29/2013,16:55
+Memphis,Miami,06/29/2013,1:05
+Memphis,San Francisco,06/29/2013,13:20
+Memphis,Austin,06/30/2013,5:35
+Memphis,Chicago,06/30/2013,3:40
+Memphis,Miami,06/30/2013,16:50
+Memphis,San Francisco,06/30/2013,21:20
+Miami,Austin,06/01/2013,1:05
+Miami,Chicago,06/01/2013,7:40
+Miami,Memphis,06/01/2013,18:05
+Miami,San Francisco,06/01/2013,22:15
+Miami,Austin,06/02/2013,21:45
+Miami,Chicago,06/02/2013,12:35
+Miami,Memphis,06/02/2013,16:50
+Miami,San Francisco,06/02/2013,11:45
+Miami,Austin,06/03/2013,17:10
+Miami,Chicago,06/03/2013,13:30
+Miami,Memphis,06/03/2013,1:35
+Miami,San Francisco,06/03/2013,12:40
+Miami,Austin,06/04/2013,3:35
+Miami,Chicago,06/04/2013,2:50
+Miami,Memphis,06/04/2013,19:20
+Miami,San Francisco,06/04/2013,11:60
+Miami,Austin,06/05/2013,14:10
+Miami,Chicago,06/05/2013,3:55
+Miami,Memphis,06/05/2013,2:35
+Miami,San Francisco,06/05/2013,1:40
+Miami,Austin,06/06/2013,17:30
+Miami,Chicago,06/06/2013,22:30
+Miami,Memphis,06/06/2013,19:40
+Miami,San Francisco,06/06/2013,9:50
+Miami,Austin,06/07/2013,16:60
+Miami,Chicago,06/07/2013,00:35
+Miami,Memphis,06/07/2013,2:35
+Miami,San Francisco,06/07/2013,10:15
+Miami,Austin,06/08/2013,7:10
+Miami,Chicago,06/08/2013,5:40
+Miami,Memphis,06/08/2013,22:35
+Miami,San Francisco,06/08/2013,10:35
+Miami,Austin,06/09/2013,17:25
+Miami,Chicago,06/09/2013,4:60
+Miami,Memphis,06/09/2013,19:55
+Miami,San Francisco,06/09/2013,16:35
+Miami,Austin,06/10/2013,20:45
+Miami,Chicago,06/10/2013,00:25
+Miami,Memphis,06/10/2013,11:60
+Miami,San Francisco,06/10/2013,23:20
+Miami,Austin,06/11/2013,6:05
+Miami,Chicago,06/11/2013,22:15
+Miami,Memphis,06/11/2013,7:55
+Miami,San Francisco,06/11/2013,20:15
+Miami,Austin,06/12/2013,23:45
+Miami,Chicago,06/12/2013,9:15
+Miami,Memphis,06/12/2013,5:40
+Miami,San Francisco,06/12/2013,00:20
+Miami,Austin,06/13/2013,5:10
+Miami,Chicago,06/13/2013,21:20
+Miami,Memphis,06/13/2013,14:50
+Miami,San Francisco,06/13/2013,11:60
+Miami,Austin,06/14/2013,8:35
+Miami,Chicago,06/14/2013,19:55
+Miami,Memphis,06/14/2013,15:60
+Miami,San Francisco,06/14/2013,9:40
+Miami,Austin,06/15/2013,9:30
+Miami,Chicago,06/15/2013,13:35
+Miami,Memphis,06/15/2013,11:40
+Miami,San Francisco,06/15/2013,1:10
+Miami,Austin,06/16/2013,7:20
+Miami,Chicago,06/16/2013,14:55
+Miami,Memphis,06/16/2013,20:50
+Miami,San Francisco,06/16/2013,5:30
+Miami,Austin,06/17/2013,13:05
+Miami,Chicago,06/17/2013,9:35
+Miami,Memphis,06/17/2013,3:25
+Miami,San Francisco,06/17/2013,2:60
+Miami,Austin,06/18/2013,22:60
+Miami,Chicago,06/18/2013,3:60
+Miami,Memphis,06/18/2013,3:15
+Miami,San Francisco,06/18/2013,13:40
+Miami,Austin,06/19/2013,1:50
+Miami,Chicago,06/19/2013,2:55
+Miami,Memphis,06/19/2013,17:45
+Miami,San Francisco,06/19/2013,16:10
+Miami,Austin,06/20/2013,5:45
+Miami,Chicago,06/20/2013,6:20
+Miami,Memphis,06/20/2013,9:15
+Miami,San Francisco,06/20/2013,7:55
+Miami,Austin,06/21/2013,9:55
+Miami,Chicago,06/21/2013,7:55
+Miami,Memphis,06/21/2013,6:25
+Miami,San Francisco,06/21/2013,16:25
+Miami,Austin,06/22/2013,11:20
+Miami,Chicago,06/22/2013,21:05
+Miami,Memphis,06/22/2013,12:30
+Miami,San Francisco,06/22/2013,12:05
+Miami,Austin,06/23/2013,23:30
+Miami,Chicago,06/23/2013,5:30
+Miami,Memphis,06/23/2013,00:20
+Miami,San Francisco,06/23/2013,1:50
+Miami,Austin,06/24/2013,17:20
+Miami,Chicago,06/24/2013,9:30
+Miami,Memphis,06/24/2013,6:60
+Miami,San Francisco,06/24/2013,11:15
+Miami,Austin,06/25/2013,17:45
+Miami,Chicago,06/25/2013,5:40
+Miami,Memphis,06/25/2013,23:15
+Miami,San Francisco,06/25/2013,10:35
+Miami,Austin,06/26/2013,19:15
+Miami,Chicago,06/26/2013,5:40
+Miami,Memphis,06/26/2013,10:10
+Miami,San Francisco,06/26/2013,1:15
+Miami,Austin,06/27/2013,7:20
+Miami,Chicago,06/27/2013,10:40
+Miami,Memphis,06/27/2013,8:60
+Miami,San Francisco,06/27/2013,10:40
+Miami,Austin,06/28/2013,4:10
+Miami,Chicago,06/28/2013,16:20
+Miami,Memphis,06/28/2013,23:20
+Miami,San Francisco,06/28/2013,7:45
+Miami,Austin,06/29/2013,15:50
+Miami,Chicago,06/29/2013,1:55
+Miami,Memphis,06/29/2013,20:50
+Miami,San Francisco,06/29/2013,2:45
+Miami,Austin,06/30/2013,8:10
+Miami,Chicago,06/30/2013,12:25
+Miami,Memphis,06/30/2013,14:15
+Miami,San Francisco,06/30/2013,9:35
+San Francisco,Austin,06/01/2013,00:15
+San Francisco,Chicago,06/01/2013,5:35
+San Francisco,Memphis,06/01/2013,16:10
+San Francisco,Miami,06/01/2013,4:55
+San Francisco,Austin,06/02/2013,12:25
+San Francisco,Chicago,06/02/2013,18:35
+San Francisco,Memphis,06/02/2013,3:05
+San Francisco,Miami,06/02/2013,3:25
+San Francisco,Austin,06/03/2013,21:40
+San Francisco,Chicago,06/03/2013,16:20
+San Francisco,Memphis,06/03/2013,15:20
+San Francisco,Miami,06/03/2013,5:35
+San Francisco,Austin,06/04/2013,2:35
+San Francisco,Chicago,06/04/2013,9:20
+San Francisco,Memphis,06/04/2013,10:60
+San Francisco,Miami,06/04/2013,10:10
+San Francisco,Austin,06/05/2013,12:45
+San Francisco,Chicago,06/05/2013,10:15
+San Francisco,Memphis,06/05/2013,12:50
+San Francisco,Miami,06/05/2013,21:25
+San Francisco,Austin,06/06/2013,3:05
+San Francisco,Chicago,06/06/2013,18:30
+San Francisco,Memphis,06/06/2013,2:30
+San Francisco,Miami,06/06/2013,16:60
+San Francisco,Austin,06/07/2013,23:50
+San Francisco,Chicago,06/07/2013,22:00
+San Francisco,Memphis,06/07/2013,22:15
+San Francisco,Miami,06/07/2013,20:45
+San Francisco,Austin,06/08/2013,7:15
+San Francisco,Chicago,06/08/2013,14:30
+San Francisco,Memphis,06/08/2013,15:05
+San Francisco,Miami,06/08/2013,4:20
+San Francisco,Austin,06/09/2013,20:20
+San Francisco,Chicago,06/09/2013,20:10
+San Francisco,Memphis,06/09/2013,3:55
+San Francisco,Miami,06/09/2013,10:30
+San Francisco,Austin,06/10/2013,2:45
+San Francisco,Chicago,06/10/2013,14:40
+San Francisco,Memphis,06/10/2013,00:05
+San Francisco,Miami,06/10/2013,7:40
+San Francisco,Austin,06/11/2013,7:30
+San Francisco,Chicago,06/11/2013,18:60
+San Francisco,Memphis,06/11/2013,4:55
+San Francisco,Miami,06/11/2013,5:40
+San Francisco,Austin,06/12/2013,10:05
+San Francisco,Chicago,06/12/2013,23:30
+San Francisco,Memphis,06/12/2013,9:25
+San Francisco,Miami,06/12/2013,9:60
+San Francisco,Austin,06/13/2013,18:50
+San Francisco,Chicago,06/13/2013,22:45
+San Francisco,Memphis,06/13/2013,15:05
+San Francisco,Miami,06/13/2013,9:15
+San Francisco,Austin,06/14/2013,20:50
+San Francisco,Chicago,06/14/2013,6:40
+San Francisco,Memphis,06/14/2013,5:15
+San Francisco,Miami,06/14/2013,19:60
+San Francisco,Austin,06/15/2013,14:40
+San Francisco,Chicago,06/15/2013,6:50
+San Francisco,Memphis,06/15/2013,23:45
+San Francisco,Miami,06/15/2013,7:15
+San Francisco,Austin,06/16/2013,21:05
+San Francisco,Chicago,06/16/2013,9:05
+San Francisco,Memphis,06/16/2013,19:40
+San Francisco,Miami,06/16/2013,10:60
+San Francisco,Austin,06/17/2013,17:25
+San Francisco,Chicago,06/17/2013,12:55
+San Francisco,Memphis,06/17/2013,4:30
+San Francisco,Miami,06/17/2013,8:05
+San Francisco,Austin,06/18/2013,18:20
+San Francisco,Chicago,06/18/2013,12:20
+San Francisco,Memphis,06/18/2013,8:15
+San Francisco,Miami,06/18/2013,21:60
+San Francisco,Austin,06/19/2013,15:30
+San Francisco,Chicago,06/19/2013,12:30
+San Francisco,Memphis,06/19/2013,19:35
+San Francisco,Miami,06/19/2013,11:55
+San Francisco,Austin,06/20/2013,00:40
+San Francisco,Chicago,06/20/2013,9:45
+San Francisco,Memphis,06/20/2013,13:35
+San Francisco,Miami,06/20/2013,21:45
+San Francisco,Austin,06/21/2013,2:45
+San Francisco,Chicago,06/21/2013,6:55
+San Francisco,Memphis,06/21/2013,9:55
+San Francisco,Miami,06/21/2013,2:30
+San Francisco,Austin,06/22/2013,12:30
+San Francisco,Chicago,06/22/2013,21:50
+San Francisco,Memphis,06/22/2013,00:05
+San Francisco,Miami,06/22/2013,13:40
+San Francisco,Austin,06/23/2013,3:40
+San Francisco,Chicago,06/23/2013,10:45
+San Francisco,Memphis,06/23/2013,9:10
+San Francisco,Miami,06/23/2013,15:10
+San Francisco,Austin,06/24/2013,12:60
+San Francisco,Chicago,06/24/2013,1:30
+San Francisco,Memphis,06/24/2013,8:35
+San Francisco,Miami,06/24/2013,1:20
+San Francisco,Austin,06/25/2013,20:55
+San Francisco,Chicago,06/25/2013,2:35
+San Francisco,Memphis,06/25/2013,23:10
+San Francisco,Miami,06/25/2013,19:30
+San Francisco,Austin,06/26/2013,15:25
+San Francisco,Chicago,06/26/2013,11:35
+San Francisco,Memphis,06/26/2013,12:45
+San Francisco,Miami,06/26/2013,4:10
+San Francisco,Austin,06/27/2013,3:50
+San Francisco,Chicago,06/27/2013,1:55
+San Francisco,Memphis,06/27/2013,00:25
+San Francisco,Miami,06/27/2013,16:15
+San Francisco,Austin,06/28/2013,10:50
+San Francisco,Chicago,06/28/2013,20:45
+San Francisco,Memphis,06/28/2013,17:60
+San Francisco,Miami,06/28/2013,11:30
+San Francisco,Austin,06/29/2013,7:30
+San Francisco,Chicago,06/29/2013,21:40
+San Francisco,Memphis,06/29/2013,2:10
+San Francisco,Miami,06/29/2013,22:30
+San Francisco,Austin,06/30/2013,10:45
+San Francisco,Chicago,06/30/2013,2:40
+San Francisco,Memphis,06/30/2013,13:40
+San Francisco,Miami,06/30/2013,5:45

@@ -1,0 +1,8 @@
+chicago|san francisco|austin|miami|memphis
+end,Your flight is all set! I hope you have a great time!
+confirm,Is this the correct information?
+time,Got it. How about a time?
+date,What day would you like to leave?
+to,Where would you like to go?
+from,Where would you be flying from?
+greet,Hey there. What flight could I arrange for you today?
