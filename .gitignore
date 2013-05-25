@@ -42,7 +42,7 @@ bin
 
 # Data
 data/users.tsv
-data/users.vec
+data/users.cluster
 
 # Emacs
 *~
