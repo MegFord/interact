@@ -51,7 +51,10 @@ ct = 0
 
 def center2str(c, alpha, n):
    top_indices = c.argsort()[-n:][::-1]
-   return ' '.join(['%s=%g' % (alpha[i],c[i]) for i in top_indices])
+   return ' '.join(['%s=%.2f' % (alpha[i],c[i]) for i in top_indices])
+
+def unpickle(f):
+   return pickle.load(open(f, "rb"))
 
 def print_centers(pipeline):
    km = pipeline.named_steps['cluster']
@@ -69,27 +72,17 @@ def tokenize(s):
    >>> tokenize('username\thi @there you @person, who? #tag')
    ['hi', 'you', 'who', 'tag']
    '''
-   parts = s.split('\t')
+   parts = s.lower().split('\t')
    s = ' '.join(parts[1:])
    s = mention_re.sub('', s)
    s = punct_re.sub(' ', s)
    s = re.sub('\s+', ' ', s)
    global ct
-   if ct % 1000 == 0:
-      print >> sys.stderr, 'line',ct
+   #if ct % 1000 == 0:
+   #   print >> sys.stderr, 'line',ct
    ct += 1
    return s.strip().split()
 
-def vectorize(lines):
-   r'''
-   >>> args.min_df = 0
-   >>> vectorize(['username\ta b c', 'username\tb c'])[1].toarray()
-   array([[1, 1, 1],
-          [0, 1, 1]])
-   '''
-   vec = CountVectorizer(tokenizer=tokenize, min_df=args.min_df)
-   data = vec.fit_transform(lines)
-   return [vec.vocabulary_, data]
 
 def main():
    clusterer = Pipeline([('vect', CountVectorizer(tokenizer=tokenize, min_df=args.min_df)),

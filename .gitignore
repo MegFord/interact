@@ -43,6 +43,7 @@ bin
 # Data
 data/users.tsv
 data/users.cluster
+data/users.contexts
 
 # Emacs
 *~
