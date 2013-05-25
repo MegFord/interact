@@ -1,0 +1,2 @@
+parse:
+	python code/style/parse.py --min_df 5
