@@ -121,7 +121,7 @@ def find_top_matches(word_context, contexts, n):
 
 def print_top_words(all_context, cluster2contexts, word):
    for c, context in enumerate(cluster2contexts.values()):
-      print c,'good words', [('%s=%.2f' % (s,v)) for (s,v) in
+      print c, [('%s=%.2f' % (s,v)) for (s,v) in
                              find_top_matches(all_context[word], context, 10)]
 
 
