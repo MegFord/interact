@@ -77,6 +77,10 @@ def cosine(context1, context2):
    >>> cosine({1: 1, 2: 2}, {2: 3, 3: 1}) # doctest: +ELLIPSIS
    0.8485...
    '''
+   if len(context1) > len(context2):
+      tmp = context1
+      context1 = context2
+      context2 = tmp
    num = sum([context1[k] * context2[k] for k in context1 if k in context2])
    return num / (norm(context1) * norm(context2))
 
@@ -90,14 +94,15 @@ def make_clusters(clusterer):
       parts = line.split('\t')
       user = parts[0]
       tweets = parts[1:]
-      print 'user',user,len(tweets),'tweets, label=',labels[li]
-      li += 1
-      #if li > 100:
-      #   break
+      #print 'user',user,len(tweets),'tweets, label=',labels[li]
+      pr = clusterer.predict([line])
       for tweet in tweets:
          t = tokenize(user+'\t'+tweet)
          cluster2tweets[labels[li]].append(t)
          all_tweets.append(t)
+      #if li > 1000:
+      #   break
+      li += 1
    return [cluster2tweets, all_tweets]
 
 def make_cluster_contexts(cluster2tweets):
@@ -117,10 +122,10 @@ def main():
    cluster2tweets, tweets = make_clusters(clusterer)
    cluster2contexts = make_cluster_contexts(cluster2tweets)
    all_context = make_contexts(tweets, args.window)
+   pickle.dump([all_context, cluster2contexts], open(args.output, "wb"))
    for c, context in enumerate(cluster2contexts.values()):
       print c,'good words', [('%s=%.2f' % (s,v)) for (s,v) in
                              find_top_matches(all_context['good'], context, 10)]
-   pickle.dump([all_context, cluster2contexts], open(args.output, "wb"))
 
 if (__name__ == '__main__'):
    if args.test:

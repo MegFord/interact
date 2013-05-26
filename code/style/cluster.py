@@ -17,7 +17,7 @@ ap = argparse.ArgumentParser(description=__doc__,
 ap.add_argument('--clusters',
                 metavar='CLUSTERS',
                 type=int,
-                default=20,
+                default=15,
                 help='number of clusters')
 ap.add_argument('--input',
                 metavar='INPUT',
@@ -32,6 +32,11 @@ ap.add_argument('--output',
                 metavar='OUTPUT',
                 default='data/users.cluster',
                 help='pickled clusterer pipeline')
+ap.add_argument('--prune_ratio',
+                metavar='PRUNE_RATIO',
+                type=float,
+                default=0.005,
+                help='prune clusters with fraction of instances below this')
 ap.add_argument('--seed',
                 metavar='SEED',
                 type=int,
@@ -83,6 +88,20 @@ def tokenize(s):
    ct += 1
    return s.strip().split()
 
+def remove_small_clusters(clusterer):
+   cc = clusterer.named_steps['cluster']
+   new_centers = []
+   labels = cc.labels_
+   for i,c in enumerate(cc.cluster_centers_):
+      if len([j for j in labels if i == j]) * 1.0 / len(labels) > args.prune_ratio:
+         new_centers.append(c)
+      else:
+         print 'pruning',i
+   cc.cluster_centers_ = np.array(new_centers)
+
+def predict(clusterer):
+   fp = io.open(args.input, mode='rt', encoding='utf8')
+   clusterer.named_steps['cluster'].labels_ = clusterer.predict(fp)
 
 def main():
    clusterer = Pipeline([('vect', CountVectorizer(tokenizer=tokenize, min_df=args.min_df)),
@@ -91,6 +110,9 @@ def main():
    fp = io.open(args.input, mode='rt', encoding='utf8')
    #lines = [l for l in fp][0:10000]
    clusterer.fit(fp)
+   print 'clustered', len(clusterer.named_steps['cluster'].labels_)
+   remove_small_clusters(clusterer)
+   predict(clusterer)
    print_centers(clusterer)
    pickle.dump(clusterer, open(args.output, "wb"))
 
