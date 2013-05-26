@@ -82,6 +82,8 @@ def cosine(context1, context2):
       context1 = context2
       context2 = tmp
    num = sum([context1[k] * context2[k] for k in context1 if k in context2])
+   if num == 0:
+      return 0
    return num / (norm(context1) * norm(context2))
 
 def make_clusters(clusterer):
@@ -116,6 +118,12 @@ def find_top_matches(word_context, contexts, n):
    for w in contexts.keys():
       d[w] = cosine(contexts[w], word_context)
    return [(w, d[w]) for w in sorted(d, key=d.get, reverse=True)][0:n]
+
+def print_top_words(all_context, cluster2contexts, word):
+   for c, context in enumerate(cluster2contexts.values()):
+      print c,'good words', [('%s=%.2f' % (s,v)) for (s,v) in
+                             find_top_matches(all_context[word], context, 10)]
+
 
 def main():
    clusterer = pickle.load(open(args.clusterer, "rb"))
