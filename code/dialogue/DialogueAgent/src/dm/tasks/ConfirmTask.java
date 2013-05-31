@@ -4,7 +4,7 @@ import dm.data.DataSource;
 import dm.dialogue.manager.DM;
 import dm.infostate.InfoState;
 import dm.nlp.nlg.NLG;
-
+// simple comment
 public class ConfirmTask extends Task
 {
 	public ConfirmTask(String hashtag)
