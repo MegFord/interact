@@ -1,3 +1,4 @@
+//LOCATIONS
 package dm.data;
 
 public class DataLocations {
