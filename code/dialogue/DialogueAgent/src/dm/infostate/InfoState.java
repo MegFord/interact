@@ -10,6 +10,7 @@ import dm.tasks.Task;
 
 public class InfoState 
 {
+	//error, no support documentation found
 	public static Stack<Task> mainStack = new Stack<Task>();
 	public static HashMap<String, String> questions = new HashMap<String,String>();
 	public static HashMap<String, String> beliefs = new HashMap<String,String>();  
