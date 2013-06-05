@@ -9,15 +9,35 @@
 			$(document).ready(function(){
 				$("#QuestFormat").hide();
 				$("#ChatFormat").hide();
+				$("#PostQuest").hide();
+				$("#PostQuest2").hide();
 				$("#continue").on('click',function(){
-					$("#QuestFormat").show();
 					$("#welcome").hide();
+					$("#QuestFormat").show();
 					$("#ChatFormat").hide();
+					$("#PostQuest").hide();
+					$("#PostQuest2").hide();
 				});
 				$("#QuestSubmit").on('click',function(){
-					$("#ChatFormat").show();
-					$("#continue").hide();
+					$("#welcome").hide();
 					$("#QuestFormat").hide();
+					$("#ChatFormat").show();
+					$("#PostQuest").hide();
+					$("#PostQuest2").hide();
+				});
+				$("#exitchat").on('click',function(){
+					$("#welcome").hide();
+					$("#QuestFormat").hide();
+					$("#ChatFormat").hide();
+					$("#PostQuest").show();
+					$("#PostQuest2").hide();
+				});
+				$("#printing").on('click',function(){
+					$("#welcome").hide();
+					$("#QuestFormat").hide();
+					$("#ChatFormat").hide();
+					$("#PostQuest").hide();
+					$("#PostQuest2").show();
 				});
 			});
 		</script>
@@ -128,12 +148,43 @@
 			<div id="menu">
 				<div style="clear:both"></div>
 			</div>	
-			<div class="container" id ="chatbox"></div>
-			
+			<div class="container" id="chatbox"><span id="exitchat"> Exit </span></div>
 			<form name="message" action="">						
 				<input id="input" class="bottom" name="usermsg" type="text" id="usermsg" size="63" />
-				<input class="submitbutton"  name="submitmsg" type="submit"  id="submitmsg" value="Send" />				
+				<input class="submitbutton"  name="submitmsg" type="submit"  id="submitmsg" value="Send" />
 			</form>
+		
+		</div>
+		
+		
+		<div class="wrapper" id="PostQuest">
+			<div id="menu">
+				<div style="clear:both"></div>
+			</div>	
+			<div class="container" id ="chatbox">
+			
+					<p id="printmsg">Thank you for your participantion.  </p>
+					<p id="printmsg">Are you interested in receiving more information? </p>
+				
+					<input class="submitbutton" id="printing"  type="submit" value="Print Flyer">
+			</div>
+		</div>
+
+			<div class="wrapper" id="PostQuest2">
+			<div id="menu">
+				<div style="clear:both"></div>
+			</div>	
+			<div class="container" id ="chatbox">
+			
+			<p id="printmsg">
+					Would you like to submit your email address to receive information by email as well?   
+				</p>
+				<form name="emailmessage" action="">						
+				<input id="input" class="bottom" name="useremail" type="text" id="useremail" size="63" />
+				<input class="submitbutton"  name="submitemail" type="submit"  id="submitemail" value="Submit Email" />				
+			</form>
+			</div>
+		
 		</div>
 	</body>
 </html>
