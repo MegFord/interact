@@ -7,6 +7,7 @@
 		</script>
 		<script>
 			$(document).ready(function(){
+				$("#welcome").show();
 				$("#QuestFormat").hide();
 				$("#ChatFormat").hide();
 				$("#PostQuest").hide();
@@ -18,13 +19,20 @@
 					$("#PostQuest").hide();
 					$("#PostQuest2").hide();
 				});
-				$("#QuestSubmit").on('click',function(){
-					$("#welcome").hide();
+				
+				$("#QuestSubmit").click(function(){
+                if($("#SocialNetwork").val() == "" || $("#Age").val() == "" || $("#Position").val() == "" || $("#Ethnicity").val() == "" || $("#Gender").val() == "" ) {
+                    $("#errorMessage").html("Please fill out all fields and try again.").show();
+                }
+                else {
+                    $("#welcome").hide();
 					$("#QuestFormat").hide();
 					$("#ChatFormat").show();
 					$("#PostQuest").hide();
 					$("#PostQuest2").hide();
-				});
+                }
+            });
+				
 				$("#exitchat").on('click',function(){
 					$("#welcome").hide();
 					$("#QuestFormat").hide();
@@ -119,7 +127,7 @@
 						</select>
 					</h4>
 					<h4>What is your age range?
-						<select id = "age" required>
+						<select id = "Age" required>
 							<option value selected>-Select-</option>
 							<option value = "EighteenToTwentyOne">18 -21</option>
 							<option value = "TwentyTwoToTwentyFive">22 - 25</option>
@@ -131,11 +139,16 @@
 						</select>
 					</h4>
 					
-					<h4>What social network sites do you use?<br>&nbsp;&nbsp;
-						<input type = "radio" name ="SocialNetwork" value = "Facebook" required>Facebook<br>&nbsp;&nbsp;
-						<input type = "radio" name ="SocialNetwork" value = "Twitter">Twitter<br>&nbsp;&nbsp;
-						<input type = "radio" name ="SocialNetwork" value = "Both">Both<br>				
+					<h4>What social network sites do you use?
+						<select id = "SocialNetwork" required>
+							<option value selected>-Select-</option>
+							<option value = "Facebook" >Facebook</option>
+							<option value = "Twitter">Twitter</option>
+							<option value = "Both">Both</option>
+							<option value = "Neither">Neither</option>
+						</select>			
 					</h4>
+					<span id="errorMessage" style="display:hidden;color:red"></span>
 					<input class = "submitbutton" id = "QuestSubmit" type = "submit" value = "Begin Chat">
 <!--
 				</form>
