@@ -1,15 +1,13 @@
 /*CSS Document*/
-html
+HTML
 {
 	height: 100%;
 	width: 100%;
-	font-family: Tahoma, sans-serif;
 }
-
-body
+BODY
 {
 	font: 12px arial;
-	margin-top: 10px;
+	margin-top: 5px;
 	color: #222;
 	background-color: #CDCDCD;
 	text-align: center;
@@ -17,24 +15,19 @@ body
 	height: 100%;
 	width: 90%;
 }
-
-form, p, span
+FORM, P, SPAN
 {
-	margin: 5px;
-	padding: 5px;
-	font-size: 14px;
-	font-weight: 600;
-	text-indent: 0;
+	margin: 0;
+	padding: 0;
 }
-
-.wrapper, #loginform
+#wrapper, #loginform
 {
 	margin: auto;
-	padding-bottom: 55px;
+	/*padding-bottom: 55px;*/
 	padding-top: 0px;
 	background: #312E77;
-	width: 40%;
-	height: 75%;
+	width: 90%;
+	height: 90%;
 	min-width: 400px;
 	min-height: 300px;
 	border: 0px solid #FFFFFF;
@@ -43,8 +36,7 @@ form, p, span
 	-webkit-box-shadow: 0 0 5px 5px#888;
 	box-shadow: 0 0 5px 5px #888;
 }
-
-.container
+#chatbox
 {
 	text-align: left;
 	margin: 0 auto;
@@ -64,7 +56,44 @@ form, p, span
 	-webkit-box-shadow: inset 0 0 10px #000000;
 	box-shadow: inset 0 0 10px #000000;
 }
-
+/*rfa added - similar to #wrapper but larger no bottom padding*/
+#postborder
+{
+	margin: auto;
+	padding-bottom: 0px;
+	padding-top: 0px;
+	background: #312E77;
+	width: 95%;
+	height: 95%;
+	min-width: 400px;
+	min-height: 300px;
+	border: 0px solid #FFFFFF;
+	border-radius: 5px;
+	-moz-box-shadow: 0 0 5px 5px #888;
+	-webkit-box-shadow: 0 0 5px 5px#888;
+	box-shadow: 0 0 5px 5px #888;
+}
+/*rfa similar to #chatbox not modified yet */
+#postbox
+{
+	text-align: left;
+	margin: 3%;
+	margin-top: 5%;
+	padding: 1%;
+	background: #FFF;
+	height: 92%;
+	width: 92%;
+	border: 2px solid #FFFFFF;
+	border-radius: 5px;
+	overflow: auto;
+	position: relative;
+	font-size: 1.5em;
+	text-indent: 10px;
+	font-family: Arial;
+	-moz-box-shadow: inset 0 0 10px #000000;
+	-webkit-box-shadow: inset 0 0 10px #000000;
+	box-shadow: inset 0 0 10px #000000;
+}
 #input
 {
 	border: 1px solid #FFFFFF;
@@ -78,14 +107,12 @@ form, p, span
 	-webkit-box-shadow: inset 0 0 10px #000000;
 	box-shadow: inset 0 0 10px #000000;
 }
-
-.submitbutton
+#submitbutton
 {
 	width: 8%;
 	min-width: 50px;
 	border-radius: 5px;
 	height: 49px;
-	padding: 5px;
 	background-color: #EEEEEE;
 	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
 	background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
@@ -100,82 +127,31 @@ form, p, span
 	text-align: center;
 	text-shadow: 0 1px 0 #EEE;
 }
-
-.submitbutton:active
+#submitbutton:active
 {
 	border: 1px solid #AAA;
 	border-bottom: 1px solid #888;
 	-webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 	box-shadow: inset 0 0 5px 2px #AAAAAA, 0 1px 0 0 #EEEEEE;
 }
-
-	.submitbutton#QuestSubmit, .submitbutton#continue, .submitbutton#printing 
-	{
-		width: 12%;
-		min-width: 150px;
-		margin: 0 30%;
-		float: left;
-	}
-	
 #menu
 {
 	padding: 12.5px 25px;
 }
-
 .welcome
 {
 	float: left;
 }
-
 .msgln
 {
 	margin: 0 0 2px;
 }
-
-ul
+UL
 {
 	display: inline;
 }
-
-select
-{
-	font-size: 14px;
-	font-weight: 600;
-	margin: 0px;
-	padding: 0px;
-}
-
-h2 {
-	font-size: 20px;
-	text-indent: 0;
-	text-align: center;
-	margin: 10px 5px 10px 5px;
-	padding: 5px;
-}
-
-h3 {
-	font-size: 16px;
-	text-indent: 0;
-	text-decoration: underline;
-	margin: 10px 5px 10px 5px;
-	padding: 5px;
-}
-
-h4
-{
-	font-size: 14px;
-	text-indent: 0;
-	margin: 5px;
-	padding: 5px;
-	
-}
-#exitchat{
-	float:right;
-	color:red;
-}
-#printmsg{
+h2{
 	font-family:Garamond;
 	text-align:Center;
 	color:brown;
-	font-size:20px;
 }
