@@ -1,25 +1,35 @@
 /*CSS Document*/
-html
-{
+html {
 	height: 100%;
 	width: 100%;
 	font-family: Tahoma, sans-serif;
+	background-color: #CDCDCD;
 }
 
-body
-{
+body {
+/*
 	font: 12px arial;
-	margin-top: 10px;
+*/
+	margin: 10px auto;
 	color: #222;
+/*
 	background-color: #CDCDCD;
+*/
 	text-align: center;
 	padding: 3%;
-	height: 100%;
-	width: 90%;
+	height: 75%;
+	width: 35%;
 }
 
-form, p, span
-{
+form, p, span {
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+	font-weight: 600;
+	text-indent: 5px;
+}
+
+p {
 	margin: 5px;
 	padding: 5px;
 	font-size: 14px;
@@ -27,16 +37,15 @@ form, p, span
 	text-indent: 0;
 }
 
-.wrapper, #loginform
-{
+.wrapper, #loginform {
 	margin: auto;
 	padding-bottom: 55px;
 	padding-top: 0px;
 	background: #312E77;
-	width: 40%;
-	height: 75%;
+	width: 100%;
+	height: 100%;
 	min-width: 400px;
-	min-height: 300px;
+	min-height: 400px;
 	border: 0px solid #FFFFFF;
 	border-radius: 5px;
 	-moz-box-shadow: 0 0 5px 5px #888;
@@ -44,14 +53,15 @@ form, p, span
 	box-shadow: 0 0 5px 5px #888;
 }
 
-.container
-{
+.container {
 	text-align: left;
-	margin: 0 auto;
-	margin-bottom: 2%;
+	margin: 2% auto;
+/*
+	margin-bottom: 5%;
+*/
 	padding: 0%;
 	background: #FFF;
-	height: 90%;
+	height: 88%;
 	width: 92%;
 	border: 2px solid #FFFFFF;
 	border-radius: 5px;
@@ -65,12 +75,13 @@ form, p, span
 	box-shadow: inset 0 0 10px #000000;
 }
 
-#input
-{
+#input {
 	border: 1px solid #FFFFFF;
 	border-radius: 5px;
 	text-indent: 10px;
+/*
 	font-family: Arial;
+*/
 	font-size: 1.5em;
 	height: 45px;
 	width: 79.8%;
@@ -79,8 +90,7 @@ form, p, span
 	box-shadow: inset 0 0 10px #000000;
 }
 
-.submitbutton
-{
+.submitbutton {
 	width: 8%;
 	min-width: 50px;
 	border-radius: 5px;
@@ -101,44 +111,37 @@ form, p, span
 	text-shadow: 0 1px 0 #EEE;
 }
 
-.submitbutton:active
-{
+.submitbutton:active {
 	border: 1px solid #AAA;
 	border-bottom: 1px solid #888;
 	-webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
 	box-shadow: inset 0 0 5px 2px #AAAAAA, 0 1px 0 0 #EEEEEE;
 }
 
-	.submitbutton#QuestSubmit, .submitbutton#continue, .submitbutton#printing 
-	{
+	.submitbutton#QuestSubmit, .submitbutton#continue, .submitbutton#printing {
 		width: 12%;
 		min-width: 150px;
 		margin: 0 30%;
 		float: left;
 	}
 	
-#menu
-{
+#menu {
 	padding: 12.5px 25px;
 }
 
-.welcome
-{
+.welcome {
 	float: left;
 }
 
-.msgln
-{
+.msgln {
 	margin: 0 0 2px;
 }
 
-ul
-{
+ul {
 	display: inline;
 }
 
-select
-{
+select {
 	font-size: 14px;
 	font-weight: 600;
 	margin: 0px;
@@ -161,19 +164,23 @@ h3 {
 	padding: 5px;
 }
 
-h4
-{
+h4 {
 	font-size: 14px;
 	text-indent: 0;
 	margin: 5px;
 	padding: 5px;
 	
 }
-#exitchat{
+
+#exitchat {
+	margin: 0;
+	padding: 0;
+	line-height: 12px;
 	float:right;
 	color:red;
 }
-#printmsg{
+
+#printmsg {
 	font-family:Garamond;
 	text-align:Center;
 	color:brown;
