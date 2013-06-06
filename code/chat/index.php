@@ -50,7 +50,7 @@ if(isset($_POST['enter'])){
 
                 else{
 
-                                echo '<span class="error">Please type in a name</span>';
+                                echo '<span class="error">Please type in your ID</span>';
 
                 }
 
@@ -211,9 +211,8 @@ else{
 				<h3>Instructions:</h3>
 				
 				<p>
-					On the next screen there will be a questionnaire. Please select an option for each question for each of the four questions.<br>
-					Upon completion of the questionnaire, please click "Begin Chat".<br>
-					After the chat, there will be a short post-chat questionnaire. Please take a few moments to answer the questions on this as well.  
+					On the next screen there will be a questionnaire. Please select an option for each question.</p>
+					<p>Upon completion of the questionnaire, please click "Begin Chat" to start the chat with our agent.<br> 
 				</p>
 				<h2>Thank you for your participation!</h2>
 				
@@ -277,7 +276,6 @@ else{
 							<option value = "Facebook" >Facebook</option>
 							<option value = "Twitter">Twitter</option>
 							<option value = "Both">Both</option>
-							<option value = "Neither">Neither</option>
 						</select>			
 					</h4>
 					<span id="errorMessage" style="display:hidden;color:red"></span>
