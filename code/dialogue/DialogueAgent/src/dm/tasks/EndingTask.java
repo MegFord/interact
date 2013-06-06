@@ -3,7 +3,7 @@ package dm.tasks;
 import java.util.ArrayList;
 
 import dm.data.DataFlightSchedule;
-import dm.infostate.InfoState;
+import dm.infostate.InformationState;
 
 public class EndingTask extends Task
 {
@@ -17,7 +17,7 @@ public class EndingTask extends Task
 		return true;
 	}
 	
-	private String[] searchFlights()
+	private String[] searchFlights(InformationState is)
 	{
 		ArrayList<String[]> results = new ArrayList<String[]>();
 		boolean inRange = false;
@@ -29,13 +29,13 @@ public class EndingTask extends Task
 		
 		for (String[] flight : results)
 		{
-			if (!flight[0].equalsIgnoreCase(InfoState.beliefs.get("from")))
+			if (!flight[0].equalsIgnoreCase(is.getAgentBeliefs().getBeliefString("from")))
 				results.remove(flight);
 		}
 		
 		for (String[] flight : results)
 		{
-			if (!flight[1].equalsIgnoreCase(InfoState.beliefs.get("to")))
+			if (!flight[1].equalsIgnoreCase(is.getAgentBeliefs().getBeliefString("to")))
 				results.remove(flight);
 		}
 		return null;

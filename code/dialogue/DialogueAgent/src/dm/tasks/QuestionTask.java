@@ -1,6 +1,6 @@
 package dm.tasks;
 
-import dm.infostate.InfoState;
+import dm.infostate.InformationState;
 
 public class QuestionTask extends Task
 {
@@ -19,6 +19,6 @@ public class QuestionTask extends Task
 	
 	protected boolean verify()
 	{
-		return !InfoState.beliefs.get(hashtag).isEmpty();
+		return false; //!InformationState.beliefs.get(hashtag).isEmpty();
 	}
 }

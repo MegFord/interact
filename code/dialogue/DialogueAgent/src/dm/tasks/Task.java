@@ -1,7 +1,7 @@
 package dm.tasks;
 import java.util.Scanner;
 
-import dm.infostate.InfoState;
+import dm.infostate.InformationState;
 import dm.nlp.nlg.NLG;
 import dm.nlp.nlu.NLU;
 
@@ -23,30 +23,32 @@ public abstract class Task
 	
 	protected void prompt() 
 	{
-		String question = InfoState.questions.get(hashtag);
-		NLG.output(question);
+		//String question = InformationState.questions.get(hashtag);
+		//NLG.output(question);
 	}
 	
 	protected void getResponse()
 	{
-		Scanner keyboard = new Scanner(System.in);
+		/*Scanner keyboard = new Scanner(System.in);
 		String answer = keyboard.nextLine();
 		NLU.tag(answer,hashtag);
 		//InfoState.beliefs.put(hashtag, answer);
 		response = answer;
 		//return answer;
+		 
+		 */
 	}
-	
+
 	public abstract boolean perform();
 	/*{
 		prompt(); 
 		getResponse();
 		return isValidResponse();
 	}*/
-	
+	/*
 	public boolean wasAnswered()
 	{
-		return !InfoState.beliefs.get(hashtag).isEmpty();
+		return !InformationState.beliefs.get(hashtag).isEmpty();
 	}
 	
 	public String getHashtag()
@@ -59,8 +61,9 @@ public abstract class Task
 		return true;
 	}
 	
-	/*private boolean isValidResponse()
+	private boolean isValidResponse()
 	{
 		return !InfoState.beliefs.get(hashtag).isEmpty();
 	}*/
+	
 }

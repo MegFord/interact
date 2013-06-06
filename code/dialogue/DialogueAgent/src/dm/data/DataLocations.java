@@ -11,7 +11,7 @@ public class DataLocations {
 
 	public static String getLocations()
 	{
-		return locations;
+		return "California|Boston|New York|Chicago|Peoria";// slight change...FID
 	}
 
 }
