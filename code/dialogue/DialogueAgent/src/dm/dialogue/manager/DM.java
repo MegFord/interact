@@ -18,7 +18,7 @@ import dm.nlp.nlu.NLU;
 import dm.rules.Rules;
 import dm.tasks.ConfirmTask;
 import dm.tasks.EndingTask;
-import dm.tasks.QuestionTask;
+import dm.tasks.FindInfoTask;
 import dm.tasks.StartingTask;
 import dm.tasks.Task;
 
