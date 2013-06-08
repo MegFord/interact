@@ -26,7 +26,17 @@ public class NLG
 		System.out.println(output);
 	}
 	
-	public String generate(Message m){
-		return m.getMessageText();
+	public String generate(Message message){
+		// message passes through a lot of 
+		// filters and is returned.
+		if(message!=null){
+			for (MessageFilter f:filters){
+				System.out.println("NLG Processing Filter:"+f.getFilterName());
+				message = f.processFilter(message);
+			}
+			return message.getMessageText();
+		} else {
+			return null;
+		}
 	}
 }

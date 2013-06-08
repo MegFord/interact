@@ -1,43 +1,41 @@
 package dm.tasks;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import dm.data.DataFlightSchedule;
 import dm.infostate.InformationState;
 
 public class EndingTask extends Task
 {
-	public EndingTask(String hashtag)
-	{
-		super(hashtag);
-	}
+
 	
-	public boolean perform()
-	{
-		return true;
+	public EndingTask(String name, Properties p) {
+		super(name, p);
+		// TODO Auto-generated constructor stub
 	}
-	
-	private String[] searchFlights(InformationState is)
-	{
-		ArrayList<String[]> results = new ArrayList<String[]>();
-		boolean inRange = false;
+
+	@Override
+	public void setMandatoryFields() {
+		// TODO Auto-generated method stub
 		
-		for (int i = 0; i < DataFlightSchedule.flightSchedule.length; i++)
-		{
-			results.add(DataFlightSchedule.flightSchedule[i]);
-		}
+	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
 		
-		for (String[] flight : results)
-		{
-			if (!flight[0].equalsIgnoreCase(is.getAgentBeliefs().getBeliefString("from")))
-				results.remove(flight);
-		}
-		
-		for (String[] flight : results)
-		{
-			if (!flight[1].equalsIgnoreCase(is.getAgentBeliefs().getBeliefString("to")))
-				results.remove(flight);
-		}
-		return null;
+	}
+
+	@Override
+	public boolean verifyInformationState(InformationState is) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean process(InformationState is) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

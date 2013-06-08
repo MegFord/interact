@@ -1,32 +1,39 @@
 package dm.tasks;
+
+import java.util.Properties;
+
+import dm.infostate.InformationState;
+
 public class StartingTask extends Task 
 {
-	public StartingTask(String hashtag)
-	{
-		super(hashtag);
-	}
-	
-	public boolean perform()
-	{
-		prompt();
-		getResponse();
-		return true;
-	}
-	/*private boolean verify()
-	{
-		if (InfoState.beliefs.get("greet").matches("(\\bYes\\b)|(\\bYeah\\b)|(\\bYup\\b)|(\\bYep\\b)"))
-			return true;
-		else if (InfoState.beliefs.get("greet").matches("(\\bNo\\b)|(\\bNope\\b)|(\\bNah\\b)"))
-		{
-			NLG.output("It was nice talking to you. I hope to hear from you again soon!");
-			InfoState.setProgramDone(true);
-			return true;
-		} 
-		else
-		{
-			//InfoState.beliefs.put("greet","");
-			return false;
-		}
 
-	}*/
+	public StartingTask(String name, Properties p) {
+		super(name, p);
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	@Override
+	public void setMandatoryFields() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean verifyInformationState(InformationState is) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean process(InformationState is) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

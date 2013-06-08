@@ -35,8 +35,8 @@ public class NLU
 		// message passes through a lot of 
 		// filters and is returned.
 		for (MessageFilter f:filters){
+			System.out.println("NLU Processing Filter:"+f.getFilterName());
 			message = f.processFilter(message);
-			System.out.println("Processing Filter:"+f.getFilterName());
 		}
 		return message;
 	}

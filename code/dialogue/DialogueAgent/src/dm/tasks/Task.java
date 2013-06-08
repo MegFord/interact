@@ -12,14 +12,12 @@ public abstract class Task{
 	protected boolean complete;
 	protected String[] mandatoryFields;
 	protected Properties properties;	
-	public static final String AGENT_BELIEFS="agentBeliefs";
-	public static final String USER_BELIEFS = "userBeliefs";
-	public static final String COMMON_GROUND = "commonGround";
-	public static final String CONVERSATION_BELIEFS = "conversationBeliefs";
+	protected String name;
 	
-	
-	public Task(Properties p){ // This could easily extend Filter and become a TaskFilter.
+	public Task(String name,Properties p){ // This could easily extend Filter and become a TaskFilter.
 		this.properties = p;
+		this.name = name;
+		this.complete = false;
 		setMandatoryFields();
 		if (checkMandatoryFields())
 			init();
@@ -53,11 +51,20 @@ public abstract class Task{
 	}
 	
 	public boolean perform(InformationState is){
-		boolean response = verifyInformationState(is);
-		if (response)
-			response = process(is);
-		complete = response; // this could change to something more sophisticated later;
-		return response;
+		System.out.println("Performing Task:"+this.name);
+		complete = process(is);
+		return complete;
+	}
+	
+	// UTILITY METHODS
+	
+	public  boolean isValidISField(String fName){
+		String[] field = fName.split(":");
+		return field.length==2 &&
+			   ( field[0].equals(InformationState.AGENT_BELIEFS) ||
+			     field[0].equals(InformationState.COMMON_GROUND) ||
+			     field[0].equals(InformationState.CONVERSATION_BELIEFS)||
+			     field[0].equals(InformationState.USER_BELIEFS));
 	}
 	
 	/**

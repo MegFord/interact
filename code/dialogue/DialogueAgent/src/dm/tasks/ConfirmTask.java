@@ -1,5 +1,7 @@
 package dm.tasks;
 
+import java.util.Properties;
+
 import dm.data.DataSource;
 import dm.dialogue.manager.DM;
 import dm.infostate.InformationState;
@@ -7,27 +9,17 @@ import dm.nlp.nlg.NLG;
 
 public class ConfirmTask extends Task
 {
-	public ConfirmTask(String hashtag)
-	{
-		super(hashtag);
-	}
+
 	
-	public boolean perform()
-	{
-/*		InformationState.questions.put("confirm", "It looks like you want to go from " + InformationState.beliefs.get("from") + 
-						" to " + InformationState.beliefs.get("to") + " on " + InformationState.beliefs.get("date") + 
-						" at " + InformationState.beliefs.get("time") + ". Is that correct?");
-						
-		prompt();
-		getResponse();
-		return verify();
-		*/
-		return false;
+	public ConfirmTask(String name, Properties p) {
+		super(name, p);
+		// TODO Auto-generated constructor stub
 	}
-	
+
+	// Left here in case we need it.
 	protected boolean verify()
 	{
-		if (response.toLowerCase().matches("(^|\\b)(yes|yeah|yup|yep|correct|right)(\\b|$)"))
+		if ("".toLowerCase().matches("(^|\\b)(yes|yeah|yup|yep|correct|right)(\\b|$)"))
 			return true;
 		else
 		{
@@ -36,5 +28,29 @@ public class ConfirmTask extends Task
 			//DM.createStack(DataSource.questionsFilename);
 		}
 		return true;
+	}
+
+	@Override
+	public void setMandatoryFields() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void init() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean verifyInformationState(InformationState is) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean process(InformationState is) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

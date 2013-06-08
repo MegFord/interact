@@ -52,11 +52,17 @@ public class DM
 	}
 	
 	public String takeTurn(Message m){
-		Message msg = nlu.parse(m);
-		rules.process(msg);
-		informationState.update();
-		Message response = updateGoals();
-		return nlg.generate(response);
+		if(m!=null){
+			Message msg = nlu.parse(m);
+			System.out.println(msg);
+			rules.process(msg);
+		}
+		informationState.update(); // in case the IS has update rules
+		Message response = checkGoals();
+		if(response!=null)
+			return nlg.generate(response);
+		else
+			return null;
 	}
 	
 	/*
@@ -64,10 +70,21 @@ public class DM
 	 * filters if needed.
 	 */
 	
-	private Message updateGoals() {
-		// This method should update and check what goals are still
-		// unsatisfied. pick one and generate a Message oblea.
-		return null;
+	/**
+	 * This method will look at the set of goals and determine how to best proceed.
+	 * @return
+	 */
+	private Message checkGoals() {
+		Goal nextGoal=goals.get(0);
+		double confidence=-0.1;
+		for(Goal g:goals){
+			if(g.getConfidence()>confidence && !g.isAchieved()){
+				nextGoal = g;
+				confidence = g.getConfidence();
+			}
+		}
+		return nextGoal.execute();
+		
 	}
 
 	private void initNlg() {
@@ -79,7 +96,9 @@ public class DM
 	}
 	
 	public void initGoals(){
-		// Do nothing here.
+		for(Goal g:goals){
+			g.setInformationState(this.informationState);
+		}
 	}
 	
 	public void initInfoState(){
@@ -92,6 +111,12 @@ public class DM
 		return rules;
 	}
 
+	/**
+	 * Rules are a set of directives to perform when the NLU component hands
+	 * over a message. Rules have to be extended and it can be assumed that they
+	 * have the correct information state associated to them.
+	 * @param rules
+	 */
 	public void setRules(Rules rules) {
 		this.rules = rules;
 		rules.setInfoState(informationState);
