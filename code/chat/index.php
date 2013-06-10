@@ -5,9 +5,9 @@ if(isset($_GET['logout'])){
 
                 
 				
-							$fp = fopen("log.html", 'a');
-								fwrite($fp, "<div class='msgln'><i>You have left the chat session.</i><br></div>");
-								fclose($fp);
+						//	$fp = fopen("log.html", 'a');
+						//		fwrite($fp, "<div class='msgln'><i>You have left the chat session.</i><br></div>");
+						//		fclose($fp);
 								
                 session_destroy();
 
@@ -91,6 +91,15 @@ else{
 				$("#ChatFormat").hide();
 				$("#PostQuest").hide();
 				$("#PostQuest2").hide();
+				
+				$("#continue").mouseenter(function(){
+				$("#continue").fadeTo("fast", 1.0);
+				});
+				$("#continue").mouseleave(function(){
+				$("#continue").fadeTo("fast", 0.5);
+				});
+	
+
 				$("#continue").on('click',function(){
 					$("#welcome").hide();
 					$("#QuestFormat").show();
@@ -110,7 +119,7 @@ else{
 					$("#PostQuest").hide();
 					$("#PostQuest2").hide();
 					
-					setInterval (loadLog, 2500);	//Reload file every 2.5 seconds
+					setInterval (loadLog, 1000);	//Reload file every 1 seconds
                 }
 				});
 				<?php 
@@ -124,7 +133,7 @@ else{
 					$("#PostQuest").hide();
 					$("#PostQuest2").hide();
 					
-					var refreshIntervalId = setInterval (loadLog, 2500);	//Reload file every 2.5 seconds
+					var refreshIntervalId = setInterval (loadLog, 1000);	//Reload file every 1 seconds
 				<?php
 				}
 				
@@ -149,11 +158,28 @@ else{
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();
 					$("#PostQuest2").show();
+					
 				});
+				
+				$("#nothank").on('click',function(){
+					$("#welcome").hide();
+					$("#QuestFormat").hide();
+					$("#ChatFormat").hide();
+					$("#PostQuest").hide();
+					$("#PostQuest2").show();
+					
+				});
+
 				$("#submitemail").click(function(){
-                        window.location = 'index.php?logout=true'; 
-							return false;
+                    window.location = 'index.php?logout=true'; 
+					return false;
                 });
+                $("#nothank2").click(function(){
+                    window.location = 'index.php?logout=true'; 
+					return false;
+                });
+
+                
 			    //If user submits the form
 			$("#submitmsg").click(function(){	
 				var clientmsg = $("#usermsg").val();
@@ -176,7 +202,6 @@ else{
 		  	},
 		});
 		}
-
 		});
 		</script>
 		
@@ -192,6 +217,35 @@ else{
 			return true;
 		}
 	</script>
+			
+		<style type="text/css">
+		.auto-style1 {
+			margin-left: 20px;
+		}
+		.auto-style2 {
+			border-left: 1px solid #CCC;
+			border-right: 1px solid #CCC;
+			border-top: 1px solid #CCC;
+			width: 9%;
+			min-width: 55px;
+			border-radius: 5px;
+			height: 40px;
+			padding: 5px;
+			background-color: #EEEEEE;
+			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+			background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: url('linear-gradient(top,%20#eeeeee, #cccccc)');
+			border-bottom: 1px solid #BBB;
+			color: #333;
+			font: bold 13px / 1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+			text-align: center;
+			text-shadow: 0 1px 0 #EEE;
+			margin-top: 0px;
+		}
+		</style>
 			
 	</head>
 	
@@ -254,6 +308,7 @@ else{
 							<option value = "MiddleEastern">Middle Eastern</option>
 							<option value = "PacificIslander">Pacific Islander</option>
 							<option value = "NativeAmerican">Native American</option>
+							<option value = "AfricanAmerican">African American</option>
 							<option value = "Other">Other</option>
 						</select>
 					</h4>
@@ -315,15 +370,20 @@ else{
 		
 		<div class="wrapper" id="PostQuest">
 			<div id="menu">
-				<div style="clear:both"></div>
+				<div style="clear:both"></div>`
 			</div>	
 			<div class="container" id ="chatbox">
 			
-					<p id="printmsg">Thank you for your participantion.  </p>
-					<p id="printmsg">Are you interested in receiving more information? </p>
+					<p id="printmsg"><font face="Arial" size="3" color="black">Thank you for your participantion. </font></p>
+					<p id="printmsg"><font face="Arial" size="3" color="black">Are you interested in receiving more information? 
+					</font></p>
 				
-					<input class="submitbutton" id="printing"  type="submit" value="Print Flyer">
-			</div>
+					<br>
+				
+					&nbsp;<input class="submitbutton" id="printing"  type="submit" value="Print Flyer" style="width: 12%"><br>
+					
+					
+					&nbsp;<input class="submitbutton" id="nothank"  type="submit" value="No Thanks" style="width: 12%"></div>
 		</div>
 
 			<div class="wrapper" id="PostQuest2">
@@ -332,12 +392,16 @@ else{
 			</div>	
 			<div class="container" id ="chatbox">
 			
-			<p id="printmsg">
+			<p id="printmsg"><font face="Arial" size="3" color="black">
 					Would you like to submit your email address to receive information by email as well?   
-				</p>
+				</font></p>
 				<form name="emailmessage" action="">						
-				<input class="bottom" name="useremail" type="text" id="useremail" size="63" />
-				<input  class = "submitbutton" name="submitemail" type="submit"  id="submitemail" value="Submit Email" />				
+					<br>
+					<input id="useremail" class="auto-style1" name="useremail" size="63" type="text" style="height: 35px">
+				<input  class = "auto-style2" name="submitemail" type="submit"  id="submitemail" value="Submit Email" style="height: 47px; width: 10%;" /><br>
+				&nbsp;<br>
+				&nbsp;<input class="submitbutton" id="nothank2"  type="submit" value="No Thanks">
+				
 			</form>
 			</div> 
 		
