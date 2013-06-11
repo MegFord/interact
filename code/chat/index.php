@@ -61,9 +61,16 @@ else{
 					$("#PostQuest").hide();
 					$("#PostQuest2").hide();
 				});
+				$("#QuestSubmit").mouseenter(function(){
+				$("#QuestSubmit").fadeTo("fast", 1.0);
+				});
+				$("#QuestSubmit").mouseleave(function(){
+				$("#QuestSubmit").fadeTo("fast", 0.5);
+				});
+
 				
 				$("#QuestSubmit").click(function(){
-                if($("#SocialNetwork").val() == "" || $("#Age").val() == "" || $("#Position").val() == "" || $("#Ethnicity").val() == "" || $("#Gender").val() == "" ) {
+                if($("#SocialNetwork").val() == "" || $("#Age").val() == "" || $("#Position").val() == "" || $("#Ethnicity").val() == "" || $("#Gender").val() == "" || $("#Exercise1").val() == "" || $("#Exercise2").val() == "") {
                     $("#errorMessage").html("Please fill out all fields and try again.").show();
                 }
                 else {
@@ -142,42 +149,39 @@ else{
 				return false;
 			});
 		
-			//function loadLog(){		
-				//var oldscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
-				//$.ajax({
-					//url: "log.html",
-					//cache: false,
-					//success: function(html){
-					//$("#mainchatbox").html(html); //Insert chat log into the #chatbox div					
-					//var newscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
-					//if(newscrollHeight > oldscrollHeight){
-						//$("#mainchatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
-					//}				
-				//},
-			//});
-			
-			//function loadLog(){		
-				//var oldscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
-				//var request = $.ajax({
-					//url: "log.php",
-					//cache: false,
-					//request.done(function(html){
-						//$("#mainchatbox").html(html); //Insert chat log into the #chatbox div					
-						//var newscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
-						//if(newscrollHeight > oldscrollHeight){
-							//$("#mainchatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
-						//}				
-					//});
-					
-					//request.fail(
-				//});
-			//}
+			function loadLog(){		
+				var oldscrollHeight = $("#mainchatbox").prop("scrollHeight") - 20;
+				$.ajax({
+					url: "log.html",
+					cache: false,
+					success: function(html){
+					$("#mainchatbox").html(html); //Insert chat log into the #chatbox div					
+				var newscrollHeight = $("#mainchatbox").prop("scrollHeight") - 20;
+				if(newscrollHeight > oldscrollHeight){
+					$("#mainchatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+				}				
+		  	},
+		});
+		}
 		});
 		</script>
+		
+<!--
+		<script type="text/javascript" src="chat.js"></script>
+-->
+	<script type="text/javascript">
+		function validate() {
+			if(document.IntroQuest.Position.value == "Select") {
+				alert("Please select a position");
+				return false;
+			}
+			return true;
+		}
+	</script>
 			
 		<style type="text/css">
 		.auto-style1 {
-			margin-left: 20px;
+			margin-left: 31px;
 		}
 		.auto-style2 {
 			border-left: 1px solid #CCC;
@@ -201,7 +205,8 @@ else{
 			text-align: center;
 			text-shadow: 0 1px 0 #EEE;
 			margin-top: 0px;
-			margin-left: 4px;
+			margin-left: 40px;
+			margin-right: 0px;
 		}
 		.auto-style3 {
 			border-left: 1px solid #CCC;
@@ -218,16 +223,45 @@ else{
 			background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
 			background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
 			background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
-			background-image: url('linear-gradient(top,%20#eeeeee, #cccccc)');
+			background-image: linear-gradient(top, #eeeeee, #cccccc);
+			border: 1px solid #CCC;
 			border-bottom: 1px solid #BBB;
 			color: #333;
 			font: bold 13px / 1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
 			text-align: center;
 			text-shadow: 0 1px 0 #EEE;
-			margin-left: 40px;
+			margin-left: 42px;
 			margin-right: 0%;
+			margin-bottom:0px;
 		}
+		
 		.auto-style4 {
+			border-left: 1px solid #CCC;
+			border-right: 1px solid #CCC;
+			border-top: 1px solid #CCC;
+			width: 9%;
+			min-width: 55px;
+			border-radius: 5px;
+			height: 40px;
+			padding: 5px;
+			background-color: #EEEEEE;
+			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+			background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: linear-gradient(top, #eeeeee, #cccccc);
+			border: 1px solid #CCC;
+			border-bottom: 1px solid #BBB;
+			color: #333;
+			font: bold 13px / 1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+			text-align: center;
+			text-shadow: 0 1px 0 #EEE;
+			margin-left: 17px;
+			margin-right: 0%;
+			margin-bottom: 0px;
+		}
+		.auto-style5 {
 			border-left: 1px solid #CCC;
 			border-right: 1px solid #CCC;
 			border-top: 1px solid #CCC;
@@ -248,9 +282,19 @@ else{
 			font: bold 13px / 1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
 			text-align: center;
 			text-shadow: 0 1px 0 #EEE;
-			margin-left: 17px;
+			margin-left: 15px;
 			margin-right: 0%;
-			margin-bottom: 0px;
+		}
+		.auto-style3, .auto-style4:active {
+		border: 1px solid #AAA;
+		border-bottom: 1px solid #888;
+		-webkit-box-shadow: inset 0 0 5px 2px #aaaaaa, 0 1px 0 0 #eeeeee;
+		box-shadow: inset 0 0 5px 2px #AAAAAA, 0 1px 0 0 #EEEEEE;
+		}
+
+		.auto-style6 {
+			margin-left: 0px;
+			margin-right: 0px;
 		}
 		</style>
 			
@@ -286,7 +330,7 @@ else{
 			<div id="menu">
 				<div style="clear:both"></div>
 			</div>	
-			<div class="container" id="chatbox">
+			<div class="container" id="chatbox" style="left: 0px; top: 0px; width: 94%; height: 87%">
 <!--
 				<form name = "IntroQuest" method="post" onSubmit="return (validate())">
 -->
@@ -311,11 +355,9 @@ else{
 							<option value selected>-Select-</option>
 							<option value = "Caucasian">Caucasian</option>
 							<option value = "Hispanic/Latino">Hispanic / Latino</option>
-							<option value = "Asian">Asian</option>
 							<option value = "MiddleEastern">Middle Eastern</option>
-							<option value = "PacificIslander">Pacific Islander</option>
-							<option value = "NativeAmerican">Native American</option>
-							<option value = "AfricanAmerican">African American</option>
+							<option value = "AsianPacificIslander">Asian/Pacific Islander</option>
+							<option value = "Black/AfricanAmerican">Black/African American</option>
 							<option value = "Other">Other</option>
 						</select>
 					</h4>
@@ -331,6 +373,26 @@ else{
 							<option value = "SixtyOneAndOlder">61 and Older</option>
 						</select>
 					</h4>
+					
+					<h4>How often do you exercise per week?
+						<select id = "Exercise1" required>
+							<option value selected>-Select-</option>
+							<option value = "0-1times">0-1 times</option>
+							<option value = "2-3times">2-3 times</option>
+							<option value = "4+">4+ times</option>
+						</select>
+					</h4>
+
+					
+					<h4>Which type of exercises?<select id = "Exercise2" required class="auto-style6" name="D1" style="width: 219px">
+							<option value selected>-Select-</option>
+							<option value = "Aerobicexercise">Aerobic exercise(running, cycling)</option>
+							<option value = "Anaerobicexercise">Anaerobic exercise(weight lifting)</option>
+							<option value = "Flexibility">Flexibility(yoga)</option>
+							<option value = "None">None</option>
+						</select>&nbsp;
+					</h4>
+
 					
 					<h4>What social network sites do you use?
 						<select id = "SocialNetwork" required>
@@ -401,9 +463,9 @@ else{
 				<form name="emailmessage" action="">						
 					<br>
 					<input id="useremail" class="auto-style1" name="useremail" size="63" type="text" style="height: 35px">
-				<input  class = "auto-style2" name="submitemail" type="submit"  id="submitemail" value="Submit Email" style="height: 47px; width: 10%;" /><br>
-				&nbsp;<br>
-				&nbsp; <br><br><input class="submitbutton" id="nothank2"  type="submit" value="No Thanks"></form>
+				<br>
+				&nbsp;<br><br><br>&nbsp; 
+				<input  class = "auto-style2" name="submitemail" type="submit"  id="submitemail" value="Submit" style="height: 40px; width: 35%;" /><input class="auto-style5" id="nothank2"  type="submit" value="No Thanks" style="width: 35%"><br><br></form>
 			</div> 
 		
 		</div>
