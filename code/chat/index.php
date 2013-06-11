@@ -5,57 +5,20 @@ if(isset($_GET['logout'])){
 
                 
 				
-						//	$fp = fopen("log.html", 'a');
-						//		fwrite($fp, "<div class='msgln'><i>You have left the chat session.</i><br></div>");
-						//		fclose($fp);
+						/*	$fp = fopen("log.html", 'a');
+								fwrite($fp, "<div class='msgln'><i>You have left the chat session.</i><br></div>");
+								fclose($fp);*/
 								
                 session_destroy();
 
                 header("Location: index.php"); //Redirect the user }
  }
- 
- function loginForm(){
-
-                echo'
-
-                <div id="loginform">
-
-                <form action="index.php" method="post">
-
-                                <p>Please enter your id to continue:</p>
-
-                                <label for="name">ID:</label>
-
-                                <input type="text" name="name" id="name" />
-
-                                <input type="submit" name="enter" id="enter" value="Enter" />
-
-                </form>
-
-                </div>
-
-                ';
-
+if(isset($_GET['admin'])){
+	 $_SESSION['name'] ='admin';
 }
-
-  
-
-if(isset($_POST['enter'])){
-
-                if($_POST['name'] != ""){
-
-                                $_SESSION['name'] = stripslashes(htmlspecialchars($_POST['name']));
-
-                }
-
-                else{
-
-                                echo '<span class="error">Please type in your ID</span>';
-
-                }
-
+else{
+	$_SESSION['name'] ='user';
 }
-
   
 
         ?>
@@ -67,16 +30,7 @@ if(isset($_POST['enter'])){
 		<link type="text/css" rel="stylesheet" href="chatStyle.css" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 		</script>
-		<?php
-
-if(!isset($_SESSION['name'])){
-
-                loginForm();
-
-}
-
-else{
-?>
+		
 		<script>
 		
 			$(document).ready(function(){
@@ -84,7 +38,7 @@ else{
 			
 				
 			  <?php 
-			   if($_SESSION['name']!='admin'){ 
+			     if($_SESSION['name']!='admin'){
 			   ?>
 				$("#welcome").show();
 				$("#QuestFormat").hide();
@@ -229,7 +183,7 @@ else{
 			width: 9%;
 			min-width: 55px;
 			border-radius: 5px;
-			height: 40px;
+			height: 44px;
 			padding: 5px;
 			background-color: #EEEEEE;
 			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
@@ -244,6 +198,56 @@ else{
 			text-align: center;
 			text-shadow: 0 1px 0 #EEE;
 			margin-top: 0px;
+			margin-left: 4px;
+		}
+		.auto-style3 {
+			border-left: 1px solid #CCC;
+			border-right: 1px solid #CCC;
+			border-top: 1px solid #CCC;
+			width: 9%;
+			min-width: 55px;
+			border-radius: 5px;
+			height: 40px;
+			padding: 5px;
+			background-color: #EEEEEE;
+			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+			background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: url('linear-gradient(top,%20#eeeeee, #cccccc)');
+			border-bottom: 1px solid #BBB;
+			color: #333;
+			font: bold 13px / 1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+			text-align: center;
+			text-shadow: 0 1px 0 #EEE;
+			margin-left: 40px;
+			margin-right: 0%;
+		}
+		.auto-style4 {
+			border-left: 1px solid #CCC;
+			border-right: 1px solid #CCC;
+			border-top: 1px solid #CCC;
+			width: 9%;
+			min-width: 55px;
+			border-radius: 5px;
+			height: 40px;
+			padding: 5px;
+			background-color: #EEEEEE;
+			background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #eeeeee), color-stop(100%, #cccccc));
+			background-image: -webkit-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -moz-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -ms-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: -o-linear-gradient(top, #eeeeee, #cccccc);
+			background-image: url('linear-gradient(top,%20#eeeeee, #cccccc)');
+			border-bottom: 1px solid #BBB;
+			color: #333;
+			font: bold 13px / 1 "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;
+			text-align: center;
+			text-shadow: 0 1px 0 #EEE;
+			margin-left: 17px;
+			margin-right: 0%;
+			margin-bottom: 0px;
 		}
 		</style>
 			
@@ -378,12 +382,8 @@ else{
 					<p id="printmsg"><font face="Arial" size="3" color="black">Are you interested in receiving more information? 
 					</font></p>
 				
-					<br>
-				
-					&nbsp;<input class="submitbutton" id="printing"  type="submit" value="Print Flyer" style="width: 12%"><br>
-					
-					
-					&nbsp;<input class="submitbutton" id="nothank"  type="submit" value="No Thanks" style="width: 12%"></div>
+					<br><br>&nbsp;
+					<input class="auto-style3" id="printing"  type="submit" value="Print Flyer" style="width: 35%"><input class="auto-style4" id="nothank"  type="submit" value="No Thanks" style="width: 35%"></div>
 		</div>
 
 			<div class="wrapper" id="PostQuest2">
@@ -400,18 +400,10 @@ else{
 					<input id="useremail" class="auto-style1" name="useremail" size="63" type="text" style="height: 35px">
 				<input  class = "auto-style2" name="submitemail" type="submit"  id="submitemail" value="Submit Email" style="height: 47px; width: 10%;" /><br>
 				&nbsp;<br>
-				&nbsp;<input class="submitbutton" id="nothank2"  type="submit" value="No Thanks">
-				
-			</form>
+				&nbsp; <br><br><input class="submitbutton" id="nothank2"  type="submit" value="No Thanks"></form>
 			</div> 
 		
 		</div>
-		
-	<?php
-
-}
-
-?>
 	
 	</body>
 </html>
