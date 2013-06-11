@@ -142,35 +142,38 @@ else{
 				return false;
 			});
 		
-			function loadLog(){		
-				var oldscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
-				$.ajax({
-					url: "log.html",
-					cache: false,
-					success: function(html){
-					$("#mainchatbox").html(html); //Insert chat log into the #chatbox div					
-				var newscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
-				if(newscrollHeight > oldscrollHeight){
-					$("#mainchatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
-				}				
-		  	},
-		});
-		}
+			//function loadLog(){		
+				//var oldscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
+				//$.ajax({
+					//url: "log.html",
+					//cache: false,
+					//success: function(html){
+					//$("#mainchatbox").html(html); //Insert chat log into the #chatbox div					
+					//var newscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
+					//if(newscrollHeight > oldscrollHeight){
+						//$("#mainchatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+					//}				
+				//},
+			//});
+			
+			//function loadLog(){		
+				//var oldscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
+				//var request = $.ajax({
+					//url: "log.php",
+					//cache: false,
+					//request.done(function(html){
+						//$("#mainchatbox").html(html); //Insert chat log into the #chatbox div					
+						//var newscrollHeight = $("#mainchatbox").attr("scrollHeight") - 20;
+						//if(newscrollHeight > oldscrollHeight){
+							//$("#mainchatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+						//}				
+					//});
+					
+					//request.fail(
+				//});
+			//}
 		});
 		</script>
-		
-<!--
-		<script type="text/javascript" src="chat.js"></script>
--->
-	<script type="text/javascript">
-		function validate() {
-			if(document.IntroQuest.Position.value == "Select") {
-				alert("Please select a position");
-				return false;
-			}
-			return true;
-		}
-	</script>
 			
 		<style type="text/css">
 		.auto-style1 {
