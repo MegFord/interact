@@ -1,0 +1,81 @@
+CREATE TABLE Demographics (
+	userID INT  AUTO_INCREMENT ,
+	position VARCHAR(20) NOT NULL,
+	gender VARCHAR(1) NOT NULL,
+	ethnicity VARCHAR(15) NOT NULL,
+	ageRange INT NOT NULL,
+	facebook BOOLEAN NOT NULL,
+	twitter BOOLEAN NOT NULL,
+	exerciseRange INT NOT NULL,
+	exerciseType INT NOT NULL,
+	insertTime TIMESTAMP,
+	PRIMARY KEY (userID));
+
+CREATE TABLE Exercise (
+	exRange INT,
+	exTimes VARCHAR(10));
+
+CREATE TABLE ExerciseMethod (
+	exValue INT,
+	exDefinition VARCHAR(20));
+
+CREATE TABLE Session (
+	userID INT NOT NULL,
+	isComputer BOOLEAN NOT NULL,
+	persuadeCondition INT NOT NULL,
+	exitChat BOOLEAN NOT NULL,
+	insertTime TIMESTAMP,
+	PRIMARY KEY(userID));
+
+CREATE TABLE Ages (
+	ageRange INT,
+	age VARCHAR(10));
+
+CREATE TABLE Persuade (
+	persuadeCondition INT,
+	description VARCHAR(20));
+
+CREATE TABLE Conversation (
+	sessionID INT NOT NULL,
+	receiverID INT NOT NULL,
+	message VARCHAR(120) NOT NULL,
+	timeSent TIMESTAMP,
+	displayTime VARCHAR(20) NOT NULL,
+	PRIMARY KEY (receiverID, message, timesent));
+
+CREATE TABLE Email (
+	userID INT NOT NULL,
+	emailAddress VARCHAR(30) NOT NULL,
+	PRIMARY KEY (userID));
+
+CREATE TABLE PersuasionSuccess (
+	userID INT NOT NULL,
+	email BOOLEAN NOT NULL,
+	print BOOLEAN NOT NULL,
+	visitSite BOOLEAN NOT NULL,
+	takeClass BOOLEAN NOT NULL,
+	PRIMARY KEY (userID));
+
+CREATE TABLE VisitSite (
+	userID INT NOT NULL,
+	timeVisit TIMESTAMP NOT NULL,
+	PRIMARY KEY (userID));
+
+SELECT COUNT(*) as userCount
+	FROM Demographics
+	WHERE userID > 0;
+
+SELECT userID FROM Demographics
+	WHERE facebook = 1
+	AND twitter = 0,
+	ORDER BY userID;
+
+SELECT userID FROM Demographics
+	WHERE facebook = 0
+	AND twitter = 1,
+	ORDER BY userID;
+
+SELECT userID FROM Demographics
+	WHERE facebook = 1
+	AND twitter = 1,
+	ORDER BY userID;
