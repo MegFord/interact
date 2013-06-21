@@ -11,6 +11,7 @@ import dm.filter.InformationStateFilter;
 import dm.filter.MessageFilter;
 import dm.filter.info_state.FormatInfoStateFilter;
 import dm.filter.message.FormatMessageFilter;
+import dm.filter.message.GreetingMessageFilter;
 import dm.filter.message.RegExpFilter;
 import dm.goals.Goal;
 import dm.infostate.InformationState;
@@ -38,6 +39,7 @@ public class TravelAgentLoader extends Loader {
 		Properties from= new Properties();
 		Properties date= new Properties();
 		Properties time= new Properties();
+		Properties greet = new Properties();
 		
 		String locations = DataLocations.getLocations();
 		to.setProperty("regexp", "to\\s("+locations+")");
@@ -64,11 +66,14 @@ public class TravelAgentLoader extends Loader {
 		date.setProperty("outputField", "tagDate");
 		date.setProperty("value", "travel_date");
 		
+		greet.setProperty("input", "text");
+		greet.setProperty("output", "greeting");
 		
 		filters.add(new RegExpFilter("ToFilter",to));
 		filters.add(new RegExpFilter("FromFilter",from));
 		filters.add(new RegExpFilter("TimeFilter",time));
 		filters.add(new RegExpFilter("DateFilter",date));	
+		filters.add(new GreetingMessageFilter("greetDetect", greet));
 	}
 	
 	public void loadNLGFilters(ArrayList<MessageFilter> filters){
