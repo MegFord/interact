@@ -11,6 +11,23 @@ CREATE TABLE Demographics (
 	insertTime TIMESTAMP,
 	PRIMARY KEY (userID));
 
+CREATE TABLE PreChatQuestionnaire (
+	userID INT NOT NULL,
+	exerciseNeed VARCHAR(20),
+	taiChiInterest VARCHAR(20),
+	insertTime TIMESTAMP,
+	PRIMARY KEY (userID));
+
+CREATE TABLE PostChatQuestionnaire (
+	userID INT NOT NULL,
+	exerciseNeed VARCHAR(20),
+	taiChiInterest VARCHAR(20),
+	taiChiConvinced VARCHAR(20),
+	understoodChat VARCHAR(20),
+	chatUnderstoodMe VARCHAR(20),
+	insertTime TIMESTAMP,
+	PRIMARY KEY (userID));
+
 CREATE TABLE Exercise (
 	exRange INT,
 	exTimes VARCHAR(10));

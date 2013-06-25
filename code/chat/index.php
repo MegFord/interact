@@ -34,6 +34,7 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();
+					$("#PostQuest3").hide();
 					
 					$("#continue").mouseenter(function(){
 						$("#continue").fadeTo("fast", 1.0);
@@ -42,24 +43,23 @@
 						$("#continue").fadeTo("fast", 0.5);
 					});
 		
-
 					$("#continue").on('click',function(){
 						$("#welcome").hide();
 						$("#QuestFormat").show();
 						$("#ChatFormat").hide();
 						$("#PostQuest").hide();
-
+						$("#PostQuest3").hide();
 					});
+					
 					$("#QuestSubmit").mouseenter(function(){
 						$("#QuestSubmit").fadeTo("fast", 1.0);
 					});
 					$("#QuestSubmit").mouseleave(function(){
 						$("#QuestSubmit").fadeTo("fast", 0.5);
 					});
-
-						
+					
 					$("#QuestSubmit").click(function(){
-						if($("#SocialNetwork").val() == "" || $("#Age").val() == "" || $("#Position").val() == "" || $("#Ethnicity").val() == "" || $("#Gender").val() == "" || $("#Exercise1").val() == "" || $("#Exercise2").val() == "") {
+						if($("#SocialNetwork").val() == "" || $("#Age").val() == "" || $("#Position").val() == "" || $("#Ethnicity").val() == "" || $("#Gender").val() == "" || $("#Exercise1").val() == "" || $("#Exercise2").val() == ""){
 							$("#errorMessage").html("Please fill out all fields and try again.").show();
 						}
 						else {
@@ -71,6 +71,8 @@
 							var ex1 = $("#Exercise1").val();
 							var ex2 = $("#Exercise2").val();
 							var soc = $("#SocialNetwork").val();
+							var pre1 = $('input:radio[name=taichi1]:checked').val();
+							var pre2 = $('input:radio[name=taichi2]:checked').val();							
 
 /*		THE VALUES FROM THE PRE-CHAT QUESTIONNAIRE WILL BE SENT TO AND
  *			INSERTED IN THE DATABASE.
@@ -79,7 +81,7 @@
 								url: "database.php", 
 								async: true, 
 								type: "POST", 
-								data: {position: pos, gender: sex, ethnicity: race, age: age, exercise1: ex1, exercise2: ex2, socialnetwork: soc, func: 0}, 
+								data: {position: pos, gender: sex, ethnicity: race, age: age, exercise1: ex1, exercise2: ex2, socialnetwork: soc, preNeed: pre1, preInterest: pre2, func: 0}, 
 								dataType: "html" 
 							}).success(function(data) { 
 								user = data;
@@ -89,11 +91,13 @@
 							$("#QuestFormat").hide();
 							$("#ChatFormat").show();					
 							$("#PostQuest").hide();
+							$("#PostQuest3").hide();
 							
 							refreshIntervalId = setInterval (loadLog, 1000);	//Reload file every 1 seconds
 						}
 						return false;
-					});									
+					});	
+													
 				<?php 
 				}
 
@@ -115,12 +119,13 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormat").show();
 					$("#PostQuest").hide();
+					$("#PostQuest3").hide();
 						
 					refreshIntervalId = setInterval (loadLog, 1000);	//Reload file every 1 seconds
 			<?php			
 				}
 			?>
-					
+						
 /*		THE FUNCTION FOR WHEN THE 'USER SUBMITS THEIR MESSAGE - THE MESSAGE
  *			INFORMATION IS SENT TO THE DATABASE.
  */
@@ -140,6 +145,15 @@
 					$("#usermsg").val("");
 					return false;
 				});
+				
+/*         THE FUNCTION FOR WHEN THE USER SUBMIT THE POST QUESTIONS.
+ *			THE USER IS REDIRECTED. 
+ */
+				$("#PostQuestsubmit").click(function(){                      	 
+					window.location = 'index.php?logout=true'; 
+					return false;				 
+				});
+
 				
 /*		EVERY SECOND, THE CHATBOX IS REFRESHED TO DISPLAY THE DIALOG
  *			BETWEEN THE 'ADMIN' AND THE 'USER'.
@@ -165,10 +179,11 @@
 								$("#QuestFormat").hide();
 								$("#ChatFormat").hide();
 								$("#PostQuest").show();
-								$("#PostQuest2").hide();
+								$("#PostQuest3").hide();
 						<?php
 							}
-						?>						
+						?>
+												
 						}
 					})//end success					
 					var newscrollHeight = $("#mainchatbox").prop("scrollHeight") - 20;
@@ -197,15 +212,27 @@
 						$("#QuestFormat").hide();
 						$("#ChatFormat").hide();
 						$("#PostQuest").hide();
+						$("#PostQuest3").hide();
 					}
 				}); 
 				
 /*		AFTER THE CHAT IS OVER, THE USER MAY SELECT TO EITHER PRINT A FLIER
  *  		WITH MORE INFORMATION OR DECLINE.
- *			THIS CHOICE IS SENT TO THE DATABASE
- */
+ *			THIS CHOICE IS SENT TO THE DATABASE.
+ *			
+ *			ADDITIONALLY, THIS FUNCTION ALSO PRINTS OUT FLYER.PHP, WHICH
+ *			CONTAINS MORE INFORMATION ABOUT TAI CHI AS WELL AS CONTAINS
+ *			THE USER'S ID NUMBER.
+ */				
 				$("#printing").on('click',function(){
-					var printYesNo = 1;
+					var printYesNo = 1;			
+					$('body').append('<iframe src="flyer.php?userNow='+user+'" id="printIFrame" name="printIFrame"></iframe>');
+					$('#printIFrame').bind('load', 
+						function() { 
+							window.frames['printIFrame'].focus(); 
+							window.frames['printIFrame'].print(); 
+						}
+					);
 					var request5 = $.ajax({ 
 								url: "database.php", 
 								async: true, 
@@ -218,8 +245,7 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();		
-					window.location = 'index.php?logout=true'; 
-					return false;		
+					$("#PostQuest3").show();
 				});
 					
 				$("#nothank").on('click',function(){
@@ -236,11 +262,39 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();
-					window.location = 'index.php?logout=true'; 
-					return false;
+					$("#PostQuest3").show();
+					
 				});
-			});//end of document.ready(function)
-		</script>							
+	
+/*		THE FINAL SCREEN THE USER ENCOUNTERS IS A SERIES
+ *  		OF QUESTIONS ASKING THEM TO RANK THEIR OPINION
+ *			FROM 1 - 5. THEY THEN CLICK SUBMIT AND ARE FINISHED.
+ */			
+				$("#PostQuestsubmit").on('click',function(){
+					var post1 = $('input:radio[name=Q1]:checked').val();
+					var post2 = $('input:radio[name=Q2]:checked').val();
+					var post3 = $('input:radio[name=Q3]:checked').val();
+					var post4 = $('input:radio[name=Q4]:checked').val();
+					var post5 = $('input:radio[name=Q5]:checked').val();
+					var request6 = $.ajax({ 
+								url: "database.php", 
+								async: true, 
+								type: "POST", 
+								data: {userNow: user, chatUnderstoodMe: post1, understoodChat: post2, exerciseNeed: post3, taiChiInterest: post4, taiChiConvinced: post5, func: 6}, 
+								dataType: "html" 
+							}).success(function(data) { 
+							})//end success
+					$("#welcome").hide();
+					$("#QuestFormat").hide();
+					$("#ChatFormat").hide();
+					$("#PostQuest").hide();		
+					$("#PostQuest3").show();					
+				});
+				
+			});//end of document.ready(function)	
+
+		</script>		
+							
 	</head>
 
 	<body>
@@ -285,7 +339,7 @@
 				<div style="clear:both"></div>
 			</div>	
 			<div class="container" id="questbox">
-
+			
 				<h4>Please take a moment to answer a few quick questions. Thank you.</h4>
 				<h4>What is your position?
 					<select  id = "Position" required>
@@ -355,7 +409,22 @@
 						<option value = "Both">Both</option>
 					</select>			
 				</h4>
+				<h4>Please state whether you agree or disagree with the following statements.</h4>
 				
+				<h5>Strongly Disagree=1 and Strongly Agree=5.</h5>
+				
+				<h4>I feel the need to exercise often.
+					<form id="pretest1">
+						<input type="radio" name="taichi1" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="taichi1" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="taichi1" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="taichi1" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="taichi1" value="Strongly agree">5					
+					</form>
+				</h4>
+				
+				<h4>I am interested in learning Tai Chi.
+					<form id="pretest2">
+						<input type="radio" name="taichi2" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="taichi2" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="taichi2" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="taichi2" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="taichi2" value="Strongly agree">5					
+					</form>
+				</h4>
+
 				<span id="errorMessage" style="display:hidden;color:red"></span>
 				<div class = "buttonHolder">
 					<input class = "submitbutton" id = "QuestSubmit" type = "button" value = "Begin Chat">
@@ -364,7 +433,7 @@
 		</div>		
 <!--
 		-------------------------------------------------------------------------------------------------------------
-		BEGINNING OF CHAT SCRFEEN
+		BEGINNING OF CHAT SCREEN
 		-------------------------------------------------------------------------------------------------------------
 -->
 		<div class="wrapper" id="ChatFormat">
@@ -400,11 +469,55 @@
 					<p id="printmsg">Are you interested in receiving more information? </p>
 				
 					<br><br>
-					<div class = "buttonHolder">
-						<input class="submitbutton" id="printing"  type="submit" value="Print Flyer" ><br><br>
-						<input class="submitbutton" id="nothank"  type="submit" value="No Thanks" ></div>
+					<div class = "buttonHolder">	
+					<input class="submitbutton" id="printing"  type="button" value="Print Flyer" ><br><br>
+					<input class="submitbutton" id="nothank"  type="submit" value="No Thanks" ></div>
 					</div>				
 		</div>
+<!--
+		BEGINNING OF POST QUESTIONS SCREEN
+-->		
+		<div class="wrapper" id="PostQuest3">
+			<div class="top">
+				<div style="clear:both"></div>
+			</div>	
+			<div class="container" id="questbox">
+
+				<h4>Please state whether you agree or disagree with the following statements.</h4>
+				<h5>Strongly Disagree=1 and Strongly Agree=5.</h5>				
+				<h4>The chat program understood what I was saying.
+				<form>
+						<input type="radio" name="Q1" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q1" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q1" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q1" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q1" value="Strongly agree">5
+				</form>		
+				</h4>
+				<h4>I understood what the chat program was saying to me.
+				<form>
+						<input type="radio" name="Q2" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q2" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q2" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q2" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q2" value="Strongly agree">5				
+				</form>
+				</h4>
+				<h4>After this chat,</h4>
+				<h4>I feel the need to exercise often.
+				<form>							
+						<input type="radio" name="Q3" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q3" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q3" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q3" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q3" value="Strongly agree">5					
+				</form>
+				</h4>
+				<h4>I am interested in learning Tai chi.
+				<form>
+						<input type="radio" name="Q4" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q4" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q4" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q4" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q4" value="Strongly agree">5					
+				</form>
+				</h4>
+				<h4>I am convinced to learn Tai chi now.
+				<form>
+						<input type="radio" name="Q5" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q5" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q5" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q5" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="Q5" value="Strongly agree">5				
+				</form>
+				</h4>
+				<div class = "buttonHolder">
+					<input class="submitbutton" id="PostQuestsubmit"  type="submit" value="Submit">
+				</div>		
+			</div>
+
+		</div>
+
 			
 	</body>
 </html>

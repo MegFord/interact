@@ -26,6 +26,8 @@ session_start();
 			$social = $_POST['socialnetwork'];
 			$ex1 = $_POST['exercise1'];
 			$ex2 = $_POST['exercise2'];
+			$pre1 = $_POST['preNeed'];
+			$pre2 = $_POST['preInterest'];
 			$userID = $_POST['userNow'];
 		
 			if($social == "Facebook") {
@@ -78,6 +80,8 @@ session_start();
 			$row = mysql_fetch_array($curUser);
 			mysql_query("INSERT INTO Session (userID, isComputer, persuadeCondition, exitChat) VALUES('$row[currentUser]',1,1,0) ");
 			mysql_query("INSERT INTO PersuasionSuccess (userID) VALUES('$row[currentUser]') ");
+			mysql_query("INSERT INTO PreChatQuestionnaire (userID, exerciseNeed, taiChiInterest) VALUES ('$row[currentUser]', '$pre1', '$pre2')");
+			//mysql_query("INSERT INTO PostChatQuestionnaire (userID) VALUES ('$row[currentUser]')");
 			echo ($row[currentUser]);
 			break;
 		
@@ -144,6 +148,17 @@ session_start();
 			$flyer = $_POST['printFlyer'];
 			mysql_query("UPDATE PersuasionSuccess SET print = '$flyer' WHERE userID='$userID'");
 			echo $flyer.": flyer";
+			break;
+			
+		case 6:
+		//submitting the first post chat form
+			$userID = $_POST['userNow'];
+			$cam = $_POST['chatUnderstoodMe'];
+			$uc = $_POST['understoodChat'];
+			$eNeed = $_POST['exerciseNeed'];
+			$tcInt= $_POST['taiChiInterest'];
+			$tcConv = $_POST['taiChiConvinced'];
+			mysql_query("INSERT INTO PostChatQuestionnaire (userID, exerciseNeed, taiChiInterest, taiChiConvinced, understoodChat, chatUnderstoodMe) VALUES ('$userID', '$eNeed', '$tcInt', '$tcConv', '$uc', '$cam')");
 			break;
 	}
 ?>
