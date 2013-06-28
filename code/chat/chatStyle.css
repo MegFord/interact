@@ -10,9 +10,9 @@ html {
 body {
 	margin: 10px auto;
 	text-align: center;
-	padding: 3%;
-	height: 75%;
-	width: 35%;
+	padding: 5%;
+	height: 70%;
+	width: 38%;
 }
 
 .top {
@@ -20,19 +20,23 @@ body {
 }
 
 p {
-	margin: 5px;
-	padding: 5px;
+	margin: 4px;
+	padding: 4px;
 	font-size: 14px;
 	font-weight: 600;
 	text-indent: 0;
 }
 
 form, span {
-	margin: 0px;
+	margin-left: 4px;
 	padding: 0px;
 	font-size: 12px;
 	font-weight: 600;
-	text-indent: 0px;
+	text-indent: 0;
+}
+
+#errorMessage1, #errorMessage2 {
+	color: red;;
 }
 
  #loginform {
@@ -81,7 +85,13 @@ form, span {
 }
 
 	.containter #mainchatbox {
-		padding:  5px 10px;
+		padding:  4px 10px;
+	}
+	
+	#mainchatboxAdmin {
+		height: 80%;
+		width: 92%;
+		padding:  4px 10px;
 	}
 
 #usermsg {
@@ -153,6 +163,16 @@ form, span {
 	color:red;
 }
 
+#adminComments {
+	padding-top: 10px;
+}
+
+#otherComments {
+	width: 30%;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 select {
 	width: 100px;
 	font-size: 14px;
@@ -161,12 +181,18 @@ select {
 	padding: 0px;
 }
 
+	#whySwitch, #strategies {
+		width: 20%;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+
 h2 {
 	font-size: 20px;
 	text-indent: 0;
 	text-align: center;
 	margin: 10px 5px 10px 5px;
-	padding: 5px;
+	padding: 4px;
 }
 
 h3 {
@@ -174,7 +200,7 @@ h3 {
 	text-indent: 0;
 	text-decoration: underline;
 	margin: 10px 5px 10px 5px;
-	padding: 5px;
+	padding: 4px;
 }
 
 h4 {
@@ -188,7 +214,7 @@ h5 {
 	text-indent: 0;
 	margin: 4px;
 	padding: 4px;	
-	color:red;
+	color: black;
 	
 }
 iframe {

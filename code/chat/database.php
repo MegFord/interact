@@ -73,11 +73,27 @@ session_start();
 				$exType = 4;
 			else
 				$exType = 'None';
-		
-			mysql_query("INSERT INTO Demographics (position, gender, ethnicity, ageRange, facebook, twitter, exerciseRange, exerciseType) VALUES('$pos','$gender','$ethnic','$ageGroup','$fbook','$tweet','$exVal','$exType')");
 			
-			$curUser = mysql_query("SELECT MAX(userID) as currentUser FROM Demographics");
+			$id = rand(2,9999);
+			
+			function findExists($id) {
+				$idExists = false;
+				$currentIDs = mysql_query("SELECT userID from Demographics");
+				while($currentIdRow = mysql_fetch_array($currentIDs)) {
+					if($currentIdRow['userID'] == $id) {
+						$id = rand(2,9999);
+						findExists($id);
+					}
+					else
+						return $id;
+				}
+			}
+					
+			mysql_query("INSERT INTO Demographics (userID, position, gender, ethnicity, ageRange, facebook, twitter, exerciseRange, exerciseType) VALUES('$id','$pos','$gender','$ethnic','$ageGroup','$fbook','$tweet','$exVal','$exType')");
+			
+			$curUser = mysql_query("SELECT userID AS currentUser FROM Demographics WHERE insertTime = (SELECT MAX(insertTime) FROM Demographics)");
 			$row = mysql_fetch_array($curUser);
+			
 			mysql_query("INSERT INTO Session (userID, isComputer, persuadeCondition, exitChat) VALUES('$row[currentUser]',1,1,0) ");
 			mysql_query("INSERT INTO PersuasionSuccess (userID) VALUES('$row[currentUser]') ");
 			mysql_query("INSERT INTO PreChatQuestionnaire (userID, exerciseNeed, taiChiInterest) VALUES ('$row[currentUser]', '$pre1', '$pre2')");
@@ -87,7 +103,7 @@ session_start();
 		
 		case 1:
 		//get userID if admin login
-			$curUser = mysql_query("SELECT MAX(userID) AS currentUser FROM Demographics");
+			$curUser = mysql_query("SELECT userID AS currentUser FROM Demographics WHERE insertTime = (SELECT MAX(insertTime) FROM Demographics)");
 			$row = mysql_fetch_array($curUser);
 			echo ($row[currentUser]);
 			break;

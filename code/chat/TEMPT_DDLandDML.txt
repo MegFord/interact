@@ -1,5 +1,5 @@
 CREATE TABLE Demographics (
-	userID INT  AUTO_INCREMENT ,
+	userID INT,
 	position VARCHAR(20) NOT NULL,
 	gender VARCHAR(1) NOT NULL,
 	ethnicity VARCHAR(15) NOT NULL,
@@ -10,6 +10,13 @@ CREATE TABLE Demographics (
 	exerciseType INT NOT NULL,
 	insertTime TIMESTAMP,
 	PRIMARY KEY (userID));
+
+INSERT INTO DEMOGRAPHICS
+	(userID) 
+	VALUES (FLOOR(RAND() * 1001));
+
+SELECT userID FROM Demographics 
+	WHERE insertTime = (SELECT MAX(insertTime) FROM Demographics);
 
 CREATE TABLE PreChatQuestionnaire (
 	userID INT NOT NULL,
