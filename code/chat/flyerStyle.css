@@ -1,52 +1,61 @@
-html {
+﻿html {
 	height: 100%;
 	width: 100%;
 	font-family: Tahoma, sans-serif;
-	background-color: #CDCDCD;
 }
-
+#image{
+	z-index: -1; 
+	position: absolute; 
+	top: 13px; 
+	left: 2px
+}
 body {
 	margin: 10px auto;
 	text-align: center;
 	padding: 3%;
-	height: 800px;
-	width: 600px;
-	border: 1px solid gray;
-	background-color: white;
+	height: 860px;
+	width: 660px;
+	border: 1px solid #969696;
 }
-
-#benefits {
-	width: 50%;
-	margin: 0 auto;
-	padding-left: 25%;
-	padding-right: 25%;
-	text-align: center;
+.auto-style5 {
+	margin-left: 0px;
+	margin-top: 238px;
 }
 
 #contact {
-	width: 100%;
+	font-family: "Source Sans Pro Semibold";
+	font-size: large;
+	font-weight: 300;
+	color: #669999;
 	float: left;
+	width: 94%;
+	position:absolute; 
+	left:20px; 
+	top:700px
+
 }
 
 #userID {
 	width: 100%;
 	float: left;
+	position:absolute; 
+	left:20px; 
+	top:760px
 }
 
 h2 {
-	font-size: 20px;
+	font-family: Kredit;
+	font-size: xx-large;
+	font-weight: 800;
+	font-variant: normal;
+	color: #663300;
 	text-indent: 0;
 	text-align: center;
 	margin: 10px 5px 10px 5px;
 	padding: 5px;
-}
-
-h3 {
-	font-size: 16px;
-	text-indent: 0;
-	text-decoration: underline;
-	margin: 10px 5px 10px 5px;
-	padding: 5px;
+	position:absolute; 
+	left:170px; 
+	top:540px
 }
 
 h4 {
@@ -56,13 +65,3 @@ h4 {
 	padding: 4px;	
 }
 
-ul {
-	width: auto;
-	list-style-type: square;
-	float: left;
-	padding: 0;
-}
-
-li {
-	margin: 2px;
-}
