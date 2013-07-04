@@ -93,6 +93,15 @@ form, span {
 		width: 92%;
 		padding:  4px 10px;
 	}
+	
+.notify {
+	margin: 0;
+	padding: 0;
+	line-height: 12px;
+	float: left;
+	color: white;
+	font-style: italic;
+}
 
 #usermsg {
 	border: 1px solid #FFFFFF;
@@ -156,6 +165,7 @@ form, span {
 }
 
 #exit{
+	width: 50px;
 	margin: 0;
 	padding: 0;
 	line-height: 12px;

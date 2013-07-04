@@ -23,9 +23,12 @@
 		
 		<script>
 			var user = "";
+			var agentName;
 			$(document).ready(function(){
 				
 				var refreshIntervalId;
+				var refreshIntervalType;
+				var refreshintervalFindUser;
 										
 			 <?php 
 				if($_SESSION['name']!='admin'){
@@ -73,7 +76,7 @@
 							var pre1 = $('input:radio[name=taichi1]:checked').val();
 							var pre2 = $('input:radio[name=taichi2]:checked').val();							
 /*		THE VALUES FROM THE PRE-CHAT QUESTIONNAIRE WILL BE SENT TO AND
- *			INSERTED IN THE DATABASE.
+ *		INSERTED IN THE DATABASE.
  */							
 							var request0 = $.ajax({ 
 								url: "database.php", 
@@ -91,7 +94,8 @@
 							$("#PostQuest").hide();
 							$("#PostQuest3").hide();
 							
-							refreshIntervalId = setInterval (loadLog, 1000);	//Reload file every 1 seconds
+							refreshIntervalId = setInterval (loadLog, 1000);	//Reload convo every 1 seconds
+							refreshIntervalType = setInterval (displayTyping, 1000);	//Reload typing message every 1 seconds
 						}
 						return false;
 					});	
@@ -104,73 +108,139 @@
  */					
 				else{
 				?>
-					var request1 = $.ajax({ 
-						url: "database.php", 
-						async: true, 
-						type: "POST", 
-						data: {func: 1}, 
-						dataType: "html" 
-					}).success(function(data) { 
-						user = data;
-					})//end success
 					$("#welcome").hide();
 					$("#QuestFormat").hide();
 					$("#ChatFormatAdmin").show();
 					$("#PostQuest").hide();
 					$("#PostQuest3").hide();
-						
-					refreshIntervalId = setInterval (loadLog, 1000);	//Reload file every 1 seconds
+					
+					$(".notify").html("Still waiting for a user to log in...");
+					agentName = prompt("Agent, please enter your name: ");
+					
+					refreshintervalFindUser = setInterval(findUser, 1000); //checks every second to determine if a user is logged in
+					//var request1 = $.ajax({ 
+						//url: "database.php", 
+						//async: true, 
+						//type: "POST", 
+						//data: {func: 1}, 
+						//dataType: "html" 
+					//}).success(function(data) { 
+						//user = data;
+					//})//end success
+										
+					refreshIntervalId = setInterval (loadLog, 1000);	//Reload convo every 1 seconds
+					refreshIntervalType = setInterval (displayTyping, 1000);	//Reload typing message every 1 seconds
 			<?php			
 				}
 			?>
+	
+/*		DETERMINE IF THERE IS A NEW USER TO ASSIGN TO THE ADMIN
+ *
+  */ 
+			function findUser() {
+				var request1 = $.ajax({
+					url: "database.php",
+					async: true,
+					type: "POST",
+					data: {agent: agentName, func: 1},
+					dataType: "html"
+				}).success(function(data) {
+					if(data != "notFound") {	
+						user = data;		
+						$(".notify").hide();
+						clearInterval(refreshintervalFindUser);				
+						alert("User has logged in. UserID = " + data);							
+					}
+					else
+						user = "notFound";
+				})//end success
+			}
 			
-			//function checkIfUser() {
-				//var isUser = false;
-				//var request1 = $.ajax({ 
-					//url: "database.php", 
-					//async: true, 
-					//type: "POST", 
-					//data: {func: 1}, 
-					//dataType: "html" 
-				//}).success(function(data) { 
-					//if(data != "") {
-						//user = data;
-						//isUser = true;
-					//}
-					//else {
-						//var refreshCheck = setInterval(checkIfUser, 1000); //check every 1 second to see if a user has logged in
-						//isUser = false;
-					//}
-					//return isUser;
-				//})//end success
-
-			//}
+/*		KEYDOWN FUNCTION TO DISPLAY TYPING MESSAGE
+ *			
+ */	
+				$('#usermsg').add('#otherComments').keydown(checkType); // When key pressed
+				$('#strategies').add('#whySwitch').mousedown(checkType); // When mouse is clicked
+				
+				function checkType() {
+					var timer = null;
+					var request8 = $.ajax({  //turn the clicked attribute to true
+						url: "database.php", 
+						async: true, 
+						type: "POST", 
+						data: {userNow: user, func: 8}, 
+						dataType: "html" 
+					}).success(function(data) { 
+					})//end success			
+				
+					if (timer) {
+						clearTimeout(timer); // Clear any previous timer
+					}
+					timer = setTimeout(function() { // Start timer to expire in 1 seconds
+						var request9 = $.ajax({  //turn the clicked attribute to false
+							url: "database.php", 
+							async: true, 
+							type: "POST", 
+							data: {userNow: user, func: 9}, 
+							dataType: "html" 
+						}).success(function(data) { 
+						})//end success	
+					}, 1000);
+				};						
+				
+				function displayTyping() {
+					var request10 = $.ajax({  //turn the clicked attribute to false
+						url: "database.php", 
+						async: true, 
+						type: "POST", 
+						data: {userNow: user, func: 10}, 
+						dataType: "html" 
+					}).success(function(data) { 
+						//alert(data);
+						if(data == 1 && user != "notFound") {
+						<?php
+							if($_SESSION['name'] == 'admin') {
+						?>
+								$('.notify').html('User is typing...').fadeIn('slow'); // Show notification
+						<?php	
+							}
+							else {
+						?>
+								$('.notify').html('Computer is processing your request...').fadeIn('slow'); // Show notification
+						<?php
+							}
+						?>
+						}
+						else if(data == 0 && user != "notFound")
+							$('.notify').fadeOut(1000); // Hide notification
+					})//end success	
+					
+				}	
 						
 /*		THE FUNCTION FOR WHEN THE 'USER SUBMITS THEIR MESSAGE - THE MESSAGE
  *			INFORMATION IS SENT TO THE DATABASE.
- adminComments, whySwitch, otherComments
  */
 				$("#submitmsg").click(function(){	
 				<?php
 					if($_SESSION['name'] == 'admin') {
 				?>
-						var admCmnt  = $("#adminComments").val();
+						var strat  = $("#strategies").val();
 						var why = $("#whySwitch").val();
 						var other = $("#otherComments").val();
+						if($("#otherComments").val() == "")
+							other = "NULL";
 						var clientmsg = $("#usermsg").val();
-						//alert(clientmsg);
 						var request2 = $.ajax({ 
 							url: "database.php", 
 							async: true, 
 							type: "POST", 
-							data: {userNow: user, message: clientmsg, func: 2}, 
+							data: {userNow: user, message: clientmsg, strategies: strat, whySwitch: why, otherCmnts: other, func: 2}, 
 							dataType: "html" 
 						}).success(function(data) { 
 							//$("#mainchatbox").html(data); 
 							//alert("message =  " + data);
 						})//end success			
 						$("#usermsg").val("");
-						//$("#whySwitch").val("NoSwitch");
 						$("#whySwitch").val($("#whySwitch option:first").val());
 						$("#otherComments").val("");
 				<?php	
@@ -178,12 +248,11 @@
 					else {
 				?>
 						var clientmsg = $("#usermsg").val();
-						//alert(clientmsg);
 						var request2 = $.ajax({ 
 							url: "database.php", 
 							async: true, 
 							type: "POST", 
-							data: {userNow: user, message: clientmsg, func: 2}, 
+							data: {userNow: user, message: clientmsg, func: 3}, 
 							dataType: "html" 
 						}).success(function(data) { 
 							//$("#mainchatbox").html(data); 
@@ -207,7 +276,7 @@
 						url: "database.php", 
 						async: true, 
 						type: "POST", 
-						data: {userNow: user, func: 3}, 
+						data: {userNow: user, func: 4}, 
 						dataType: "html" 
 					}).success(function(data) { 
 						if(data != "exit") {
@@ -217,6 +286,7 @@
 						else {
 							//stop refreshing chatbox 							
 							clearInterval(refreshIntervalId);
+							clearInterval(refreshIntervalType);
 						<?php 
 							if($_SESSION['name']!='admin') {
 						?>
@@ -259,11 +329,12 @@
 					if(exit==true){
 						//stop refreshing chatbox 
 						clearInterval(refreshIntervalId);
+						clearInterval(refreshIntervalType);
 						var request4 = $.ajax({ 
 							url: "database.php", 
 							async: true, 
 							type: "POST", 
-							data: {userNow: user, func: 4}, 
+							data: {userNow: user, func: 5}, 
 							dataType: "html" 
 						}).success(function(data) { 
 						})//end success
@@ -292,11 +363,11 @@
 							window.frames['printIFrame'].print(); 
 						}
 					);
-					var request5 = $.ajax({ 
+					var request6 = $.ajax({ 
 						url: "database.php", 
 						async: true, 
 						type: "POST", 
-						data: {userNow: user, printFlyer: printYesNo, func: 5}, 
+						data: {userNow: user, printFlyer: printYesNo, func: 6}, 
 						dataType: "html" 
 					}).success(function(data) { 
 					})//end success
@@ -313,11 +384,11 @@
 					
 				$("#nothank").on('click',function(){
 					var printYesNo = 0;
-					var request5 = $.ajax({ 
+					var request6 = $.ajax({ 
 						url: "database.php", 
 						async: true, 
 						type: "POST", 
-						data: {userNow: user, printFlyer: printYesNo, func: 5}, 
+						data: {userNow: user, printFlyer: printYesNo, func: 6}, 
 						dataType: "html" 
 					}).success(function(data) { 
 					})//end success
@@ -332,7 +403,7 @@
  *  		OF QUESTIONS ASKING THEM TO RANK THEIR OPINION
  *			FROM 1 - 5. THEY THEN CLICK SUBMIT AND ARE FINISHED.
  */			
-				$("#PostQuestsubmit").click(function(){
+				$("#PostQuestsubmit").on('click',function(){
 					if(($('input[name=Q1]:checked').length == 0)  || ($('input[name=Q2]:checked').length == 0) || ($('input[name=Q3]:checked').length == 0) || ($('input[name=Q4]:checked').length == 0) || ($('input[name=Q5]:checked').length == 0)){
 						$("#errorMessage2").html("Please fill out all fields and try again.").show();
 					}
@@ -342,20 +413,18 @@
 						var post3 = $('input:radio[name=Q3]:checked').val();
 						var post4 = $('input:radio[name=Q4]:checked').val();
 						var post5 = $('input:radio[name=Q5]:checked').val();
-						var request6 = $.ajax({ 
+						var request7 = $.ajax({ 
 							url: "database.php", 
 							async: true, 
 							type: "POST", 
-							data: {userNow: user, chatUnderstoodMe: post1, understoodChat: post2, exerciseNeed: post3, taiChiInterest: post4, taiChiConvinced: post5, func: 6}, 
+							data: {userNow: user, chatUnderstoodMe: post1, understoodChat: post2, exerciseNeed: post3, taiChiInterest: post4, taiChiConvinced: post5, func: 7}, 
 							dataType: "html" 
 						}).success(function(data) { 
+							window.location = 'index.php?logout=true'; 
 						})//end success
-						//$("#welcome").hide();
-						//$("#QuestFormat").hide();
-						//$("#ChatFormat").hide();
-						//$("#PostQuest").hide();		
-						//$("#PostQuest3").show();
-						window.location = 'index.php?logout=true'; 
+						.error(function() {
+							alert("fail");
+						})
 						return false;	
 					}				
 				});
@@ -405,7 +474,9 @@
 -->
 		<div class="wrapper" id="QuestFormat">
 			<div class="top">
+<!--
 				<div style="clear:both"></div>
+-->
 			</div>	
 			<div class="container" id="questbox">			
 				<h4>Please take a moment to answer a few quick questions. Thank you.</h4>
@@ -516,10 +587,14 @@
 	?>
 		<div class="wrapper" id="ChatFormatAdmin">
 			<div class="top">
+<!--
 				<div style="clear:both"></div>			
-					<a href="#" id="exit" class="logout"> Exit </a>
+-->
+				<div class="notify"></div>
+				<a href="#" id="exit" class="logout"> Exit </a>
 			</div>	
 			<div class="container" id="mainchatboxAdmin">
+					<div class="notify"></div>
 			</div>
 			<form name="message" action="">						
 				<input class="bottom" name="usermsg" type="text" id="usermsg"/>
@@ -550,9 +625,13 @@
 	?>
 		<div class="wrapper" id="ChatFormat">
 			<div class="top">
+<!--
 				<div style="clear:both"></div>			
+-->
+				<div class="notify"></div>
 			</div>	
 			<div class="container" id="mainchatbox">
+				
 			</div>
 			<form name="message" action="">						
 				<input class="bottom" name="usermsg" type="text" id="usermsg"/>
@@ -570,7 +649,9 @@
 -->		
 		<div class="wrapper" id="PostQuest">
 			<div class="top">
+<!--
 				<div style="clear:both"></div>
+-->
 			</div>	
 			<div class="container" id ="end" >		
 				<p id="printmsg">Thank you for your participantion.<br>
