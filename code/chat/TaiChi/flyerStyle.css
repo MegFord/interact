@@ -36,20 +36,16 @@ body {
 */
 	font-size: 20px;
 	position: absolute;
-	bottom: 25%;
+	bottom: 10%;
 	left: 0;
 }
 
-h1 {
-	font-size: 32px;
-	text-indent: 0;
-	text-align: center;
-}
-
 h2 {
-	font-size: 24px;
+	font-size: 20px;
 	text-indent: 0;
 	text-align: center;
+	margin: 10px 5px 10px 5px;
+	padding: 5px;
 }
 
 h3 {

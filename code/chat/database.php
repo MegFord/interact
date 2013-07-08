@@ -8,8 +8,7 @@ session_start();
 	// Check connection
 	//if($con)
 		//echo('Successful '.$pos.' '.$age);
-	if (!$con)
-  	{
+	if (!$con) {
   		die('Could not connect: ' . mysql_error());
   	} 
 
@@ -229,8 +228,7 @@ session_start();
 			mysql_query("INSERT INTO PostChatQuestionnaire (userID, exerciseNeed, taiChiInterest, taiChiConvinced, understoodChat, chatUnderstoodMe) VALUES ('$userID', '$eNeed', '$tcInt', '$tcConv', '$uc', '$cam')");
 			echo $userID." ".$eNeed." ".$tcInt." ".$tcConv." ".$uc." ".$cam;
 			break;
-
-			
+		
 		case 8:
 		//sets the typing attribute to true
 			$userID = $_POST['userNow'];

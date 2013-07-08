@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="flyerStyle.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+		</script>
+		<script>			
+				var pathname = window.location.hash;
+				var pathsplit = pathname.split("#");
+				var user = pathsplit[1];
+				
+			$(function(){	
+				var request1 = $.ajax({  //turn the visitSite attribute to true
+						url: "database2.php", 
+						async: true, 
+						type: "POST", 
+						data: {userID: user, func: 1}, 
+						dataType: "html" 
+					}).success(function(data) { 
+						//alert(userID );
+					})//end success
+					
+				$("#link1").click(function(){
+					var request2 = $.ajax({  //turn the visitSite attribute to true
+						url: "database2.php", 
+						async: true, 
+						type: "POST", 
+						data: {userID: user, func: 2}, 
+						dataType: "html" 
+					}).success(function(data) { 
+						alert(data);
+					})//end success
+					.error(function() {
+						alert("fail: " + user);
+					})
+					//return false;
+				});
+				
+				$("#link2").click(function(){
+					var request2 = $.ajax({  //turn the visitSite attribute to true
+						url: "database2.php", 
+						async: true, 
+						type: "POST", 
+						data: {userID: user, func: 3}, 
+						dataType: "html" 
+					}).success(function(data) { 
+						alert(data);
+					})//end success
+					.error(function() {
+						alert("fail: " + user);
+					})
+					//return false;
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="image">
+			<img src="Untitled2.jpg" width="700" height="900">
+		</div>
+		<div id="userID">
+			<h2>This is just a temporary TAICHI home page.</h2>
+				<a class="tclink" id="link1"href="http://www.youtube.com/watch?v=TiYFxzh0ol4" target="_blank">Link1</a>
+				<a class="tclink" id="link2" href="http://www.youtube.com/watch?v=bO2BKva4564" target="_blank">Link2</a>
+		</div>
+
+		
+	</body>
+</html>

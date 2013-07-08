@@ -37,6 +37,7 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();
+					$("#THscreen").hide();
 					$("#PostQuest3").hide();
 					
 					$("#continue").mouseenter(function(){
@@ -51,6 +52,7 @@
 						$("#QuestFormat").show();
 						$("#ChatFormat").hide();
 						$("#PostQuest").hide();
+						$("#THscreen").hide();
 						$("#PostQuest3").hide();
 					});
 					
@@ -92,6 +94,7 @@
 							$("#QuestFormat").hide();
 							$("#ChatFormat").show();					
 							$("#PostQuest").hide();
+							$("#THscreen").hide();
 							$("#PostQuest3").hide();
 							
 							refreshIntervalId = setInterval (loadLog, 1000);	//Reload convo every 1 seconds
@@ -112,6 +115,7 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormatAdmin").show();
 					$("#PostQuest").hide();
+					$("#THscreen").hide();
 					$("#PostQuest3").hide();
 					
 					$(".notify").html("Still waiting for a user to log in...");
@@ -294,6 +298,7 @@
 								$("#QuestFormat").hide();
 								$("#ChatFormat").hide();
 								$("#PostQuest").show();
+								$("#THscreen").hide();
 								$("#PostQuest3").hide();
 						<?php
 							}
@@ -342,12 +347,13 @@
 						$("#QuestFormat").hide();
 						$("#ChatFormatAdmin").hide();
 						$("#PostQuest").hide();
+						$("#THscreen").hide();
 						$("#PostQuest3").hide();
 					}
 				}); 
 				
-/*		AFTER THE CHAT IS OVER, THE USER MAY SELECT TO EITHER PRINT A FLIER
- *  		WITH MORE INFORMATION OR DECLINE.
+/*		    AFTER THE CHAT IS OVER, THE USER MAY SELECT TO EITHER PRINT A FLIER
+ *  		    WITH MORE INFORMATION OR DECLINE.
  *			THIS CHOICE IS SENT TO THE DATABASE.
  *			
  *			ADDITIONALLY, THIS FUNCTION ALSO PRINTS OUT FLYER.PHP, WHICH
@@ -371,15 +377,12 @@
 						dataType: "html" 
 					}).success(function(data) { 
 					})//end success
-					setTimeout (
-						function() {
-							$("#welcome").hide();
-							$("#QuestFormat").hide();
-							$("#ChatFormat").hide();
-							$("#PostQuest").hide();		
-							$("#PostQuest3").show();
-						}, 1000);
-									
+					$("#welcome").hide();
+					$("#QuestFormat").hide();
+					$("#ChatFormat").hide();
+					$("#PostQuest").hide();	
+					$("#THscreen").show();	
+					$("#PostQuest3").hide();							
 				});
 					
 				$("#nothank").on('click',function(){
@@ -396,8 +399,20 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();
+					$("#THscreen").hide();
 					$("#PostQuest3").show();					
 				});
+				
+				$("#Thankyouscreen").on('click',function(){
+				
+					$("#welcome").hide();
+					$("#QuestFormat").hide();
+					$("#ChatFormat").hide();
+					$("#PostQuest").hide();
+					$("#THscreen").hide();
+					$("#PostQuest3").show();					
+				});
+
 	
 /*		THE FINAL SCREEN THE USER ENCOUNTERS IS A SERIES
  *  		OF QUESTIONS ASKING THEM TO RANK THEIR OPINION
@@ -461,7 +476,7 @@
 				<h2>Thank you for your participation!</h2>
 
 				<div class = "buttonHolder">
-					<input class="submitbutton" id="continue"  type="submit" value="Continue">
+					<input class="submitbutton" id="continue"  type="button" value="Continue">
 				</div>		
 	
 			</div>
@@ -661,10 +676,26 @@
 				<div class = "buttonHolder">	
 					<input class="submitbutton" id="printing"  type="button" value="Print Flyer" >
 					<br><br>
-					<input class="submitbutton" id="nothank"  type="submit" value="No Thanks" >
+					<input class="submitbutton" id="nothank"  type="button" value="No Thanks" >
 				</div>
 			</div>				
 		</div>
+<!--
+           BEGINNING OF THANK YOU SCREEN
+-->		
+		<div class="wrapper" id="THscreen">
+			<div class="top">
+			</div>	
+			<div class="container" id="thanks">		
+				<p id="TH">Thank you for printing the flyer.</p>
+				
+				<br><br>
+				<div class = "buttonHolder">	
+					<input class="submitbutton" id="Thankyouscreen"  type="button" value="Continue" >
+					</div>
+			</div>				
+		</div>
+		
 <!--
 		BEGINNING OF POST QUESTIONS SCREEN
 -->		
