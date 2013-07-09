@@ -68,6 +68,8 @@ public class TravelAgentLoader extends Loader {
 		
 		greet.setProperty("input", "text");
 		greet.setProperty("output", "greeting");
+		greet.setProperty("mood", "mood");
+		greet.setProperty("value", "greeting_info");
 		
 		filters.add(new RegExpFilter("ToFilter",to));
 		filters.add(new RegExpFilter("FromFilter",from));

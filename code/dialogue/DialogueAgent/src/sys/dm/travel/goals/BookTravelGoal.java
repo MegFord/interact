@@ -6,6 +6,7 @@ import dm.goals.Goal;
 import dm.infostate.InformationState;
 import dm.nlp.Message;
 import dm.tasks.FindInfoTask;
+import dm.tasks.GreetingTask;
 
 public class BookTravelGoal extends Goal {
 
@@ -41,16 +42,17 @@ public class BookTravelGoal extends Goal {
 		
 		
 		greet.setProperty("question", "Hi, how are you?");
-		greet.setProperty("inFields", cg+":greeting"); // these must be <namespace>:<attribute>,<namespace2>:<attrib2>,...
+		greet.setProperty("inFields", cg+":greeting_info"); // these must be <namespace>:<attribute>,<namespace2>:<attrib2>,...
 		greet.setProperty("outField",conv+":response");
-		greet.setProperty("responsePattern", "Great, welcome to the travel system");
+		greet.setProperty("mood", conv+"mood");
+		greet.setProperty("responsePattern", "<greeting_info>. Welcome to the travel system. How can I help you?");
 		
 		
 		FindInfoTask findFrom = new FindInfoTask("fromTask", from);
 		FindInfoTask findTo = new FindInfoTask("toTask", to);
 		FindInfoTask findDate = new FindInfoTask("dateTask",date);
-		FindInfoTask findGreeting = new FindInfoTask("greetTask",greet);
-		
+		//FindInfoTask findGreeting = new FindInfoTask("greetTask",greet);
+		GreetingTask findGreeting = new GreetingTask("greetTask",greet);
 		
 		this.addTask(findFrom);
 		this.addTask(findTo);
@@ -68,12 +70,15 @@ public class BookTravelGoal extends Goal {
 			String travelDt = is.getCommonGround().getReference("travel_date");
 			String toCity = is.getCommonGround().getReference("to_city");
 			String fromCity = is.getCommonGround().getReference("from_city");
+			String greetResponse = is.getCommonGround().getReference("greeting_info");
 			if (travelDt!=null)
 				m.setProperty("travel_date", travelDt);
 			if (toCity!=null)
 				m.setProperty("to_city",toCity);
 			if (fromCity!=null)
 				m.setProperty("from_city", fromCity);
+			if (greetResponse != null)
+				m.setProperty("greeting_info", greetResponse);
 		}
 		return m;
 	}
