@@ -35,6 +35,10 @@ public class Agent {
 			Message msg = new Message(text);
 			String out = dialogue.takeTurn(msg);
 			System.out.println(out);
+			if(out.equals("Gaol:[BookTravel]: No more tasks"))
+			{
+				dialogue.endIt();
+			}
 		}
 	}
 	

@@ -51,6 +51,11 @@ public class DM
 		return informationState.getConversationBeliefs().getBeliefString("status").toString().equals("end");
 	}
 	
+	public void endIt(){
+		informationState.getConversationBeliefs().believe(new ConversationBelief("status", "end"));
+
+	}
+	
 	public String takeTurn(Message m){
 		if(m!=null){
 			Message msg = nlu.parse(m);
