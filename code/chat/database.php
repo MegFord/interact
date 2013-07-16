@@ -18,6 +18,7 @@ session_start();
 	switch($value) {
 		case 0:
 		//insert data into Demographics and Session
+			$ip = $_POST['address'];
 			$pos = $_POST['position']; 
 			$gender = $_POST['gender'];
 			$ethnic = $_POST['ethnicity'];
@@ -93,28 +94,33 @@ session_start();
 			$curUser = mysql_query("SELECT userID AS currentUser FROM Demographics WHERE insertTime = (SELECT MAX(insertTime) FROM Demographics)");
 			$row = mysql_fetch_array($curUser);
 			
-			mysql_query("INSERT INTO Session (userID, isComputer, persuadeCondition, exitChat) VALUES('$row[currentUser]',0,1,0) ");
+			mysql_query("INSERT INTO Session (userID, ipAddress, isComputer, persuadeCondition, exitChat) VALUES('$row[currentUser]', '$ip', 0, 1, 0) ");
 			mysql_query("INSERT INTO PersuasionSuccess (userID) VALUES('$row[currentUser]') ");
 			mysql_query("INSERT INTO PreChatQuestionnaire (userID, exerciseNeed, taiChiInterest) VALUES ('$row[currentUser]', '$pre1', '$pre2')");
-			//mysql_query("INSERT INTO PostChatQuestionnaire (userID) VALUES ('$row[currentUser]')");
 			echo ($row[currentUser]);
 			break;
-		
-		//case 1:
-		////get userID if admin login
-			//$curUser = mysql_query("SELECT userID AS currentUser FROM Demographics WHERE insertTime = (SELECT MAX(insertTime) FROM Demographics)");
-			//$row = mysql_fetch_array($curUser);
-			//echo ($row[currentUser]);
-			//break;
 		
 		case 1:
 		//when the admin logs in, a query is made to determine if a new user exists.
 		//if a new user is found, is is assigned to the admin.
+		
+		/*
+		 * Computer lab #1-5:
+		 * 12.239.13.141
+	     *	172.18.95.59
+		 *	172.18.95.64
+		 *	172.18.95.61
+		 *	172.18.95.62
+		 * 
+		 * Yehuda#1: 12.239.13.142
+		 * Yehuda#2: 50.151.102.36
+		 */
 			$agentName = $_POST['agent'];
-			$curUser = mysql_query("SELECT * FROM Session WHERE insertTime = (SELECT MAX(insertTime) FROM Session)");
 
+			$curUser = mysql_query("SELECT * FROM Session WHERE insertTime = (SELECT MAX(insertTime) FROM Session WHERE ipAddress = '12.239.13.141' AND agentName IS NULL)");
+			
 			$row = mysql_fetch_array($curUser);
-			if($row[exitChat] == 0) {
+			if(sizeof($row) > 1 && ($row[exitChat] == 0) && ($row[ipAddress] == '12.239.13.141')) {
 				echo ($row[userID]);	
 				if($row[agentName] == null)
 					mysql_query("UPDATE Session SET agentName =  '$agentName' WHERE userID = '$row[userID]'");
@@ -132,17 +138,8 @@ session_start();
 			$other = $_POST['otherCmnts'];
 			$time = date("g:i A");
 			if($msg != "") {
-				//if($_SESSION['name']=='admin') {
-					mysql_query("INSERT INTO Conversation (sessionID, receiverID, message, displayTime) VALUES('$userID', '$userID', '$msg', '$time')");
-					mysql_query("INSERT INTO ConvoStrategies (receiverID, message, strategies, whySwitch, otherComments) VALUES('$userID', '$msg', '$adminStrat', '$why', '$other')");
-				//}
-				//else {
-					//$loggedIn = mysql_query("SELECT exitChat FROM Session WHERE userID = '$userID'");
-					//$row = mysql_fetch_array($loggedIn);
-					//if($row['exitChat'] == 0) {
-						//mysql_query("INSERT INTO Conversation (sessionID, receiverID, message, displayTime)  VALUES('$userID', '$userID', '$msg', '$time')");
-					//}
-				//}
+				mysql_query("INSERT INTO Conversation (sessionID, receiverID, message, displayTime) VALUES('$userID', '$userID', '$msg', '$time')");
+				mysql_query("INSERT INTO ConvoStrategies (receiverID, message, strategies, whySwitch, otherComments) VALUES('$userID', '$msg', '$adminStrat', '$why', '$other')");
 				echo $msg;
 			}
 			break;
@@ -153,16 +150,11 @@ session_start();
 			$userID = $_POST['userNow'];
 			$time = date("g:i A");
 			if($msg != "") {
-				//if($_SESSION['name']=='admin') {
-					//mysql_query("INSERT INTO Conversation (sessionID, receiverID, message, displayTime) VALUES('$userID', 0, '$msg', '$time')");
-				//}
-				//else {
-					$loggedIn = mysql_query("SELECT exitChat FROM Session WHERE userID = '$userID'");
-					$row = mysql_fetch_array($loggedIn);
-					if($row['exitChat'] == 0) {
-						mysql_query("INSERT INTO Conversation (sessionID, receiverID, message, displayTime)  VALUES('$userID', 0, '$msg', '$time')");
-					}
-				//}
+				$loggedIn = mysql_query("SELECT exitChat FROM Session WHERE userID = '$userID'");
+				$row = mysql_fetch_array($loggedIn);
+				if($row['exitChat'] == 0) {
+					mysql_query("INSERT INTO Conversation (sessionID, receiverID, message, displayTime)  VALUES('$userID', 0, '$msg', '$time')");
+				}
 				echo $msg;
 			}
 			break;
@@ -174,8 +166,7 @@ session_start();
 			$row = mysql_fetch_array($loggedIn);
 			if($row['exitChat'] == 0) {
 				if($_SESSION['name']!='admin') {
-					echo ("Please wait for your health Guru to enter the chat.<br>");
-					echo ("<i>Health Guru is typing</i>");
+					echo ("<i>Please wait for your health guru to enter the chat.</i><br>");
 				}
 				$convo = mysql_query("SELECT* FROM Conversation WHERE sessionID = '$userID' order by timeSent");
 				while($row = mysql_fetch_array($convo)) {			
@@ -207,18 +198,6 @@ session_start();
 			
 		case 7:
 		//submitting the second post chat form
-			//$userID = $_POST['userNow'];
-			//$cam = $_POST['chatUnderstoodMe'];
-			//$uc = $_POST['understoodChat'];
-			//$eNeed = $_POST['exerciseNeed'];
-			//$tcInt= $_POST['taiChiInterest'];
-			//$tcConv = $_POST['taiChiConvinced'];
-			////mysql_query("INSERT INTO PostChatQuestionnaire (userID, exerciseNeed, taiChiInterest, taiChiConvinced, understoodChat, chatUnderstoodMe) VALUES ('$userID', '$eNeed', '$tcInt', '$tcConv', '$uc', '$cam')");
-			//mysql_query("UPDATE PostChatQuestionnaire SET taiChiInterest =  '$tcInt' WHERE userID='$userID'");
-			//echo $userID." ".$eNeed." ".$tcInt." ".$tcConv." ".$uc." ".$cam;
-			//break;
-			
-		//submitting the first post chat form
 			$userID = $_POST['userNow'];
 			$cam = $_POST['chatUnderstoodMe'];
 			$uc = $_POST['understoodChat'];
@@ -264,6 +243,35 @@ session_start();
 				$row = mysql_fetch_array($type);
 				echo $row['userType'];
 			}
+			break;
+			
+		case 11:
+		//when the admin logs in, a query is made to determine if a new user exists.
+		//if a new user is found, is is assigned to the admin.
+		
+		/*
+		 * Computer lab #1-5:
+		 * 172.18.95.58
+	     *	172.18.95.59
+		 *	172.18.95.64
+		 *	172.18.95.61
+		 *	172.18.95.62
+		 * 
+		 * Yehuda#1: 12.239.13.142
+		 * Yehuda#2: 50.151.102.36
+		 */
+			$agentName = $_POST['agent'];
+
+			$curUser = mysql_query("SELECT * FROM Session WHERE insertTime = (SELECT MAX(insertTime) FROM Session WHERE NOT (ipAddress = '12.239.13.141') AND agentName IS NULL)");
+			
+			$row = mysql_fetch_array($curUser);
+			if(sizeof($row) > 1 && ($row[exitChat] == 0) && ($row[ipAddress] != '12.239.13.141')) {
+				echo ($row[userID]);	
+				if($row[agentName] == null && ($row[ipAddress] != '12.239.13.141')) 
+					mysql_query("UPDATE Session SET agentName =  '$agentName' WHERE userID = '$row[userID]'");
+			}
+			else
+				echo "notFound";
 			break;
 	}
 ?>

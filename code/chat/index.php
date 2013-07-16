@@ -17,15 +17,19 @@
 <html>
 	<head>
 		<title>A Healthy Choice</title>
-		<link type="text/css" rel="stylesheet" href="chatStyle.css" />
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
-		</script>
-		
+		<link type="text/css" rel="stylesheet" href="chatStyle.css" />		
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<!--
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+-->
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>		
 		<script>
 			var user = "";
 			var agentName;
+			var agentPass;
 			$(document).ready(function(){
-				
+				var ip;
 				var refreshIntervalId;
 				var refreshIntervalType;
 				var refreshintervalFindUser;
@@ -33,11 +37,11 @@
 			 <?php 
 				if($_SESSION['name']!='admin'){
 			 ?>
+					$("#dialog").hide();
 					$("#welcome").show();
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();
-					$("#THscreen").hide();
 					$("#PostQuest3").hide();
 					
 					$("#continue").mouseenter(function(){
@@ -48,11 +52,18 @@
 					});
 		
 					$("#continue").on('click',function(){
+/*		FINDS THE IP ADDRESS OF THE CURRENT COMPUTER
+ */							
+						 var jqxhr = $.getJSON("http://jsonip.com/?callback=?",
+                        function (data) {
+                            ip =(data.ip);
+                            //alert(ip);	
+                        })
+						.error(function () { alert("error"); })
 						$("#welcome").hide();
 						$("#QuestFormat").show();
 						$("#ChatFormat").hide();
 						$("#PostQuest").hide();
-						$("#THscreen").hide();
 						$("#PostQuest3").hide();
 					});
 					
@@ -76,7 +87,8 @@
 							var ex2 = $("#Exercise2").val();
 							var soc = $("#SocialNetwork").val();
 							var pre1 = $('input:radio[name=taichi1]:checked').val();
-							var pre2 = $('input:radio[name=taichi2]:checked').val();							
+							var pre2 = $('input:radio[name=taichi2]:checked').val();			
+							//alert(ip);				
 /*		THE VALUES FROM THE PRE-CHAT QUESTIONNAIRE WILL BE SENT TO AND
  *		INSERTED IN THE DATABASE.
  */							
@@ -84,7 +96,7 @@
 								url: "database.php", 
 								async: true, 
 								type: "POST", 
-								data: {position: pos, gender: sex, ethnicity: race, age: age, exercise1: ex1, exercise2: ex2, socialnetwork: soc, preNeed: pre1, preInterest: pre2, func: 0}, 
+								data: {address: ip, position: pos, gender: sex, ethnicity: race, age: age, exercise1: ex1, exercise2: ex2, socialnetwork: soc, preNeed: pre1, preInterest: pre2, func: 0}, 
 								dataType: "html" 
 							}).success(function(data) { 
 								user = data;
@@ -94,7 +106,6 @@
 							$("#QuestFormat").hide();
 							$("#ChatFormat").show();					
 							$("#PostQuest").hide();
-							$("#THscreen").hide();
 							$("#PostQuest3").hide();
 							
 							refreshIntervalId = setInterval (loadLog, 1000);	//Reload convo every 1 seconds
@@ -111,29 +122,36 @@
  */					
 				else{
 				?>
+					//$(".notify").html("Still waiting for a user to log in...");
+		
 					$("#welcome").hide();
 					$("#QuestFormat").hide();
 					$("#ChatFormatAdmin").show();
 					$("#PostQuest").hide();
-					$("#THscreen").hide();
 					$("#PostQuest3").hide();
 					
+					$( "#dialog" ).dialog({
+						modal: true,
+						buttons: {
+						Login: function() {
+							agentName = $("#adminName").val();
+							agentPass = $("#adminPassword").val();
+							$( this ).dialog( "close" ); 
+								$("#welcome").hide();
+								$("#QuestFormat").hide();
+								$("#ChatFormatAdmin").show();								
+								$("#PostQuest").hide();
+								$("#PostQuest3").hide();       
+							}
+						}
+					});			
+					//$(".notify").show();
 					$(".notify").html("Still waiting for a user to log in...");
-					agentName = prompt("Agent, please enter your name: ");
-					
-					refreshintervalFindUser = setInterval(findUser, 1000); //checks every second to determine if a user is logged in
-					//var request1 = $.ajax({ 
-						//url: "database.php", 
-						//async: true, 
-						//type: "POST", 
-						//data: {func: 1}, 
-						//dataType: "html" 
-					//}).success(function(data) { 
-						//user = data;
-					//})//end success
-										
+					//agentName = prompt("Agent, please enter your name: ");
+					//agentPass = prompt("Agent, please enter your password: ");
+					refreshintervalFindUser = setInterval(findUser, 1000); //checks every second to determine if a user is logged in									
 					refreshIntervalId = setInterval (loadLog, 1000);	//Reload convo every 1 seconds
-					refreshIntervalType = setInterval (displayTyping, 1000);	//Reload typing message every 1 seconds
+					//refreshIntervalType = setInterval (displayTyping, 1000);	//Reload typing message every 1 seconds
 			<?php			
 				}
 			?>
@@ -142,22 +160,44 @@
  *
   */ 
 			function findUser() {
-				var request1 = $.ajax({
-					url: "database.php",
-					async: true,
-					type: "POST",
-					data: {agent: agentName, func: 1},
-					dataType: "html"
-				}).success(function(data) {
-					if(data != "notFound") {	
-						user = data;		
-						$(".notify").hide();
-						clearInterval(refreshintervalFindUser);				
-						alert("User has logged in. UserID = " + data);							
-					}
-					else
-						user = "notFound";
-				})//end success
+				if(agentPass == "chat") {
+					var request1 = $.ajax({
+						url: "database.php",
+						async: true,
+						type: "POST",
+						data: {agent: agentName, func: 1},
+						dataType: "html"
+					}).success(function(data) {
+						if(data != "notFound") {	
+							user = data;		
+							$(".notify").hide();
+							clearInterval(refreshintervalFindUser);				
+							alert("User has logged in. UserID = " + data);				
+							refreshIntervalType = setInterval (displayTyping, 1000);	//Reload typing message every 1 seconds			
+						}
+						else
+							user = "notFound";
+					})//end success	
+				}
+				else if(agentPass == "test") {
+					var request11 = $.ajax({
+						url: "database.php",
+						async: true,
+						type: "POST",
+						data: {agent: agentName, func: 11},
+						dataType: "html"
+					}).success(function(data) {
+						if(data != "notFound") {	
+							user = data;		
+							$(".notify").hide();						
+							clearInterval(refreshintervalFindUser);				
+							alert("User has logged in. UserID = " + data);		
+							refreshIntervalType = setInterval (displayTyping, 1000);	//Reload typing message every 1 seconds					
+						}
+						else
+							user = "notFound";
+					})//end success	
+				}				
 			}
 			
 /*		KEYDOWN FUNCTION TO DISPLAY TYPING MESSAGE
@@ -210,7 +250,7 @@
 							}
 							else {
 						?>
-								$('.notify').html('Computer is processing your request...').fadeIn('slow'); // Show notification
+								$('.notify').html('Please wait...').fadeIn('slow'); // Show notification
 						<?php
 							}
 						?>
@@ -298,7 +338,6 @@
 								$("#QuestFormat").hide();
 								$("#ChatFormat").hide();
 								$("#PostQuest").show();
-								$("#THscreen").hide();
 								$("#PostQuest3").hide();
 						<?php
 							}
@@ -343,11 +382,10 @@
 							dataType: "html" 
 						}).success(function(data) { 
 						})//end success
-						$("#welcome").show();
+						$("#welcome").hide();
 						$("#QuestFormat").hide();
 						$("#ChatFormatAdmin").hide();
 						$("#PostQuest").hide();
-						$("#THscreen").hide();
 						$("#PostQuest3").hide();
 					}
 				}); 
@@ -380,9 +418,8 @@
 					$("#welcome").hide();
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
-					$("#PostQuest").hide();	
-					$("#THscreen").show();	
-					$("#PostQuest3").hide();							
+					$("#PostQuest").hide();		
+					$("#PostQuest3").show();							
 				});
 					
 				$("#nothank").on('click',function(){
@@ -399,7 +436,6 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();
-					$("#THscreen").hide();
 					$("#PostQuest3").show();					
 				});
 				
@@ -409,7 +445,6 @@
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
 					$("#PostQuest").hide();
-					$("#THscreen").hide();
 					$("#PostQuest3").show();					
 				});
 
@@ -447,10 +482,20 @@
 			});//end of document.ready(function)	
 
 		</script>		
+		
+		
 							
 	</head>
 
 	<body>
+		<div id="dialog" title="Admin Login">
+			<p>Admin, please enter your name: </p>
+			<input id="adminName" type="text">
+			<p>Please enter your password: </p>
+			<input id="adminPassword" type="text">
+		</div>
+		
+		
 <!--
 		-------------------------------------------------------------------------------------------------------------
 		BEGINNING OF WELCOME SCREEN
@@ -489,14 +534,11 @@
 -->
 		<div class="wrapper" id="QuestFormat">
 			<div class="top">
-<!--
-				<div style="clear:both"></div>
--->
 			</div>	
 			<div class="container" id="questbox">			
 				<h4>Please take a moment to answer a few quick questions. Thank you.</h4>
 				<span id="errorMessage1"></span>
-				<h4>What is your position?
+				<h4>What is your role?
 					<select  id = "Position" required>
 						<option value = "Select" selected>-Select-</option>
 						<option value = "UndergraduateStudent">Undergraduate Student</option>
@@ -568,23 +610,23 @@
 				
 				<h5>Strongly Disagree=1 and Strongly Agree=5.</h5>
 				
-				<h4>I feel the need to exercise often.
+				<h4>I feel the need to exercise more often.
 					<form id="pretest1">
-						<input type="radio" name="taichi1" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="taichi1" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="taichi1" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="taichi1" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="taichi1" value="Strongly agree">5					
+						<input type="radio" name="taichi1" value="1">1&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="taichi1" value="2">2&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="taichi1" value="3">3&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="taichi1" value="4">4&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="taichi1" value="5">5					
 					</form>
 				</h4>
 				
 				<h4>I am interested in learning Tai Chi.
 					<form id="pretest2">
-						<input type="radio" name="taichi2" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="taichi2" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="taichi2" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="taichi2" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="radio" name="taichi2" value="Strongly agree">5					
+						<input type="radio" name="taichi2" value="1">1&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="taichi2" value="2">2&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="taichi2" value="3">3&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="taichi2" value="4">4&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="taichi2" value="5">5					
 					</form>
 				</h4>		
 			</div>
@@ -602,9 +644,6 @@
 	?>
 		<div class="wrapper" id="ChatFormatAdmin">
 			<div class="top">
-<!--
-				<div style="clear:both"></div>			
--->
 				<div class="notify"></div>
 				<a href="#" id="exit" class="logout"> Exit </a>
 			</div>	
@@ -640,9 +679,6 @@
 	?>
 		<div class="wrapper" id="ChatFormat">
 			<div class="top">
-<!--
-				<div style="clear:both"></div>			
--->
 				<div class="notify"></div>
 			</div>	
 			<div class="container" id="mainchatbox">
@@ -664,9 +700,6 @@
 -->		
 		<div class="wrapper" id="PostQuest">
 			<div class="top">
-<!--
-				<div style="clear:both"></div>
--->
 			</div>	
 			<div class="container" id ="end" >		
 				<p id="printmsg">Thank you for your participantion.<br>
@@ -678,21 +711,6 @@
 					<br><br>
 					<input class="submitbutton" id="nothank"  type="button" value="No Thanks" >
 				</div>
-			</div>				
-		</div>
-<!--
-           BEGINNING OF THANK YOU SCREEN
--->		
-		<div class="wrapper" id="THscreen">
-			<div class="top">
-			</div>	
-			<div class="container" id="thanks">		
-				<p id="TH">Thank you for printing the flyer.</p>
-				
-				<br><br>
-				<div class = "buttonHolder">	
-					<input class="submitbutton" id="Thankyouscreen"  type="button" value="Continue" >
-					</div>
 			</div>				
 		</div>
 		
@@ -709,48 +727,48 @@
 				<h5>Strongly Disagree=1 and Strongly Agree=5.</h5>				
 				<h4>The chat program understood what I was saying.
 					<form id="posttest1">
-							<input type="radio" name="Q1" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q1" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q1" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q1" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q1" value="Strongly agree">5
+							<input type="radio" name="Q1" value="1">1&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q1" value="2">2&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q1" value="3">3&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q1" value="4">4&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q1" value="5">5
 					</form>		
 				</h4>
 				<h4>I understood what the chat program was saying to me.
 					<form id="posttest2">
-							<input type="radio" name="Q2" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q2" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q2" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q2" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q2" value="Strongly agree">5				
+							<input type="radio" name="Q2" value="1">1&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q2" value="2">2&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q2" value="3">3&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q2" value="4">4&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q2" value="5">5				
 					</form>
 				</h4>
 				<h4>After this chat,</h4>
-				<h4>I feel the need to exercise often.
+				<h4>I feel the need to exercise more often.
 					<form id="posttest3">							
-							<input type="radio" name="Q3" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q3" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q3" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q3" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q3" value="Strongly agree">5					
+							<input type="radio" name="Q3" value="1">1&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q3" value="2">2&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q3" value="3">3&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q3" value="4">4&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q3" value="5">5					
 					</form>
 				</h4>
 				<h4>I am interested in learning Tai chi.
 					<form id="posttest4">
-							<input type="radio" name="Q4" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q4" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q4" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q4" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q4" value="Strongly agree">5					
+							<input type="radio" name="Q4" value="1">1&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q4" value="2">2&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q4" value="3">3&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q4" value="4">4&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q4" value="5">5					
 					</form>
 				</h4>
-				<h4>I am convinced to learn Tai chi now.
+				<h4>This chat persuaded me to find out more about Tai Chi.
 					<form id="posttest5">
-							<input type="radio" name="Q5" value="strongly disagree">1&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q5" value="disagree">2&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q5" value="neutral">3&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q5" value="agree">4&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="radio" name="Q5" value="Strongly agree">5				
+							<input type="radio" name="Q5" value="1">1&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q5" value="2">2&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q5" value="3">3&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q5" value="4">4&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="radio" name="Q5" value="5">5				
 					</form>
 				</h4>
 			</div>

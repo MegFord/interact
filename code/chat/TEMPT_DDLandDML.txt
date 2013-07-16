@@ -20,18 +20,18 @@ SELECT userID FROM Demographics
 
 CREATE TABLE PreChatQuestionnaire (
 	userID INT NOT NULL,
-	exerciseNeed VARCHAR(20),
-	taiChiInterest VARCHAR(20),
+	exerciseNeed INT(1),
+	taiChiInterest INT(1),
 	insertTime TIMESTAMP,
 	PRIMARY KEY (userID));
 
 CREATE TABLE PostChatQuestionnaire (
 	userID INT NOT NULL,
-	exerciseNeed VARCHAR(20),
-	taiChiInterest VARCHAR(20),
-	taiChiConvinced VARCHAR(20),
-	understoodChat VARCHAR(20),
-	chatUnderstoodMe VARCHAR(20),
+	exerciseNeed INT(1),
+	taiChiInterest INT(1),
+	taiChiConvinced INT(1),
+	understoodChat INT(1),
+	chatUnderstoodMe INT(1),
 	insertTime TIMESTAMP,
 	PRIMARY KEY (userID));
 
