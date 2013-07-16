@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import dm.filter.InformationStateFilter;
 import dm.infostate.InformationState;
+import dm.infostate.beliefs.ConversationBelief;
 import dm.nlp.nlg.NLG;
 import dm.nlp.nlu.NLU;
 
@@ -83,4 +84,5 @@ public abstract class Task{
 	 */
 	public abstract boolean process(InformationState is);
 	
+
 }
