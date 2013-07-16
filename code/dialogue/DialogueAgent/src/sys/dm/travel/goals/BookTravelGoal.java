@@ -45,7 +45,7 @@ public class BookTravelGoal extends Goal {
 		greet.setProperty("inFields", cg+":greeting_info"); // these must be <namespace>:<attribute>,<namespace2>:<attrib2>,...
 		greet.setProperty("outField",conv+":response");
 		greet.setProperty("mood", conv+"mood");
-		greet.setProperty("responsePattern", "<greeting_info>. Welcome to the travel system. How can I help you?");
+		greet.setProperty("responsePattern", "<greeting_info> Welcome to the travel system. How can I help you?");
 		
 		
 		FindInfoTask findFrom = new FindInfoTask("fromTask", from);

@@ -51,6 +51,10 @@ public class DM
 		return informationState.getConversationBeliefs().getBeliefString("status").toString().equals("end");
 	}
 	
+	public boolean isResponseNeeded(){
+		return informationState.getConversationBeliefs().getBeliefString("response_needed").toString().equals("true");
+	}
+	
 	public String takeTurn(Message m){
 		if(m!=null){
 			Message msg = nlu.parse(m);
