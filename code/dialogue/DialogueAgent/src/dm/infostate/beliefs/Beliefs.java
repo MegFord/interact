@@ -28,6 +28,6 @@ public class Beliefs<T extends Belief> {
 	}
 	
 	public boolean isSet(String key){
-		return (beliefs.containsKey(key) && beliefs.get(key)!=null && !beliefs.get(key).isEmpty());
+		return (beliefs.containsKey(key) && beliefs.get(key)!=null && !beliefs.get(key).isEmpty());//Think that !beliefs.getKey(key) should not be false...
 	}
 }

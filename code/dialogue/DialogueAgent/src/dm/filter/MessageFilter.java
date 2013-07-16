@@ -15,7 +15,7 @@ public abstract class MessageFilter extends Filter {
 	public abstract void setMandatoryFields();
 	
 	@Override
-	public abstract void init() ;
+	public abstract void init();
 
 	public abstract Message processFilter(Message msg);
 
