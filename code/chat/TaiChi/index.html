@@ -2,25 +2,40 @@
 
 <html>
 	<head>
-		<link type="text/css" rel="stylesheet" href="flyerStyle.css">
+		<link type="text/css" rel="stylesheet" href="taiChiStyle.css">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+		
 		</script>
-		<script>			
-				var pathname = window.location.hash;
-				var pathsplit = pathname.split("#");
-				var user = pathsplit[1];
+		<script>		
 				
+				
+			//var pathsplit= location.search.replace('?', '').split('=')
+			var pathsplit= location.search.replace('?', '').split('?')
+			var user = pathsplit[0];	
 			$(function(){	
-				var request1 = $.ajax({  //turn the visitSite attribute to true
+				//var pathname = window.location.hash;
+				//var pathsplit = pathname.split("#");
+				//var user = pathsplit[1];
+				
+				$("#error").hide();
+				$("#wrapper").hide();
+				//alert(user);
+				var request0 = $.ajax({  //turn the visitSite attribute to true
 						url: "database2.php", 
 						async: true, 
 						type: "POST", 
 						data: {userID: user, func: 1}, 
-						dataType: "html" 
+						dataType: "html" ,
 					}).success(function(data) { 
-						//alert(userID );
+						//alert(data);
+						if(data == "found") {
+							$("#error").hide();
+							$("#wrapper").show();
+						}
+						else
+							$("#error").show();
 					})//end success
-					
+
 				$("#link1").click(function(){
 					var request2 = $.ajax({  //turn the visitSite attribute to true
 						url: "database2.php", 
@@ -29,10 +44,10 @@
 						data: {userID: user, func: 2}, 
 						dataType: "html" 
 					}).success(function(data) { 
-						alert(data);
+						//alert(data);
 					})//end success
 					.error(function() {
-						alert("fail: " + user);
+						//alert("fail: " + user);
 					})
 					//return false;
 				});
@@ -45,10 +60,10 @@
 						data: {userID: user, func: 3}, 
 						dataType: "html" 
 					}).success(function(data) { 
-						alert(data);
+						//alert(data);
 					})//end success
 					.error(function() {
-						alert("fail: " + user);
+						//alert("fail: " + user);
 					})
 					//return false;
 				});
@@ -56,15 +71,44 @@
 		</script>
 	</head>
 	<body>
-		<div id="image">
-			<img src="Untitled2.jpg" width="700" height="900">
-		</div>
-		<div id="userID">
-			<h2>This is just a temporary TAICHI home page.</h2>
-				<a class="tclink" id="link1"href="http://www.youtube.com/watch?v=TiYFxzh0ol4" target="_blank">Link1</a>
-				<a class="tclink" id="link2" href="http://www.youtube.com/watch?v=bO2BKva4564" target="_blank">Link2</a>
-		</div>
-
 		
+		<div id="header-wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1>Tai Chi</h1>
+				</div>
+			</div>
+		</div>
+		<div id="error">
+			<h2>ERROR 404: <br>
+				You are trying to reach the Tai Chi webpage, but have entered the url address incorrectly. Please try again.
+			</h2>
+		</div>
+		<div id="wrapper">
+			<!-- end #header -->
+			<div id="page">
+				<div id="page-bgtop">
+					<div id="page-bgbtm">
+						<div id="content">
+							<div class="post">
+								<h2 class="title"><a href="#">Welcome to NEIU Tai Chi</a></h2>
+								<div style="clear: both;">&nbsp;</div>
+								<div class="entry">
+									<p> Thank you for your interest in learning more about Tai Chi, below are the links to practice Tai Chi on your own.</p>
+									<p><a id="link1" href="http://www.youtube.com/watch?v=TiYFxzh0ol4" target="_blank">Tai Chi for Health and Relaxation Part 1</a></p>
+									<p><a id="link2" href="http://www.youtube.com/watch?v=bO2BKva4564" target="_blank">Tai Chi for Health and Relaxation Part 2</a></p>
+									<p><a id="link3" href="http://www.youtube.com/watch?v=kAKXr-MpCbo#at=173" target="_blank">The Basics of Tai Chi for Stress Reduction</a></p>
+									<p><a id="link4" href="http://video.answers.com/tai-chi-daily-practice-total-body-517645494" target="_blank">Tai Chi Daily Practice Total Body</a></p>
+			
+								</div>
+							</div>
+							<div style="clear: both;">&nbsp;</div>
+						</div>
+						<!-- end #content -->
+						<div style="clear: both;">&nbsp;</div>
+					</div>
+				</div>
+			</div>
+	<!-- end #page -->
 	</body>
 </html>
