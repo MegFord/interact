@@ -1,9 +1,11 @@
-package dm.nlp;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import dm.nlp.Message;
 /**
  * @author TimD
  *

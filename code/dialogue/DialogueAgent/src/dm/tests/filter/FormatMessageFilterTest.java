@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dm.filter.message;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,7 @@ import java.util.Properties;
 import org.junit.Before;
 import org.junit.Test;
 
+import dm.filter.message.FormatMessageFilter;
 import dm.nlp.Message;
 
 /**

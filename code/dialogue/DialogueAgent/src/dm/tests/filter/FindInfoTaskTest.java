@@ -1,4 +1,4 @@
-package dm.tasks;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dm.infostate.InformationState;
+import dm.tasks.FindInfoTask;
 /**
  * @author TimD
  *

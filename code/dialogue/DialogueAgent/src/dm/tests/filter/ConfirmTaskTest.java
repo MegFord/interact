@@ -1,4 +1,4 @@
-package dm.tasks;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
@@ -7,10 +7,12 @@ import java.util.Properties;
 import org.junit.Before;
 import org.junit.Test;
 
-public class EndingTaskTest {
+import dm.tasks.ConfirmTask;
+
+public class ConfirmTaskTest {
 	Properties testP = new Properties();
-	StartingTask testST;
-	
+	ConfirmTask testCT = new ConfirmTask("test", testP);
+
 	@Before
 	public void setUp() throws Exception {
 		testP.setProperty("field1","value1");
@@ -38,11 +40,16 @@ public class EndingTaskTest {
 	}
 
 	@Test
-	public void testEndingTask() {
-		testST = new StartingTask("test", testP);
-		assertEquals(testST.properties, testP);
-		assertEquals(testST.name, "test");
-		assertFalse(testST.complete);
+	public void testConfirmTask() {
+		assertEquals(testCT.properties, testP);
+		assertEquals(testCT.name, "test");
+		assertFalse(testCT.complete);
+	}
+
+	@Test
+	public void testVerify() {
+		assertTrue(testCT.verify());
+
 	}
 
 }

@@ -1,14 +1,15 @@
 /**
  * 
  */
-package dm.infostate.beliefs;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dm.infostate.beliefs.BeliefTest.TempBelief;
+import dm.infostate.beliefs.Belief;
+import dm.infostate.beliefs.Beliefs;
 
 /**
  * @author TimD
