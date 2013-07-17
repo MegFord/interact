@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dm.nlp.nlu;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
@@ -15,6 +15,7 @@ import dm.data.DataLocations;
 import dm.filter.MessageFilter;
 import dm.filter.message.RegExpFilter;
 import dm.nlp.Message;
+import dm.nlp.nlu.NLU;
 
 /**
  * @author TimD

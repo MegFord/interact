@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dm.dialogue.manager;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import dm.dialogue.manager.DM;
 import dm.filter.InformationStateFilter;
 import dm.filter.MessageFilter;
 import dm.goals.Goal;

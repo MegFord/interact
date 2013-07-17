@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dm.filter.info_state;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
@@ -9,6 +9,8 @@ import java.util.Properties;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import dm.filter.info_state.FormatInfoStateFilter;
 
 /**
  * @author TimD

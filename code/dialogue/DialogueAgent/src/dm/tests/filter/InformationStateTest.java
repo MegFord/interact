@@ -1,13 +1,14 @@
 /**
  * 
  */
-package dm.infostate;
+package dm.tests.filter;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import dm.infostate.InformationState;
 import dm.infostate.beliefs.AgentBelief;
 import dm.infostate.beliefs.Beliefs;
 import dm.infostate.beliefs.ConversationBelief;
