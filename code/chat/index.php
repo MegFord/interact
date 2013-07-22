@@ -655,10 +655,10 @@
 				<input class = "submitbutton" name="submitmsg" type="submit"  id="submitmsg" value="Send" />
 				<div id="adminComments">
 					<select id = "strategies">
-						<option value = "Positive">Positive</option>
-						<option value = "Negative">Negative</option>
-						<option value = "Rational">Rational</option>
-						<option value = "Emotional">Emotional</option>
+						<option value = "RationalPositive">Rational Positive</option>
+						<option value = "RationalNegative">Rational Negative</option>
+						<option value = "EmotionalPositive">Emotional Positive</option>
+						<option value = "EmotionalNegative">Emotional Negative</option>
 					</select>
 					<select id = "whySwitch">
 						<option value = "NoSwitch">No Switch</option>

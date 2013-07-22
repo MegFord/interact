@@ -37,7 +37,7 @@
 					})//end success
 
 				$("#link1").click(function(){
-					var request2 = $.ajax({  //turn the visitSite attribute to true
+					var request2 = $.ajax({  //turn the lnki1 attribute to true
 						url: "database2.php", 
 						async: true, 
 						type: "POST", 
@@ -53,11 +53,41 @@
 				});
 				
 				$("#link2").click(function(){
-					var request2 = $.ajax({  //turn the visitSite attribute to true
+					var request2 = $.ajax({  //turn the link2 attribute to true
 						url: "database2.php", 
 						async: true, 
 						type: "POST", 
 						data: {userID: user, func: 3}, 
+						dataType: "html" 
+					}).success(function(data) { 
+						//alert(data);
+					})//end success
+					.error(function() {
+						//alert("fail: " + user);
+					})
+					//return false;
+				});
+				$("#link3").click(function(){
+					var request3 = $.ajax({  //turn the link3 attribute to true
+						url: "database2.php", 
+						async: true, 
+						type: "POST", 
+						data: {userID: user, func: 4}, 
+						dataType: "html" 
+					}).success(function(data) { 
+						//alert(data);
+					})//end success
+					.error(function() {
+						//alert("fail: " + user);
+					})
+					//return false;
+				});
+				$("#link4").click(function(){
+					var request4 = $.ajax({  //turn the link4 attribute to true
+						url: "database2.php", 
+						async: true, 
+						type: "POST", 
+						data: {userID: user, func: 5}, 
 						dataType: "html" 
 					}).success(function(data) { 
 						//alert(data);

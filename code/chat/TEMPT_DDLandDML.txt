@@ -46,11 +46,8 @@ CREATE TABLE ExerciseMethod (
 CREATE TABLE Session (
 	userID INT NOT NULL,
 	ipAddress VARCHAR(20),
-	isComputer BOOLEAN NOT NULL,
 	agentName VARCHAR(20),
 	persuadeCondition INT NOT NULL,
-	userType BOOLEAN NOT NULL,
-	compType BOOLEAN NOT NULL,
 	exitChat BOOLEAN NOT NULL,
 	insertTime TIMESTAMP,
 	PRIMARY KEY(userID));
@@ -80,14 +77,8 @@ CREATE TABLE ConvoStrategies (
 	timeSent TIMESTAMP,
 	PRIMARY KEY (receiverID, timesent));
 
-CREATE TABLE Email (
-	userID INT NOT NULL,
-	emailAddress VARCHAR(30) NOT NULL,
-	PRIMARY KEY (userID));
-
 CREATE TABLE PersuasionSuccess (
 	userID INT NOT NULL,
-	email BOOLEAN NOT NULL,
 	print BOOLEAN NOT NULL,
 	visitSite BOOLEAN NOT NULL,
 	tcLink1 BOOLEAN NOT NULL,
