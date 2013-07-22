@@ -74,14 +74,14 @@ session_start();
 			else
 				$exType = 'None';
 			
-			$id = rand(2,9999);
+			$id = rand(5,5000);
 			
 			function findExists($id) {
 				$idExists = false;
-				$currentIDs = mysql_query("SELECT userID from Demographics");
+				$currentIDs = mysql_query("SELECT userID from Session");
 				while($currentIdRow = mysql_fetch_array($currentIDs)) {
 					if($currentIdRow['userID'] == $id) {
-						$id = rand(2,9999);
+						$id = rand(5,5000);
 						findExists($id);
 					}
 					else
@@ -94,7 +94,7 @@ session_start();
 			$curUser = mysql_query("SELECT userID AS currentUser FROM Demographics WHERE insertTime = (SELECT MAX(insertTime) FROM Demographics)");
 			$row = mysql_fetch_array($curUser);
 			
-			mysql_query("INSERT INTO Session (userID, ipAddress, isComputer, persuadeCondition, exitChat) VALUES('$row[currentUser]', '$ip', 0, 1, 0) ");
+			mysql_query("INSERT INTO Session (userID, ipAddress,persuadeCondition, exitChat) VALUES('$row[currentUser]', '$ip', 1, 0) ");
 			mysql_query("INSERT INTO PersuasionSuccess (userID) VALUES('$row[currentUser]') ");
 			mysql_query("INSERT INTO PreChatQuestionnaire (userID, exerciseNeed, taiChiInterest) VALUES ('$row[currentUser]', '$pre1', '$pre2')");
 			echo ($row[currentUser]);
@@ -153,7 +153,7 @@ session_start();
 				$loggedIn = mysql_query("SELECT exitChat FROM Session WHERE userID = '$userID'");
 				$row = mysql_fetch_array($loggedIn);
 				if($row['exitChat'] == 0) {
-					mysql_query("INSERT INTO Conversation (sessionID, receiverID, message, displayTime)  VALUES('$userID', 0, '$msg', '$time')");
+					mysql_query("INSERT INTO Conversation (sessionID, receiverID, message, displayTime)  VALUES('$userID', (SELECT persuadeCondition FROM Session WHERE userID = '$userID'), '$msg', '$time')");
 				}
 				echo $msg;
 			}
@@ -272,6 +272,14 @@ session_start();
 			}
 			else
 				echo "notFound";
+			break;
+			
+		case 12:
+		
+			$curUser = $_POST['user'];
+			
+			mysql_query("INSERT INTO Session (userID, persuadeCondition, exitChat) VALUES('$curUser', 0, 1) ");
+			mysql_query("INSERT INTO PersuasionSuccess (userID, print) VALUES('$curUser',1) ");
 			break;
 	}
 ?>

@@ -19,8 +19,8 @@
 		//If there is a mistake, an error page is loaded.
 			$userID = $_POST['userID'];
 			$idExists = false;
-			if($userID != "") {
-				$currentIDs = mysql_query("SELECT * from PersuasionSuccess");
+			if($userID != "" && $userID != "test") {
+				$currentIDs = mysql_query("SELECT * from Session");
 				while($currentIdRow = mysql_fetch_array($currentIDs)) {
 					//if(($currentIdRow['userID'] == $userID) && ($currentIdRow['visitSite'] == 0)) {
 					if($currentIdRow['userID'] == $userID) {
@@ -36,6 +36,8 @@
 					mysql_query("INSERT INTO VisitSite (userID) VALUES ('$userID')");
 				}
 			}
+			else if($userID == "")
+				echo "notFound";
 			else
 				echo "found";
 			break;

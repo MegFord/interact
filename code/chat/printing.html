@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Print Fliers</title>
+		<link type="text/css" rel="stylesheet" href="chatStyle.css" />		
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>		
+		<script>
+			$(function(){
+				$("#printing").on('click', function () {
+					for (var count = 0; count < 10; count++) {
+						var user = Math.floor((Math.random()*4995)+5);
+						(function(k) {
+							$('<iframe />', {
+								id   : 'printIFrame' + k,
+								name : 'printIFrame' + k,
+								on   : {
+									load: function() {
+										this.contentWindow.focus();
+										this.contentWindow.print();
+									}
+								},
+								src  : 'flyer.php?userNow=' + k,
+							}).appendTo('body');
+							var request12 = $.ajax({ 
+								url: "database.php", 
+								async: true, 
+								type: "POST", 
+								data: {user: k, func: 12}, 
+								dataType: "html" 
+							}).success(function(data) { 
+							})//end success
+							.error(function() {
+								alert("fail");
+							})
+						})(user);
+					}
+				});			
+			});//end of document.ready(function)	
+		</script>									
+	</head>
+
+	<body>
+		<div class="wrapper" id="PostQuest">
+			<div class="top">
+			</div>	
+			<div class="container" id ="end" >		
+				<p id="printmsg">Print the face-to-face fliers. </p>				
+				<br><br>
+				<div class = "buttonHolder">	
+					<button class="submitbutton" id="printing">Print Flyer</button>
+				</div>
+			</div>				
+		</div>		
+	</body>
+</html>
