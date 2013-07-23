@@ -32,7 +32,7 @@ public class CommonGroundTest {
 	@Test
 	public void testGround() {
 		testCG.ground(city);
-		assertTrue(testCG.facts.containsKey("field1"));
+		assertTrue(testCG.getFacts().containsKey("field1"));
 	}
 
 	@Test

@@ -27,4 +27,12 @@ public class CommonGround {
 			return null;
 		}
 	}
+
+	public HashMap<String, Fact> getFacts() {
+		return facts;
+	}
+
+	public void setFacts(HashMap<String, Fact> facts) {
+		this.facts = facts;
+	}
 }
