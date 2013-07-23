@@ -51,6 +51,46 @@ public abstract class Goal {
 		return createMessage();
 	}
 	
+	public Stack<Goal> getSubgoals() {
+		return subgoals;
+	}
+
+	public void setSubgoals(Stack<Goal> subgoals) {
+		this.subgoals = subgoals;
+	}
+
+	public Stack<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Stack<Task> tasks) {
+		this.tasks = tasks;
+	}
+
+	public InformationState getIs() {
+		return is;
+	}
+
+	public void setIs(InformationState is) {
+		this.is = is;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Task getCurrentTask() {
+		return currentTask;
+	}
+
+	public void setCurrentTask(Task currentTask) {
+		this.currentTask = currentTask;
+	}
+
 	public void processTasks(){
 		System.out.println("Goal:["+name+"]: Processing Tasks");
 		removeCompleteTasks();
