@@ -59,7 +59,7 @@ public abstract class Goal {
 			currentTask = t;
 			t.perform(is);
 		} else {
-			System.out.println("Gaol:["+name+"]: No more tasks");
+			System.out.println("Goal:["+name+"]: No more tasks");
 		}
 		
 		
