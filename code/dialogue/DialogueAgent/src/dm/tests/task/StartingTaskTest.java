@@ -1,4 +1,4 @@
-package dm.tests.filter;
+package dm.tests.task;
 
 import static org.junit.Assert.*;
 
@@ -45,9 +45,9 @@ public class StartingTaskTest {
 	@Test
 	public void testStartingTask() {
 		testST = new StartingTask("test", testP);
-		assertEquals(testST.properties, testP);
-		assertEquals(testST.name, "test");
-		assertFalse(testST.complete);
+		assertEquals(testST.getProperties(), testP);
+		assertEquals(testST.getName(), "test");
+		assertFalse(testST.isComplete());
 	}
 
 }

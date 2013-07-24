@@ -43,10 +43,10 @@ public class RegExpFilterTest {
 	@Test
 	public void testInit() {
 		testREF.init();
-		assertEquals(p.getProperty("regexp"), testREF.regex);
-		assertEquals(p.getProperty("tag"), testREF.tag);
-		assertEquals(p.getProperty("outputField"), testREF.outField);
-		assertEquals(p.getProperty("inputField"), testREF.inField);
+		assertEquals(p.getProperty("regexp"), testREF.getRegex());
+		assertEquals(p.getProperty("tag"), testREF.getTag());
+		assertEquals(p.getProperty("outputField"), testREF.getOutField());
+		assertEquals(p.getProperty("inputField"), testREF.getInField());
 		//fail("Not yet implemented");
 	}
 

@@ -54,5 +54,37 @@ public class RegExpFilter extends MessageFilter{
 	public RegExpFilter(String name, Properties p){
 		super(name,p);
 	}
+
+	public String getRegex() {
+		return regex;
+	}
+
+	public void setRegex(String regex) {
+		this.regex = regex;
+	}
+
+	public String getTag() {
+		return tag;
+	}
+
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+	public String getOutField() {
+		return outField;
+	}
+
+	public void setOutField(String outField) {
+		this.outField = outField;
+	}
+
+	public String getInField() {
+		return inField;
+	}
+
+	public void setInField(String inField) {
+		this.inField = inField;
+	}
 	
 }

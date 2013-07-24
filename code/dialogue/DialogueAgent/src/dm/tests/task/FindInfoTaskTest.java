@@ -1,4 +1,4 @@
-package dm.tests.filter;
+package dm.tests.task;
 
 import static org.junit.Assert.*;
 
@@ -53,8 +53,8 @@ public class FindInfoTaskTest {
 
 	@Test
 	public void testFindInfoTask() {
-		assertEquals(testFIT.properties, p);
-		assertEquals(testFIT.name, "testFIT");
+		assertEquals(testFIT.getProperties(), p);
+		assertEquals(testFIT.getName(), "testFIT");
 		assertFalse(testFIT.isComplete());
 		assertTrue(testFIT.checkMandatoryFields());
 	}

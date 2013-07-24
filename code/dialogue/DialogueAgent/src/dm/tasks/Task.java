@@ -83,6 +83,42 @@ public abstract class Task{
 	 * @return true if the processing was successful.
 	 */
 	public abstract boolean process(InformationState is);
+
+	public InformationState getIs() {
+		return is;
+	}
+
+	public void setIs(InformationState is) {
+		this.is = is;
+	}
+
+	public String[] getMandatoryFields() {
+		return mandatoryFields;
+	}
+
+	public void setMandatoryFields(String[] mandatoryFields) {
+		this.mandatoryFields = mandatoryFields;
+	}
+
+	public Properties getProperties() {
+		return properties;
+	}
+
+	public void setProperties(Properties properties) {
+		this.properties = properties;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setComplete(boolean complete) {
+		this.complete = complete;
+	}
 	
 
 }
