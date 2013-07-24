@@ -17,7 +17,7 @@ public class ConfirmTask extends Task
 	}
 
 	// Left here in case we need it.
-	protected boolean verify()
+	public boolean verify()
 	{
 		if ("".toLowerCase().matches("(^|\\b)(yes|yeah|yup|yep|correct|right)(\\b|$)"))
 			return true;

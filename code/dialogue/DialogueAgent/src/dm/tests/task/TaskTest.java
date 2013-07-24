@@ -1,4 +1,4 @@
-package dm.tests.filter;
+package dm.tests.task;
 
 import static org.junit.Assert.*;
 
@@ -50,8 +50,8 @@ public class TaskTest {
 
 	@Test
 	public void testTask() {
-		assertEquals(testT.properties, tempP);
-		assertEquals(testT.name, "temp");
+		assertEquals(testT.getProperties(), tempP);
+		assertEquals(testT.getName(), "temp");
 		assertFalse(testT.isComplete());
 		assertFalse(testT.checkMandatoryFields());
 		//fail("Not yet implemented");

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dm.tests.filter;
+package dm.tests.dm;
 
 import static org.junit.Assert.*;
 
@@ -74,30 +74,30 @@ public class GoalTest {
 
 	@Test
 	public void testGoal() {
-		assertEquals(testGoal.name, "test");
+		assertEquals(testGoal.getName(), "test");
 		testGoal = new TempGoal("test2");
-		assertEquals(testGoal.name, "test2");
+		assertEquals(testGoal.getName(), "test2");
 	}
 
 	@Test
 	public void testSetInformationState() {
-		assertEquals(testGoal.is, null);
+		assertEquals(testGoal.getIs(), null);
 		testGoal.setInformationState(tempIS);
-		assertEquals(tempIS, testGoal.is);
+		assertEquals(tempIS, testGoal.getIs());
 	}
 
 	@Test
 	public void testAddTask() {
 		TempTask tempTask = new TempTask("tempTask", p);
 		testGoal.addTask(tempTask);
-		assertEquals(tempTask, testGoal.tasks.peek());
+		assertEquals(tempTask, testGoal.getTasks().peek());
 	}
 
 	@Test
 	public void testAddSubGoal() {
 		TempGoal test2 = new TempGoal("test2");
 		testGoal.addSubGoal(test2);
-		assertEquals(test2, testGoal.subgoals.peek());
+		assertEquals(test2, testGoal.getSubgoals().peek());
 	}
 
 	@Test
@@ -121,7 +121,7 @@ public class GoalTest {
 	public void testEndDialogue() {
 		testGoal.setInformationState(tempIS);
 		testGoal.endDialogue();
-		assertEquals(testGoal.is.getISFieldAsString(InformationState.AGENT_BELIEFS+":status"), "end");
+		assertEquals(testGoal.getIs().getISFieldAsString(InformationState.AGENT_BELIEFS+":status"), "end");
 	}
 
 	@Test

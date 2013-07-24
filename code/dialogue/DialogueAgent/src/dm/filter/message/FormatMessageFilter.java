@@ -72,4 +72,28 @@ public class FormatMessageFilter extends MessageFilter {
 		msg.setProperty(outField, response);
 		return msg;
 	}
+
+	public static Pattern getVars() {
+		return vars;
+	}
+
+	public static void setVars(Pattern vars) {
+		FormatMessageFilter.vars = vars;
+	}
+
+	public String getInField() {
+		return inField;
+	}
+
+	public void setInField(String inField) {
+		this.inField = inField;
+	}
+
+	public String getOutField() {
+		return outField;
+	}
+
+	public void setOutField(String outField) {
+		this.outField = outField;
+	}
 }

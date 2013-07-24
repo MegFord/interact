@@ -1,7 +1,7 @@
 /**
  * 
  */
-package dm.tests.filter;
+package dm.tests.is;
 
 import static org.junit.Assert.*;
 
