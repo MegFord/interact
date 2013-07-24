@@ -16,24 +16,13 @@ public class ConfirmTask extends Task
 		// TODO Auto-generated constructor stub
 	}
 
-	// Left here in case we need it.
-	protected boolean verify()
-	{
-		if ("".toLowerCase().matches("(^|\\b)(yes|yeah|yup|yep|correct|right)(\\b|$)"))
-			return true;
-		else
-		{
-			NLG.output("I'm sorry about that. Let's try again.");
-			//InformationState.repeated = true;
-			//DM.createStack(DataSource.questionsFilename);
-		}
-		return true;
-	}
 
 	@Override
 	public void setMandatoryFields() {
 		// TODO Auto-generated method stub
-		
+		mandatoryFields = new String[2];
+		mandatoryFields[0] = "outField"; // the field that will contain the output
+		mandatoryFields[1] = "messagePattern"; // the patterned message to output
 	}
 
 	@Override
@@ -45,12 +34,13 @@ public class ConfirmTask extends Task
 	@Override
 	public boolean verifyInformationState(InformationState is) {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean process(InformationState is) {
-		// TODO Auto-generated method stub
-		return false;
+		is.setISField(properties.getProperty(mandatoryFields[0]), properties.getProperty(mandatoryFields[1]));
+		is.setISField(is.CONVERSATION_BELIEFS+":status", "end");
+		return true;
 	}
 }
