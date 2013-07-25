@@ -7,6 +7,7 @@ import dm.data.DataLocations;
 import dm.dialogue.manager.DM;
 import dm.filter.InformationStateFilter;
 import dm.filter.MessageFilter;
+import dm.filter.message.ClassifierFilter;
 import dm.filter.message.FormatMessageFilter;
 import dm.filter.message.GreetingMessageFilter;
 import dm.filter.message.RegExpFilter;
@@ -34,6 +35,7 @@ public class ElizaAgentLoader extends DummyLoader {
 		Properties catchAll = new Properties();
 		Properties greet= new Properties();
 		Properties feelings = new Properties();
+		Properties classification = new Properties();
 		//Properties topic = new Properties();
 		
 		catchAll.setProperty("regexp", ".+");
@@ -60,10 +62,13 @@ public class ElizaAgentLoader extends DummyLoader {
 		topic.setProperty("value", "group");
 		topic.setProperty("responseExp", "What do you think of <group>?");*/
 	
+		classification.setProperty("inputField", "text");
+		classification.setProperty("outputField", "CONFIDENCE");
 		
 		filters.add(new ElizaRegExpFilter("catchAll",catchAll));
 		filters.add(new ElizaRegExpFilter("greet",greet));
 		filters.add(new ElizaRegExpFilter("feelings",feelings));
+		filters.add(new ClassifierFilter("confidence", classification));
 
 		
 
