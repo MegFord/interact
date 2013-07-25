@@ -78,7 +78,7 @@ public class DM
 	 * This method will look at the set of goals and determine how to best proceed.
 	 * @return
 	 */
-	private Message checkGoals() {
+	private Message checkGoals() {//should take an argument of goal stack
 		Goal nextGoal=goals.get(0);
 		double confidence=-0.1;
 		for(Goal g:goals){

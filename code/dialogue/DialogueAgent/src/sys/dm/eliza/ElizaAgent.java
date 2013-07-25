@@ -1,19 +1,25 @@
-/**
- * 
- */
 package sys.dm.eliza;
 
-/**
- * @author Tim
- *
- */
-public class ElizaAgent {
+import dm.dialogue.manager.DM;
+import sys.dm.Agent;
 
-	/**
-	 * 
-	 */
+public class ElizaAgent extends Agent {
+
 	public ElizaAgent() {
-		// TODO Auto-generated constructor stub
+		super();
+	}
+	
+	
+	public void initSystem() {
+		ElizaAgentLoader eal = new ElizaAgentLoader("");
+		dialogue = new DM(eal);
+		dialogue.setRules(new ElizaRules());
+	}
+	
+	
+	public static void main(String[] args){
+		ElizaAgent ea = new ElizaAgent();
+		ea.execute();
 	}
 
 }
