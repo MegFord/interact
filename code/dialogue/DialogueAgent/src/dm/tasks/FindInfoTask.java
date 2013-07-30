@@ -26,7 +26,7 @@ public class FindInfoTask extends Task
 		mandatoryFields[0] = "question"; // The question to ask to find this out
 		mandatoryFields[1] = "inFields"; //The fields in the Information State that must be present to consider that the information requested has been found. Format: Comma separated <space:field> fields to use in the response pattern
 		mandatoryFields[2] = "outField"; //which field is the question going in (in the IS) space:field
-		mandatoryFields[3] = "responsePattern"; // In case the DM wants to display a response or acknowledgement, what should that be?
+		mandatoryFields[3] = "responsePattern"; // In case the DM wants to display a response or acknowledgment, what should that be?
 	}
 
 
