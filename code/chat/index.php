@@ -28,21 +28,49 @@
 			var user = "";
 			var agentName;
 			var agentPass;
+			var userPass;
 			$(document).ready(function(){
 				var ip;
 				var refreshIntervalId;
 				var refreshIntervalType;
 				var refreshintervalFindUser;
+				var refreshSwitchid;
+				var strat;
+				//var why;
 										
 			 <?php 
 				if($_SESSION['name']!='admin'){
 			 ?>
-					$("#dialog").hide();
-					$("#welcome").show();
+					$("#welcome").hide();
 					$("#QuestFormat").hide();
 					$("#ChatFormat").hide();
+					$("#dialog").hide();
+					$("#commentsFormatAdmin").hide();				
+					$("#whySwitch").hide();
+					$("#whyNoSwitch").hide();
 					$("#PostQuest").hide();
 					$("#PostQuest3").hide();
+					$( "#userDialog" ).dialog({
+						modal: true,
+						buttons: {
+						Login: function() {
+							if($("#userPassword").val().toLowerCase() == "chat" || $("#userPassword").val().toLowerCase() == "test" || $("#userPassword").val().toLowerCase() == "pilot" || $("#userPassword").val().toLowerCase() == "face" || $("#userPassword").val().toLowerCase() == "dialogue")  {
+								userPass = $("#userPassword").val().toLowerCase();
+								$( this ).dialog( "close" ); 
+									$("#dialog").hide();
+									$("#welcome").show();
+									$("#QuestFormat").hide();
+									$("#ChatFormat").hide();
+									$("#ChatFormatAdmin").hide();
+									$("#commentsFormatAdmin").hide();	
+									$("#PostQuest").hide();
+									$("#PostQuest3").hide();     
+								}
+								else
+									alert("Incorrect Password. Please enter again.");
+							}							
+						}
+					});		
 					
 					$("#continue").mouseenter(function(){
 						$("#continue").fadeTo("fast", 1.0);
@@ -52,14 +80,6 @@
 					});
 		
 					$("#continue").on('click',function(){
-/*		FINDS THE IP ADDRESS OF THE CURRENT COMPUTER
- */							
-						 var jqxhr = $.getJSON("http://jsonip.com/?callback=?",
-                        function (data) {
-                            ip =(data.ip);
-                            //alert(ip);	
-                        })
-						.error(function () { alert("error"); })
 						$("#welcome").hide();
 						$("#QuestFormat").show();
 						$("#ChatFormat").hide();
@@ -88,7 +108,7 @@
 							var soc = $("#SocialNetwork").val();
 							var pre1 = $('input:radio[name=taichi1]:checked').val();
 							var pre2 = $('input:radio[name=taichi2]:checked').val();			
-							//alert(ip);				
+											
 /*		THE VALUES FROM THE PRE-CHAT QUESTIONNAIRE WILL BE SENT TO AND
  *		INSERTED IN THE DATABASE.
  */							
@@ -96,7 +116,7 @@
 								url: "database.php", 
 								async: true, 
 								type: "POST", 
-								data: {address: ip, position: pos, gender: sex, ethnicity: race, age: age, exercise1: ex1, exercise2: ex2, socialnetwork: soc, preNeed: pre1, preInterest: pre2, func: 0}, 
+								data: {pass: userPass, position: pos, gender: sex, ethnicity: race, age: age, exercise1: ex1, exercise2: ex2, socialnetwork: soc, preNeed: pre1, preInterest: pre2, func: 0}, 
 								dataType: "html" 
 							}).success(function(data) { 
 								user = data;
@@ -121,51 +141,71 @@
  *  		ADMIN TO A USER.
  */					
 				else{
-				?>
-					//$(".notify").html("Still waiting for a user to log in...");
-		
+				?>		
+					$("#userDialog").hide();
 					$("#welcome").hide();
 					$("#QuestFormat").hide();
 					$("#ChatFormatAdmin").show();
+					$("#commentsFormatAdmin").hide();				
+					$("#whySwitch").hide();
+					$("#whyNoSwitch").show();
 					$("#PostQuest").hide();
 					$("#PostQuest3").hide();
-					
 					$( "#dialog" ).dialog({
 						modal: true,
 						buttons: {
 						Login: function() {
-							agentName = $("#adminName").val();
-							agentPass = $("#adminPassword").val();
-							$( this ).dialog( "close" ); 
+							if($("#adminPassword").val().toLowerCase() == "chat" || $("#adminPassword").val().toLowerCase() == "test" || $("#adminPassword").val().toLowerCase() == "pilot" || $("#adminPassword").val().toLowerCase() == "face" || $("#adminPassword").val().toLowerCase() == "dialogue")  {
+								agentName = $("#adminName").val();
+								agentPass = $("#adminPassword").val().toLowerCase();
+								$( this ).dialog( "close" ); 
 								$("#welcome").hide();
 								$("#QuestFormat").hide();
-								$("#ChatFormatAdmin").show();								
+								$("#ChatFormatAdmin").show();	
+								$("#commentsFormatAdmin").hide();							
 								$("#PostQuest").hide();
-								$("#PostQuest3").hide();       
+								$("#PostQuest3").hide();      
+							}
+							else
+								alert("Incorrect Password. Please enter again.");
 							}
 						}
 					});			
-					//$(".notify").show();
 					$(".notify").html("Still waiting for a user to log in...");
-					//agentName = prompt("Agent, please enter your name: ");
-					//agentPass = prompt("Agent, please enter your password: ");
-					refreshintervalFindUser = setInterval(findUser, 1000); //checks every second to determine if a user is logged in									
+									
+					refreshintervalFindUser = setInterval(findUser, 1000); //checks every second to determine if a user is logged in						
 					refreshIntervalId = setInterval (loadLog, 1000);	//Reload convo every 1 seconds
-					//refreshIntervalType = setInterval (displayTyping, 1000);	//Reload typing message every 1 seconds
+					strat = "RationalPositive";
+					$("#switchNo").prop('checked',true);
+					$("#strategies").mouseup(function() {
+						//alert(strat);
+						if(strat == $("#strategies").val()) {
+							$("#switchNo").prop('checked',true);
+							$("#whySwitch").hide();
+							$("#whyNoSwitch").show();
+						}
+						else {
+							$("#switchYes").prop('checked',true);
+							$("#whyNoSwitch").hide();
+							$("#whySwitch").show();
+						}
+					});
+
 			<?php			
 				}
 			?>
-	
+
 /*		DETERMINE IF THERE IS A NEW USER TO ASSIGN TO THE ADMIN
  *
   */ 
 			function findUser() {
-				if(agentPass == "chat") {
+				// test, chat, dialogue, face, pilot
+				if(agentPass == "chat" || agentPass == "test" ||agentPass == "face" || agentPass == "pilot" || agentPass == "dialogue" ) {
 					var request1 = $.ajax({
 						url: "database.php",
 						async: true,
 						type: "POST",
-						data: {agent: agentName, func: 1},
+						data: {agent: agentName, pass: agentPass, func: 1},
 						dataType: "html"
 					}).success(function(data) {
 						if(data != "notFound") {	
@@ -268,31 +308,142 @@
 				<?php
 					if($_SESSION['name'] == 'admin') {
 				?>
-						var strat  = $("#strategies").val();
-						var why = $("#whySwitch").val();
-						var other = $("#otherComments").val();
-						if($("#otherComments").val() == "")
-							other = "NULL";
-						var clientmsg = $("#usermsg").val();
-						var request2 = $.ajax({ 
-							url: "database.php", 
-							async: true, 
-							type: "POST", 
-							data: {userNow: user, message: clientmsg, strategies: strat, whySwitch: why, otherCmnts: other, func: 2}, 
-							dataType: "html" 
-						}).success(function(data) { 
-							//$("#mainchatbox").html(data); 
-							//alert("message =  " + data);
-						})//end success			
-						$("#usermsg").val("");
-						$("#whySwitch").val($("#whySwitch option:first").val());
-						$("#otherComments").val("");
+						var decision = $(":radio[name=switchYesNo]:checked").val();
+						var why;
+						var clientmsg;
+						var erroritem;
+						strat  = $("#strategies").val();
+						if(decision == 0) {
+							if($("#usermsg").val() == "" || $("#whyNoSwitch").val() == "") {
+								if($("#usermsg").val() == "")
+									errorItem = "write a message to the user."
+								else
+									errorItem = "give a reason for NOT SWITCHING.";
+								$("#errorMessage3").html("***** Please " + errorItem + " *****").show();
+							}
+							else {
+								$("#errorMessage3").hide();
+								why = $("#whyNoSwitch").val();
+								clientmsg = $("#usermsg").val();
+								if($("#whyNoSwitch").val() == "Other") {
+									if($("#otherComments").val() == "") {
+										errorItem = "make a comment why you DIDN'T SWITCH.";
+										$("#errorMessage3").html("***** Please " + errorItem + " *****").show();
+									}
+									else {
+										var other = $("#otherComments").val();
+										var request2a = $.ajax({ 
+											url: "database.php", 
+											async: true, 
+											type: "POST", 
+											data: {userNow: user, message: clientmsg, strategies: strat, switchYN: decision, whySwitch: why, otherCmnts: other, func: 2}, 
+											dataType: "html" 
+										}).success(function(data) { 
+											//$("#mainchatbox").html(data); 
+											//alert("message =  " + data);
+										})//end success			
+										$("#usermsg").val("");
+										$("#switchNo").prop('checked',true);
+										$("#whySwitch").val($("#whySwitch option:first").val());
+										$("#whyNoSwitch").val($("#whyNoSwitch option:first").val());
+										$("#otherComments").val("");
+									} //end of else
+								}
+								else {
+									$("#errorMessage3").hide();
+									other = $("#otherComments").val();
+									if($("#otherComments").val() == "")
+										other = "NULL";
+									//alert(decision);
+									var request2b = $.ajax({ 
+										url: "database.php", 
+										async: true, 
+										type: "POST", 
+										data: {userNow: user, message: clientmsg, strategies: strat, switchYN: decision, whySwitch: why, otherCmnts: other, func: 2}, 
+										dataType: "html" 
+									}).success(function(data) { 
+										//$("#mainchatbox").html(data); 
+										//alert("message =  " + data);
+									})//end success			
+									$("#usermsg").val("");
+									$("#switchNo").prop('checked',true);
+									$("#whySwitch").val($("#whySwitch option:first").val());
+									$("#whyNoSwitch").val($("#whyNoSwitch option:first").val());
+									$("#otherComments").val("");
+								}
+							}
+						}
+						else if(decision == 1) {
+							$("#errorMessage3").hide();
+							if($("#usermsg").val() == "" || $("#whySwitch").val() == ""){
+								if($("#usermsg").val() == "")
+									errorItem = "write a message to the user."
+								else
+									errorItem = "give a reason for SWITCHING.";
+								$("#errorMessage3").html("***** Please " + errorItem + " *****").show();
+							}
+							else {
+								$("#errorMessage3").hide();
+								why = $("#whySwitch").val();
+								clientmsg = $("#usermsg").val();
+								if($("#whySwitch").val() == "Other") {
+									if($("#otherComments").val() == "") {
+										errorItem = "make a comment why you SWITCHED.";
+										$("#errorMessage3").html("***** Please " + errorItem + " *****").show();
+									}
+									else {
+										other = $("#otherComments").val();
+										var request2c = $.ajax({ 
+											url: "database.php", 
+											async: true, 
+											type: "POST", 
+											data: {userNow: user, message: clientmsg, strategies: strat, switchYN: decision, whySwitch: why, otherCmnts: other, func: 2}, 
+											dataType: "html" 
+										}).success(function(data) { 
+											//$("#mainchatbox").html(data); 
+											//alert("message =  " + data);
+										})//end success			
+										$("#usermsg").val("");
+										$("#switchNo").prop('checked',true);
+										$("#whySwitch").val($("#whySwitch option:first").val());
+										$("#whyNoSwitch").val($("#whyNoSwitch option:first").val());
+										$("#otherComments").val("");
+									} //end else
+								}
+								else {
+									$("#errorMessage3").hide();
+									other = $("#otherComments").val();
+									if($("#otherComments").val() == "")
+										other = "NULL";
+									//alert(decision);
+									var request2d = $.ajax({ 
+										url: "database.php", 
+										async: true, 
+										type: "POST", 
+										data: {userNow: user, message: clientmsg, strategies: strat, switchYN: decision, whySwitch: why, otherCmnts: other, func: 2}, 
+										dataType: "html" 
+									}).success(function(data) { 
+										//$("#mainchatbox").html(data); 
+										//alert("message =  " + data);
+									})//end success			
+									$("#usermsg").val("");
+									$("#switchNo").prop('checked',true);
+									$("#whySwitch").val($("#whySwitch option:first").val());
+									$("#whyNoSwitch").val($("#whyNoSwitch option:first").val());
+									$("#otherComments").val("");
+									$("#whySwitch").hide();
+									$("#whyNoSwitch").show();
+								}							
+							}
+						}
+						
+
 				<?php	
 					}
 					else {
 				?>
-						var clientmsg = $("#usermsg").val();
-						var request2 = $.ajax({ 
+						clientmsg = $("#usermsg").val();
+						var request2c = $.ajax({ 
 							url: "database.php", 
 							async: true, 
 							type: "POST", 
@@ -366,7 +517,7 @@
 				}		
 				
 /*		THE FUNCTION FOR WHEN THE 'ADMIN' CLICKS ON EXIT - THE ADMIN WILL BE
- *			SENT BACK TO THE WELCOME SCREEN
+ *			SENT TO THE ADDITIONAL COMMENTS SCREEN
  */
 				$("#exit").click(function(){
 					var exit = confirm("Are you sure you want to end the session?");
@@ -381,17 +532,42 @@
 							data: {userNow: user, func: 5}, 
 							dataType: "html" 
 						}).success(function(data) { 
+							user = data;
 						})//end success
 						$("#welcome").hide();
 						$("#QuestFormat").hide();
 						$("#ChatFormatAdmin").hide();
+						$("#commentsFormatAdmin").show();
 						$("#PostQuest").hide();
 						$("#PostQuest3").hide();
 					}
-				}); 
+				});
+				 				
+/*		THE FUNCTION FOR WHEN THE 'ADMIN' SUBMITS THE ADDITIONAL COMMENTS - 
+ *			THE ADMIN WILL BE SENT TO A BLANK SCREEN AND REFRESH FOR THE NEXT SESSION
+ */				
+				$("#submitcmmts").click(function(){
+					var addcmt = $("#addCmmts").val();
+					//alert(user);
+					//alert($("#addCmmts").val());
+					var request13 = $.ajax({ 
+							url: "database.php", 
+							async: true, 
+							type: "POST", 
+							data: {userNow: user, message: addcmt, func: 13}, 
+							dataType: "html" 
+						}).success(function(data) { 
+						})//end success
+					$("#welcome").hide();
+					$("#QuestFormat").hide();
+					$("#ChatFormatAdmin").hide();
+					$("#commentsFormatAdmin").hide();
+					$("#PostQuest").hide();
+					$("#PostQuest3").hide();
+				});
 				
-/*		    AFTER THE CHAT IS OVER, THE USER MAY SELECT TO EITHER PRINT A FLIER
- *  		    WITH MORE INFORMATION OR DECLINE.
+/*		AFTER THE CHAT IS OVER, THE USER MAY SELECT TO EITHER PRINT A FLIER
+*  		WITH MORE INFORMATION OR DECLINE.
  *			THIS CHOICE IS SENT TO THE DATABASE.
  *			
  *			ADDITIONALLY, THIS FUNCTION ALSO PRINTS OUT FLYER.PHP, WHICH
@@ -488,6 +664,11 @@
 	</head>
 
 	<body>
+		<div id="userDialog" title="User Login">
+			<p>Please enter your password: </p>
+			<input id="userPassword" type="text">
+		</div>
+		
 		<div id="dialog" title="Admin Login">
 			<p>Admin, please enter your name: </p>
 			<input id="adminName" type="text">
@@ -636,7 +817,7 @@
 		</div>		
 <!--
 		-------------------------------------------------------------------------------------------------------------
-		BEGINNING OF CHAT SCREEN
+		BEGINNING OF ADMIN CHAT SCREEN
 		-------------------------------------------------------------------------------------------------------------
 -->
 	<?php 
@@ -648,35 +829,77 @@
 				<a href="#" id="exit" class="logout"> Exit </a>
 			</div>	
 			<div class="container" id="mainchatboxAdmin">
-					<div class="notify"></div>
+					
 			</div>
-			<form name="message" action="">						
+			<form name="message" action="">					
 				<input class="bottom" name="usermsg" type="text" id="usermsg"/>
-				<input class = "submitbutton" name="submitmsg" type="submit"  id="submitmsg" value="Send" />
+				<input class = "submitbutton" name="submitmsg" type="button"  id="submitmsg" value="Send" />
 				<div id="adminComments">
-					<select id = "strategies">
-						<option value = "RationalPositive">Rational Positive</option>
-						<option value = "RationalNegative">Rational Negative</option>
-						<option value = "EmotionalPositive">Emotional Positive</option>
-						<option value = "EmotionalNegative">Emotional Negative</option>
-					</select>
-					<select id = "whySwitch">
-						<option value = "NoSwitch">No Switch</option>
-						<option value = "LackOfInterest">Lack Of Interest</option>
-						<option value = "NegativeReaction">Negative Reaction</option>
-						<option value = "MarginalInterest">Marginal Interest</option>
-						<option value = "HasDoubts">Has Doubts</option>
-						<option value = "Other">Other</option>
-					</select>
-				<input id="otherComments" type="text">	
-			 </div>
+					<span id="errorMessage3"></span>
+					<div id="left">
+						<select id = "strategies">
+							<option value = "RationalPositive">Rational Positive</option>
+							<option value = "RationalNegative">Rational Negative</option>
+							<option value = "EmotionalPositive">Emotional Positive</option>
+							<option value = "EmotionalNegative">Emotional Negative</option>
+						</select>
+					</div>				
+					<div id="center">
+						<input type="radio" id="switchNo" name="switchYesNo" value="0" disabled>No Switch<br>
+						<input type="radio" id="switchYes" name="switchYesNo" value="1" disabled>Switch<br>
+					</div>
+					<div id="right">
+						<select id = "whyNoSwitch">
+							<option value selected>-Select-</option>
+							<option value = "LotsOfInterest">Very Interested</option>
+							<option value = "SomeInterest">Somewhat Interested</option>
+							<option value = "Intro">Introduction</option>
+							<option value = "Conclusion">Conclusion</option>
+							<option value = "Other">Other</option>
+						</select>
+						<select id = "whySwitch">
+							<option value selected>-Select-</option>
+							<option value = "LackOfInterest">No Interest</option>
+							<option value = "MarginalInterest">Marginal Interest</option>
+							<option value = "Other">Other</option>
+						</select>
+						<input id="otherComments" placeholder="Additional Comments" type="text">	
+					</div>				
+				</div>
 			</form>
+		
+		</div>
+
+<!--
+		-------------------------------------------------------------------------------------------------------------
+		BEGINNING OF ADMIN COMMENTS SCREEN
+		-------------------------------------------------------------------------------------------------------------
+-->		
+		<div class="wrapper" id="commentsFormatAdmin">
+			<div class="top">
+			</div>	
+<!--
+			<form name="message" action="">					
+-->
+				<textarea class="container" name="usermsg" id="addCmmts" placeholder="Enter additional comments here (Leave blank if not applicable):"></textarea>
+				<div class = "buttonHolder">
+					<input class = "submitbutton" type="button"  id="submitcmmts" value="Send" />
+				</div>				
+<!--
+			</form>
+-->
 		
 		</div>
 	<?php
 		}
 		else {
 	?>
+	
+<!--
+		-------------------------------------------------------------------------------------------------------------
+		BEGINNING OF USER CHAT CHAT SCREEN
+		-------------------------------------------------------------------------------------------------------------
+-->
 		<div class="wrapper" id="ChatFormat">
 			<div class="top">
 				<div class="notify"></div>

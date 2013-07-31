@@ -35,9 +35,14 @@ form, span {
 	text-indent: 0;
 }
 
-#errorMessage1, #errorMessage2 {
-	color: red;;
-}
+	#errorMessage1, #errorMessage2 {
+		color: red;;
+	}
+
+	#errorMessage3, #errorMessage4 {
+		font-size: 16px;
+		color: red;;
+	}
 
  #loginform {
 	margin:0 auto;
@@ -89,9 +94,16 @@ form, span {
 	}
 	
 	#mainchatboxAdmin {
-		height: 80%;
+		height: 70%;
 		width: 92%;
 		padding:  4px 10px;
+	}
+	
+	#addCmmts {
+		height: 40%;
+		width: 92%;
+		padding:  4px 10px;
+		overflow: auto;
 	}
 	
 .notify {
@@ -146,7 +158,7 @@ form, span {
 		box-shadow: inset 0 0 5px 2px #AAAAAA, 0 1px 0 0 #EEEEEE;
 	}
 
-		.submitbutton#QuestSubmit, .submitbutton#continue, .submitbutton#printing, .submitbutton#nothank, .submitbutton#PostQuestsubmit {
+		.submitbutton#QuestSubmit, .submitbutton#continue, .submitbutton#printing, .submitbutton#nothank, .submitbutton#PostQuestsubmit, .submitbutton#submitcmmts{
 			width: 12%;
 			min-width: 150px;
 		}
@@ -179,10 +191,35 @@ form, span {
 }
 
 #otherComments {
-	width: 30%;
-	margin-left: 10px;
-	margin-right: 10px;
+	width: 50%;
+	margin-left: 2px;
+	margin-right: 2px;
 }
+
+	#left{
+		width: 30%;
+		margin-top: 5px;
+		float: left;
+		text-align: left;
+	}
+	
+	#right{
+		width: 50%;
+		margin-top: 5px;
+		float: left;
+		text-align: left;
+	}
+
+	#center {
+		height: 30px;
+		width: 20%;
+		margin-top: 5px;
+		float: left;
+		text-align: left;
+		font-size: 16px;
+		font-weight: 500;
+		color: white;
+	}
 
 select {
 	width: 100px;
@@ -192,8 +229,14 @@ select {
 	padding: 0px;
 }
 
-	#whySwitch, #strategies {
-		width: 20%;
+	#strategies {
+		width: 80%;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	
+	#whySwitch, #whyNoSwitch {
+		width: 35%;
 		margin-left: 10px;
 		margin-right: 10px;
 	}

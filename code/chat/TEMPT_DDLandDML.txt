@@ -45,9 +45,11 @@ CREATE TABLE ExerciseMethod (
 
 CREATE TABLE Session (
 	userID INT NOT NULL,
-	ipAddress VARCHAR(20),
+	password VARCHAR(20),
 	agentName VARCHAR(20),
 	persuadeCondition INT NOT NULL,
+	compType BOOLEAB NOT NULL,
+	userType BOOLEAN NOT NULL,
 	exitChat BOOLEAN NOT NULL,
 	insertTime TIMESTAMP,
 	PRIMARY KEY(userID));
@@ -72,10 +74,17 @@ CREATE TABLE ConvoStrategies (
 	receiverID INT NOT NULL,
 	message VARCHAR(120) NOT NULL,
 	strategies VARCHAR(20) NOT NULL,
-	whySwitch VARCHAR(20) NOT NULL,
+	yesNoSwitch BOOLEAN NOT NULL,
+	whyYesNoSwitch VARCHAR(20) NOT NULL,
 	otherComments VARCHAR(120),
 	timeSent TIMESTAMP,
 	PRIMARY KEY (receiverID, timesent));
+
+CREATE TABLE AdditionalComments (
+	sessionID INT NOT NULL,
+	comments VARCHAR(250),
+	timeEntered TIMESTAMP,
+	PRIMARY KEY (sessionID));
 
 CREATE TABLE PersuasionSuccess (
 	userID INT NOT NULL,
