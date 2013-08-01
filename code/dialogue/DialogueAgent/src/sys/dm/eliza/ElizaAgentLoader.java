@@ -8,6 +8,7 @@ import dm.dialogue.manager.DM;
 import dm.filter.InformationStateFilter;
 import dm.filter.MessageFilter;
 import dm.filter.message.ClassifierFilter;
+import dm.filter.message.CleanerFilter;
 import dm.filter.message.FormatMessageFilter;
 import dm.filter.message.GreetingMessageFilter;
 import dm.filter.message.RegExpFilter;
@@ -36,7 +37,7 @@ public class ElizaAgentLoader extends DummyLoader {
 		Properties greet= new Properties();
 		Properties feelings = new Properties();
 		Properties classification = new Properties();
-		//Properties topic = new Properties();
+		Properties stemming = new Properties();
 		
 		catchAll.setProperty("regexp", ".+");
 		catchAll.setProperty("inputField", "text");
@@ -55,21 +56,19 @@ public class ElizaAgentLoader extends DummyLoader {
 		feelings.setProperty("outputField", "question");
 		feelings.setProperty("value", "group");
 		feelings.setProperty("responseExp", "Do you want to talk about why you're feeling <group>? Or, feel free to talk about something else.");
-		
-		/*topic.setProperty("regexp", "(i|I)\\slike\\s.*");
-		topic.setProperty("inputField", "text");
-		topic.setProperty("outputField", "question");
-		topic.setProperty("value", "group");
-		topic.setProperty("responseExp", "What do you think of <group>?");*/
 	
 		classification.setProperty("inputField", "text");
 		classification.setProperty("outputField", "CONFIDENCE");
+		
+		stemming.setProperty("inputField", "text");
+		stemming.setProperty("outputField", "stemmed");
+		stemming.setProperty("removeStopWords", "true");
 		
 		filters.add(new ElizaRegExpFilter("catchAll",catchAll));
 		filters.add(new ElizaRegExpFilter("greet",greet));
 		filters.add(new ElizaRegExpFilter("feelings",feelings));
 		filters.add(new ClassifierFilter("confidence", classification));
-
+		filters.add(new CleanerFilter("stemmer", stemming));
 		
 
 	}
