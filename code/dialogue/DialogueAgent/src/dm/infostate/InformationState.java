@@ -45,8 +45,7 @@ public class InformationState
 	public Beliefs<ConversationBelief> getConversationBeliefs() {
 		return conversationBeliefs;
 	}
-	public void setConversationBeliefs(
-			Beliefs<ConversationBelief> conversationBeliefs) {
+	public void setConversationBeliefs(Beliefs<ConversationBelief> conversationBeliefs) {
 		this.conversationBeliefs = conversationBeliefs;
 	}
 	public Beliefs<UserBelief> getUserBeliefs() {

@@ -27,7 +27,7 @@ public class FormatMessageFilter extends MessageFilter {
 	public void setMandatoryFields() {
 		mandatoryFields = new String[2];
 		mandatoryFields[0] = "inField";
-		mandatoryFields[1] = "outField";	
+		mandatoryFields[1] = "outField";
 	}
 
 	@Override
