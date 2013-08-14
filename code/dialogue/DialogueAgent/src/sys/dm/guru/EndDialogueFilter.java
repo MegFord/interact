@@ -4,6 +4,8 @@
 package sys.dm.guru;
 
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import dm.filter.MessageFilter;
 import dm.nlp.Message;
@@ -48,8 +50,19 @@ public class EndDialogueFilter extends MessageFilter{
 
 	@Override
 	public Message processFilter(Message msg) {
-		// TODO Auto-generated method stub
-		return null;
+		String userText = msg.getProperty(inputField);
+		System.out.println("Filter ["+name+"]. Regexp: ["+regExp+"] to match :["+userText+"]");//test message
+		Pattern p = Pattern.compile(regExp, Pattern.CASE_INSENSITIVE);
+		Matcher m = p.matcher(userText);
+		while(m.find()){
+			msg.setProperty(properties.getProperty("reponseNeeded"),"false");
+			msg.setProperty(properties.getProperty("matcherValue"), m.group());
+			msg.setProperty(outputField,responseExp);
+			System.out.println("Found a match: " + m.group());//test message
+		}
+		return msg;
 	}
+
+}
 
 }
