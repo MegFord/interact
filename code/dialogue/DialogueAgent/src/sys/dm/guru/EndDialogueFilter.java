@@ -65,4 +65,3 @@ public class EndDialogueFilter extends MessageFilter{
 
 }
 
-}
