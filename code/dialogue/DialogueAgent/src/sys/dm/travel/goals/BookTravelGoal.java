@@ -23,6 +23,7 @@ public class BookTravelGoal extends Goal {
 		Properties to = new Properties();
 		Properties date = new Properties();
 		Properties greet = new Properties();
+		Properties bye = new Properties();
 		
 		// The tasks are all FindInfoTask objects.
 		from.setProperty("question", "Where are you departing from?");
@@ -47,13 +48,21 @@ public class BookTravelGoal extends Goal {
 		greet.setProperty("mood", conv+"mood");
 		greet.setProperty("responsePattern", "<greeting_info> Welcome to the travel system. How can I help you?");
 		
+		bye.setProperty("question", "Alright, bye!");
+		bye.setProperty("inFields", cg+":greeting"); // these must be <namespace>:<attribute>,<namespace2>:<attrib2>,...
+		bye.setProperty("outField",conv+":response");
+		bye.setProperty("responsePattern", "Alright, bye!");
+		
 		
 		FindInfoTask findFrom = new FindInfoTask("fromTask", from);
 		FindInfoTask findTo = new FindInfoTask("toTask", to);
 		FindInfoTask findDate = new FindInfoTask("dateTask",date);
+		FindInfoTask findGreeting = new FindInfoTask("greetTask",greet);
+		FindInfoTask findBye = new FindInfoTask("byeTask",bye);
+		
 		//FindInfoTask findGreeting = new FindInfoTask("greetTask",greet);
 		GreetingTask findGreeting = new GreetingTask("greetTask",greet);
-		
+		this.addTask(findBye);
 		this.addTask(findFrom);
 		this.addTask(findTo);
 		this.addTask(findDate);

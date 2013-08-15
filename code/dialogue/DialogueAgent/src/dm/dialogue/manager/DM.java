@@ -51,6 +51,11 @@ public class DM
 		return informationState.getConversationBeliefs().getBeliefString("status").toString().equals("end");
 	}
 	
+	public void endIt(){
+		informationState.getConversationBeliefs().believe(new ConversationBelief("status", "end"));
+
+	}
+	
 	public boolean isResponseNeeded(){
 		return informationState.getConversationBeliefs().getBeliefString("response_needed").toString().equals("true");
 	}
@@ -78,7 +83,7 @@ public class DM
 	 * This method will look at the set of goals and determine how to best proceed.
 	 * @return
 	 */
-	private Message checkGoals() {//should take an argument of goal stack
+	private Message checkGoals() {
 		Goal nextGoal=goals.get(0);
 		double confidence=-0.1;
 		for(Goal g:goals){
