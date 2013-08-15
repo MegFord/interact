@@ -67,7 +67,7 @@ public class CleanerFilter extends MessageFilter {
 		String[] words = str.split(" ");
 		for (String word : words)
 			if (!stopwords.contains(word))
-				result += word + " ";
-		return result.substring(0, result.length()-1); //get rid of the last space	  
+				result += word;
+		return result;		  
 	  }
 }

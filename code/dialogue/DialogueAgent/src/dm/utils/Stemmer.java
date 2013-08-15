@@ -375,7 +375,6 @@ public class Stemmer
   
   public static String removePunctuation(String str)
   {
-	  str = str.toLowerCase();
 	  str = str.replaceAll("[^a-z\\s]", "");
 	  return str;
   }
