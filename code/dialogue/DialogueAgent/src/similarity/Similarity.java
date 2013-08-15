@@ -2,9 +2,9 @@ package similarity;
 //in sum, the Similarity class should have a private TfIdf wordVals variable 
 //with getters and setters and it should have a public double similarity(String 
 //text1, String text2) method.
-public class similarity {
+public class Similarity {
 	private double /*TfIdf*/ wordVals;
-	public similarity() {
+	public Similarity() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -108,7 +108,6 @@ public class similarity {
 	private double magnitude(double[] vect)
 	{
 		double magnitude = 0.0;
-		//Math.sqrt(arg0)
 		for(int x = 0; x < vect.length; x++)
 		{
 			magnitude = magnitude + (Math.pow(vect[x], 2));
