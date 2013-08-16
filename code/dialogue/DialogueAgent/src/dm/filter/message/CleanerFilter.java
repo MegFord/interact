@@ -8,14 +8,14 @@ import java.util.Scanner;
 
 import dm.filter.MessageFilter;
 import dm.nlp.Message;
-import dm.utils.Stemmer;
+import dm.utils.StringUtils;
 
 public class CleanerFilter extends MessageFilter {
 
 	String inputField;
 	String outputField;
 	Boolean removeStopWords;
-	static HashSet<String> stopwords;// TODO add this to the infostate somehow
+	public static HashSet<String> stopwords;// TODO add this to the infostate somehow
 	
 	
 	public CleanerFilter(String name, Properties properties) {
@@ -54,20 +54,9 @@ public class CleanerFilter extends MessageFilter {
 	public Message processFilter(Message msg) {
 		String userText = msg.getProperty(inputField);
 		if (removeStopWords)
-			userText = removeStopWords(userText);
-		String cleanText = Stemmer.stemText(userText);
+			userText = StringUtils.removeStopWords(userText);
+		String cleanText = StringUtils.stemText(userText);
 		msg.setProperty(outputField, cleanText);
 		return msg;
 	}
-
-	private static String removeStopWords(String str)
-	  {
-		String result = "";
-		str = Stemmer.removePunctuation(str);
-		String[] words = str.split(" ");
-		for (String word : words)
-			if (!stopwords.contains(word))
-				result += word;
-		return result;		  
-	  }
 }
