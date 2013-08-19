@@ -19,10 +19,10 @@ public class RegExpFilter extends MessageFilter{
 	@Override
 	public void setMandatoryFields() {
 		mandatoryFields = new String[4];
-		mandatoryFields[0] = "regexp";
-		mandatoryFields[1] = "tag";
-		mandatoryFields[2] = "outputField";
-		mandatoryFields[3] = "inputField";
+		mandatoryFields[0] = "regexp"; // the regexp to detect in the message
+		mandatoryFields[1] = "tag"; // a tag field
+		mandatoryFields[2] = "outputField"; //where the output is going to go
+		mandatoryFields[3] = "inputField"; // where the message to apply the regexp is stored
 	}
 
 	@Override

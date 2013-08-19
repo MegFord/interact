@@ -358,37 +358,4 @@ public class Stemmer
       if (k > 1) { step1(); step2(); step3(); step4(); step5(); step6(); }
       i_end = k+1; i = 0;
    }
-
-   
-   public static void main(String[] args)
-   {
-	   System.out.println(stemWord("doing"));
-	   System.out.println(stemText("Hello. How are you doing? I am having so much fun with this! Yay~"));
-   }
-  private static String stemWord(String str)
-  {
-	  Stemmer s = new Stemmer();
-	  s.add(str.toLowerCase().toCharArray(), str.length());
-	  s.stem();
-	  return s.toString();
-  }
-  
-  public static String removePunctuation(String str)
-  {
-	  str = str.toLowerCase();
-	  str = str.replaceAll("[^a-z\\s]", "");
-	  return str;
-  }
-  
-  public static String stemText(String text)
-  {
-	  String result = "";
-	  text = text.toLowerCase();
-	  String str = removePunctuation(text);
-	  String[] words = str.split(" ");
-	  for (String w : words)
-		  result += stemWord(w) + " ";
-	  return result.substring(0, result.length()-1); //get rid of the last space
-  }
-
 }

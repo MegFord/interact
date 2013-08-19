@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package similarity;
 //in sum, the Similarity class should have a private TfIdf wordVals variable 
 //with getters and setters and it should have a public double similarity(String 
