@@ -35,6 +35,11 @@ public class GoalTest {
 			// TODO Auto-generated method stub
 			return null;
 		}
+		@Override
+		public void update() {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 	class TempTask extends Task{
 		public TempTask(String name, Properties p){
