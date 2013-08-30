@@ -89,7 +89,7 @@ public class GoalTest {
 	@Test
 	public void testAddTask() {
 		TempTask tempTask = new TempTask("tempTask", p);
-		testGoal.addTask(tempTask);
+		testGoal.pushTask(tempTask);
 		assertEquals(tempTask, testGoal.getTasks().peek());
 	}
 

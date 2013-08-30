@@ -30,7 +30,7 @@ public class ElizaChitChatGoal extends Goal {
 		AskQuestionTask testGreet = new AskQuestionTask("AskQuestion-Greet", greet);
 		
 		
-		this.addTask(testGreet);
+		this.pushTask(testGreet);
 
 	}
 

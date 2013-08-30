@@ -37,7 +37,7 @@ public abstract class Goal {
 		this.is = is;
 	}
 	
-	public void addTask(Task t){
+	public void pushTask(Task t){
 		tasks.push(t);
 	}
 	

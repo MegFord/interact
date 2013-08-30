@@ -57,16 +57,16 @@ public class BookTravelGoal extends Goal {
 		FindInfoTask findFrom = new FindInfoTask("fromTask", from);
 		FindInfoTask findTo = new FindInfoTask("toTask", to);
 		FindInfoTask findDate = new FindInfoTask("dateTask",date);
-		FindInfoTask findGreeting = new FindInfoTask("greetTask",greet);
+		//FindInfoTask findGreeting = new FindInfoTask("greetTask",greet);
 		FindInfoTask findBye = new FindInfoTask("byeTask",bye);
 		
 		//FindInfoTask findGreeting = new FindInfoTask("greetTask",greet);
 		GreetingTask findGreeting = new GreetingTask("greetTask",greet);
-		this.addTask(findBye);
-		this.addTask(findFrom);
-		this.addTask(findTo);
-		this.addTask(findDate);
-		this.addTask(findGreeting);
+		this.pushTask(findBye);
+		this.pushTask(findFrom);
+		this.pushTask(findTo);
+		this.pushTask(findDate);
+		this.pushTask(findGreeting);
 	}
 
 	@Override

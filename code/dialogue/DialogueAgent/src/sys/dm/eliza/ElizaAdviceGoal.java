@@ -54,10 +54,10 @@ public class ElizaAdviceGoal extends Goal {
 		//FindInfoTask findGreeting = new FindInfoTask("greetTask",greet);
 		GreetingTask findGreeting = new GreetingTask("greetTask",greet);
 		
-		this.addTask(findFrom);
-		this.addTask(findTo);
-		this.addTask(findDate);
-		this.addTask(findGreeting);
+		this.pushTask(findFrom);
+		this.pushTask(findTo);
+		this.pushTask(findDate);
+		this.pushTask(findGreeting);
 	}
 
 	@Override
