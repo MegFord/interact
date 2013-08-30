@@ -46,10 +46,17 @@ public abstract class Goal {
 	}
 	
 	public Message execute(){
+		update();
 		processTasks();
 		processSubgoals();
 		return createMessage();
 	}
+	
+	/**
+	 * Users must override this method in order to carry out any updates
+	 * in the is,task stacks or subgoal stack if necessary
+	 */
+	public abstract void update();
 	
 	public Stack<Goal> getSubgoals() {
 		return subgoals;

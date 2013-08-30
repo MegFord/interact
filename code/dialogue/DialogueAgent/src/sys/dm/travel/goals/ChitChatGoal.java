@@ -26,6 +26,12 @@ public class ChitChatGoal extends Goal{
 		return null;
 	}
 
+	@Override
+	public void update() {
+		// Not Used
+		
+	}
+
 
 
 }

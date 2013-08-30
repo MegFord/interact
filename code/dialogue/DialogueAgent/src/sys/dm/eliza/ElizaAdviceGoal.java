@@ -89,4 +89,11 @@ public class ElizaAdviceGoal extends Goal {
 		return 1.0;
 	}
 
+
+	@Override
+	public void update() {
+		// Not used in this goal
+		
+	}
+
 }

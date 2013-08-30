@@ -54,6 +54,12 @@ public class ElizaChitChatGoal extends Goal {
 		// TODO Auto-generated method stub
 		return 1.0;
 	}
+
+	@Override
+	public void update() {
+		// Not used.
+		
+	}
 	
 
 }
