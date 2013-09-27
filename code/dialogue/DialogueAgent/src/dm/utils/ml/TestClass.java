@@ -16,6 +16,20 @@ public class TestClass {
 	}
 	
 	public static void main(String[] args){
+		StoredUtterance tempSU = new StoredUtterance();
+		tempSU.addUtterance(0,"I would like to try this program");
+		tempSU.addUtterance(1,"Can you be more clear in what you want?");
+		tempSU.addUtterance(1,"What would you like me to do for you today?");
+		tempSU.addUtterance(1,"These items are just what I am looking for thank you");
+		tempSU.addUtterance(0,"Seems to me that our team has a good chance at winning this event");
+		tempSU.addUtterance(0,"What can I say this is the greatest juice I have ever had");
+		tempSU.addUtterance(0,"Now I know what you are going to say but hear me out");
+		tempSU.addUtterance(1,"Sure I would like to know more about Tai Chi");
+		tempSU.addUtterance(1,"Yes I think I am strong enough to that I dont need to do Tai Chi");
+		tempSU.addUtterance(0,"What is so healthy about Tai Chi what makes you think I need it?");
+		tempSU.addUtterance(0,"I would like to talk more about strength training and how it would help me");
+		tempSU.addUtterance(1,"So what you are saying is that I can get stronger by doing Tai Chi");
+		
 		ArrayList<String> docs = new ArrayList<String>();
 		docs.add("Physical exercise is any bodily activity that enhances or maintains physical fitness and overall health and wellness. It is performed for various reasons including strengthening muscles and the cardiovascular system, honing athletic skills, weight loss or maintenance, as well as for the purpose of enjoyment. Frequent and regular physical exercise boosts the immune system, and helps prevent the 'diseases of affluence' such as heart disease, cardiovascular disease, Type 2 diabetes and obesity.[1][2] It also improves mental health, helps prevent depression, helps to promote or maintain positive self-esteem, and can even augment an individual's sex appeal or body image, which is also found to be linked with higher levels of self-esteem.[3] Childhood obesity is a growing global concern[4] and physical exercise may help decrease some of the effects of childhood and adult obesity. Health care providers often call exercise the 'miracle' or 'wonder' drug—alluding to the wide variety of proven benefits that it providesPhysical exercise is any bodily activity that enhances or maintains physical fitness and overall health and wellness. It is performed for various reasons including strengthening muscles and the cardiovascular system, honing athletic skills, weight loss or maintenance, as well as for the purpose of enjoyment. Frequent and regular physical exercise boosts the immune system, and helps prevent the 'diseases of affluence' such as heart disease, cardiovascular disease, Type 2 diabetes and obesity.[1][2] It also improves mental health, helps prevent depression, helps to promote or maintain positive self-esteem, and can even augment an individual's sex appeal or body image, which is also found to be linked with higher levels of self-esteem.[3] Childhood obesity is a growing global concern[4] and physical exercise may help decrease some of the effects of childhood and adult obesity. Health care providers often call exercise the 'miracle' or 'wonder' drug—alluding to the wide variety of proven benefits that it provides");
 		docs.add("Physical exercise is important for maintaining physical fitness and can contribute positively to maintaining a healthy weight, building and maintaining healthy bone density, muscle strength, and joint mobility, promoting physiological well-being, reducing surgical risks, and strengthening the immune system.");
@@ -74,5 +88,9 @@ public class TestClass {
 			System.out.printf("TFIDF: %.5f, Term Freq: %.5f, Term Count: %3.0f, Total Term Count: %4.0f, Doc Count: %2.0f, Total Doc Count: %2.0f, Term = %s\n", tempMT.getVocabulary().get(key).getTFIDF(), tempMT.getVocabulary().get(key).getTermFrequency(), tempMT.getVocabulary().get(key).getTermCount(), tempMT.getVocabulary().get(key).getTotalTermCount(), tempMT.getVocabulary().get(key).getDocCount(), Term.getTotalDocCount(), key);
 		}
 		System.out.println(docs.size());
+		
+		SentimentAnalysis tempSA = new SentimentAnalysis(tempMT, tempSU.getUtteranceList());
+		
+		System.out.println(tempSA.calculateSentAnalysis(7, "who is there"));
 	}
 }

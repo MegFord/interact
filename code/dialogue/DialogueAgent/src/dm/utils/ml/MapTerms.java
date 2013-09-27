@@ -2,6 +2,8 @@ package dm.utils.ml;
 
 import java.util.HashMap;
 
+import dm.utils.Stemmer;
+
 /**
  * @author TimD
  *
@@ -10,6 +12,8 @@ public class MapTerms {
 
 	private HashMap<String, Term> vocabulary = new HashMap<String, Term>();
 
+	private Stemmer tempStemmer = new Stemmer();
+	
 	public MapTerms() {
 		//default
 	}
@@ -19,6 +23,7 @@ public class MapTerms {
 		setVocabulary(createMapTerms(tempString));
 		completeMapTerms();
 	}
+	
 	//creates a new HashMap of Terms or adds to existing HashMap of Terms
 	public void addMapTerms(String tempString) {
 		if(getVocabulary().isEmpty()) {
@@ -41,6 +46,7 @@ public class MapTerms {
 		}
 		completeMapTerms();
 	}
+	
 	//builds the HashMap of terms
 	private HashMap<String, Term> createMapTerms(String tempString) {
 		Term term;
@@ -60,6 +66,7 @@ public class MapTerms {
 		}
 		return tempVocabulary;
 	}
+	
 	//completes the HashMap of Terms by computing the Term Frequency and TFIDF of each term
 	private void completeMapTerms(){
 		for(String key: getVocabulary().keySet()){
@@ -67,9 +74,12 @@ public class MapTerms {
 			getVocabulary().get(key).setTFIDF(getVocabulary().get(key).computeTFIDF());
 		}
 	}
+	
 	//parses a string into a string array
+	@SuppressWarnings("static-access")
 	private String[] parseString(String tempString){
-		tempString = tempString.replaceAll("[\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\[\\]\\{\\}\\;\\:\\'\"\\,\\<\\.\\>\\?]"," ").toLowerCase();
+		//tempString = tempString.replaceAll("[\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\[\\]\\{\\}\\;\\:\\'\"\\,\\<\\.\\>\\?]"," ").toLowerCase();
+		tempString = tempStemmer.stemText(tempString);
 		String[] tempStringArray = tempString.split(" +");
 		return tempStringArray;
 	}
@@ -80,5 +90,32 @@ public class MapTerms {
 	
 	private void setVocabulary(HashMap<String, Term> tempHashMap) {
 		vocabulary = tempHashMap;
+	}
+	
+	public double getTermCount(String key) {
+		return getVocabulary().get(key).getTermCount();
+	}
+	
+	public double getTotalTermCount(String key) {
+		return getVocabulary().get(key).getTotalTermCount();
+	}
+	
+	public double getDocCount(String key) {
+		return getVocabulary().get(key).getDocCount();
+	}
+	
+	public double getTermFrequency(String key) {
+		return getVocabulary().get(key).getTermFrequency();
+	}
+	
+	public double getDocFrequency(String key) {
+		return getVocabulary().get(key).getDocFrequency();
+	}
+	
+	public double getTFIDF(String key) {
+		if(getVocabulary().containsKey(key))
+			return getVocabulary().get(key).getTFIDF();
+		else
+			return 0;
 	}
 }
